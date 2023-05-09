@@ -5,6 +5,8 @@ import multer from "multer"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import { getDb } from "./utils/db.js"
+import userController from "./controller/user.controller.js"
+import { authMiddleware } from "./middleware/auth.middleware.js"
 
 const server = express()
 const PORT = process.env.PORT
@@ -31,6 +33,9 @@ server.post("/register", async (req, res) => {
 	const result = await db.collection("finco").insertOne(req.body)
 	res.json(result)
 })
+
+server.post("/login", userController.login)
+server.get("/auth", authMiddleware, userController.auth)
 
 // * ===== LOGGER ======
 server.use(morgan("dev"))
