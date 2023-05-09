@@ -18,7 +18,7 @@ const RegisterForm = () => {
       headers: { 
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username, password, email, agreedToTnC })
+      body: JSON.stringify({ account: { username, password, email, agreedToTnC }})
     })
     const data = await response.json();
     console.log(data);
