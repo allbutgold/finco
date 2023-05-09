@@ -1,6 +1,11 @@
+import styles from './Onboarding.module.scss';
+
 const Onboarding = () => {
   return ( 
-    <h1>Onboarding</h1>
+    <section className={styles.Onboarding}>
+      <h1>Onboarding</h1>
+    </section>
+
   );
 }
 

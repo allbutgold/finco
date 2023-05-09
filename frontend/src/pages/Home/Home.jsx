@@ -1,6 +1,10 @@
+import styles from './Home.module.scss';
+
 const Home = () => {
   return ( 
-    <h1>Home</h1>
+    <section className={styles.Home}>
+      <h1>Home</h1>
+    </section>
   );
 }
 
