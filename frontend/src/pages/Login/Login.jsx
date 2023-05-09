@@ -6,12 +6,12 @@ const Login = () => {
 	const [inputEmail, setInputEmail] = useState("")
 	const [inputPassword, setInputPassword] = useState("")
 
-	// const URL = import.meta.env.VITE_BACKEND_URL
+	const URL = import.meta.env.VITE_BACKEND_URL
 	const navigator = useNavigate()
 
 	const login = async (event) => {
 		event.preventDefault()
-		const response = await fetch("http://localhost:9999/login", {
+		const response = await fetch(URL + "login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
