@@ -33,6 +33,7 @@ server.post("/register", async (req, res) => {
 	res.json(result);
 });
 
+// * get credit card info
 server.get("/getAccountData", getCardInfo);
 
 // * ===== LOGGER ======
