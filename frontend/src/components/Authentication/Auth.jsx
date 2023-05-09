@@ -9,7 +9,7 @@ const Auth = () => {
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch(URL + 'auth', { credentials: "include" })
+			const response = await fetch(URL + "auth", { credentials: "include" })
 			if (response.ok) {
 				setIsLoading(false)
 				const user = await response.json()
