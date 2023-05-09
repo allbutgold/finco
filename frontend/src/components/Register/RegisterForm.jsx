@@ -1,16 +1,17 @@
-import styles from './RegisterForm.module.scss';
-import { useState } from 'react';
+import styles from "./RegisterForm.module.scss"
+import { useState } from "react"
 
 const RegisterForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [agreedToTnC, setAgreedToTnC] = useState(false);
+	const [username, setUsername] = useState("")
+	const [password, setPassword] = useState("")
+	const [email, setEmail] = useState("")
+	const [agreedToTnC, setAgreedToTnC] = useState(false)
 
-  const URL = import.meta.env.VITE_BACKEND_URL;
+	const URL = import.meta.env.VITE_BACKEND_URL
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+
 
     const response = await fetch(URL + 'register', {
       credentials: 'include',
@@ -40,6 +41,7 @@ const RegisterForm = () => {
       </form>
     </section>
   );
+
 }
 
-export default RegisterForm;
+export default RegisterForm
