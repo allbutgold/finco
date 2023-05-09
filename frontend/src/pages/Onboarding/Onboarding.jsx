@@ -5,7 +5,7 @@ import bankcard from "../../assets/img/bankcard.svg";
 import giftcard from "../../assets/img/giftcard.svg";
 
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
-import SplashScreen from "../../components/splashscreen/Splashscreen";
+import SplashScreen from "../../components/SplashScreen/SplashScreen";
 
 const Onboarding = () => {
 	const [activeSplash, setActiveSplash] = useState(true);
