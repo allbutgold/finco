@@ -1,6 +1,11 @@
+import styles from './Register.module.scss';
+
 const Register = () => {
   return ( 
-    <h1>Register</h1>
+    <section className={styles.Register}>
+      <h1>Register</h1>
+    </section>
+
   );
 }
 

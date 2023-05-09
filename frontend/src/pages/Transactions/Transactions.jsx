@@ -1,6 +1,11 @@
+import styles from './Transactions.module.scss'
+
 const Transactions = () => {
   return ( 
-    <h1>Transactions</h1>
+    <section className={styles.Transactions}>
+      <h1>Transactions</h1>
+    </section>
+
   );
 }
 

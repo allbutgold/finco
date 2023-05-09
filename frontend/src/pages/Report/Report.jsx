@@ -1,6 +1,10 @@
+import styles from './Report.module.scss';
+
 const Report = () => {
   return ( 
-    <h1>Report</h1>
+    <section className={styles.Report}>
+      <h1>Report</h1>
+    </section>
   );
 }
 
