@@ -10,6 +10,7 @@ import userController from "./controller/user.controller.js"
 import { authMiddleware } from "./middleware/auth.middleware.js"
 import exp from 'constants';
 import { ObjectId } from 'mongodb';
+import { getCardInfo } from "./controller/userController.js";
 
 
 const server = express()
@@ -19,7 +20,9 @@ const upload = multer({ dest: './img' })
 
 // * ===== BODY PARSER ======
 // enabling cors
+
 server.use(cors({ origin: true, credentials: true }))
+
 // for JSON
 server.use(express.json())
 // for cookies
@@ -35,6 +38,8 @@ server.get("/", (req, res) => {
 })
 
 
+// * get credit card info
+server.get("/getAccountData", getCardInfo);
 
 server.post("/login", userController.login)
 server.get("/auth", authMiddleware, userController.auth)

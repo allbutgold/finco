@@ -17,6 +17,7 @@
 body {
 	height: 100vh;
 	font-family: "Urbanist";
+	color: var(--font-200);
 }
 
 @font-face {

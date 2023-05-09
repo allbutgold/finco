@@ -1,3 +1,4 @@
+
 import styles from "./RegisterForm.module.scss"
 import { useState } from "react"
 
@@ -12,14 +13,15 @@ const RegisterForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-
     const response = await fetch(URL + 'register', {
       credentials: 'include',
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json'
       },
+
       body: JSON.stringify({ account: { username, password, email, agreedToTnC }})
+
     })
     const data = await response.json();
     console.log(data);
@@ -45,3 +47,4 @@ const RegisterForm = () => {
 }
 
 export default RegisterForm
+
