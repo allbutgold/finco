@@ -1,0 +1,1 @@
+finco-frontend-production.up.railway.app
