@@ -14,12 +14,16 @@ import Report from './pages/Report/Report.jsx';
 import Setup from './pages/Setup/Setup.jsx';
 import Transactions from './pages/Transactions/Transactions.jsx';
 
+// components
+import Navigation from './components/Navigation/Navigation.jsx';
+
 
 function App() {
 
   return (
     <>
     <Router>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
