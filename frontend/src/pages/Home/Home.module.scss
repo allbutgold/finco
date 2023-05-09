@@ -1,5 +1,12 @@
 .Home {
-  h1 {
-    color: red;
-  }
+	padding: 5vw;
+	gap: 2rem;
+	display: grid;
+	grid-template-rows: min-content 1fr 1fr;
+
+	// height: 100%;
+
+	h1 {
+		color: red;
+	}
 }
