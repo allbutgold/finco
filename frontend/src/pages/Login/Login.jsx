@@ -1,6 +1,11 @@
+import styles from './Login.module.scss';
+
 const Login = () => {
   return ( 
-    <h1>Login</h1>
+    <section className={styles.Login}>
+      <h1>Login</h1>
+    </section>
+    
   );
 }
 

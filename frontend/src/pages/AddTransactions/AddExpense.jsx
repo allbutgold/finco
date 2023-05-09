@@ -1,6 +1,11 @@
+import styles from './AddExpense.module.scss';
+
 const AddExpense = () => {
-  return ( 
-    <h1>AddExpense</h1>
+  return (
+    <section className={styles.AddExpense}>
+      <h1>AddExpense</h1>
+    </section> 
+
   );
 }
 
