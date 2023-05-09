@@ -5,7 +5,6 @@ const Transactions = () => {
     <section className={styles.Transactions}>
       <h1>Transactions</h1>
     </section>
-
   );
 }
 
