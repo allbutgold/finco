@@ -1,9 +1,11 @@
 
+import './utils/config.js'
 import express from "express";
 import cors from "cors";
 import multer from "multer";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+
 
 const server = express();
 const PORT = process.env.PORT;

@@ -1,6 +1,11 @@
+import styles from './AddIncome.module.scss';
+
 const AddIncome = () => {
   return ( 
-    <h1>AddIncome</h1>
+    <section className={styles.AddIncome}>
+      <h1>AddIncome</h1>
+    </section>
+
   );
 }
 

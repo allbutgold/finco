@@ -1,6 +1,11 @@
+import styles from './Menu.module.scss';
+
 const Menu = () => {
   return ( 
-    <h1>Menu</h1>
+    <section className={styles.Menu}>
+      <h1>Menu</h1>
+    </section>
+
   );
 }
 
