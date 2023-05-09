@@ -7,7 +7,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { getDb } from "./utils/db.js";
 import exp from 'constants';
-
+import { ObjectId } from 'mongodb';
 
 const server = express();
 const PORT = process.env.PORT;
@@ -39,14 +39,17 @@ server.post('/setup', upload.single('profileImage'), async (req,res)=> {
     const { cardNumber } = req.body;
     const { path } = req.file;
     const { expDate } = req.body;
+    const { _id } = req.body;
+    console.log(_id)
     const db = await getDb()
-    const result = await db.collection('finco').insertOne({
-      card: { 
-        cardNumber: cardNumber,
-        expDate: expDate
-      },
-      profileImage: path,
-    })
+    const result = await db.collection('finco').updateOne(
+      { _id: new ObjectId(_id) },
+      { $set: {
+        'account.cardNumber': cardNumber,
+        'account.expDate': expDate,
+        'account.profileImage': path
+      }}
+    )
     console.log(result)
     res.json({message: 'success'})
   }catch(err) {

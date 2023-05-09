@@ -4,19 +4,19 @@ const SetupForm = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expDate, setExpDate] = useState('');
   const [image, setImage] = useState(null);
- 
+  let _id = '645a227458e2eb3d5ea37dcd'
 
   const URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const formData = new FormData();
     formData.append('cardNumber', cardNumber);
     formData.append('expDate', expDate);
     formData.append('profileImage', image);
+    formData.append('_id', _id)
   
-
     const response = await fetch(URL + 'setup', {
       credentials: 'include',
       method: 'POST',
