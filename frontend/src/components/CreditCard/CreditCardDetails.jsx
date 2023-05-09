@@ -15,7 +15,7 @@ function CreditCardDetails() {
 	useEffect(() => {
 		const getCreditCardInfo = async () => {
 			try {
-				const result = await fetch(url + "/getAccountData?id=" + id);
+				const result = await fetch(url + "getAccountData?id=" + id);
 				const data = await result.json();
 
 				let date = new Intl.DateTimeFormat("default", {
