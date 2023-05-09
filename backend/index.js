@@ -32,8 +32,6 @@ server.post("/register", async (req, res) => {
 	res.json(result)
 })
 
-// server.get("/user/auth", authMiddleware, isAdminMiddleware, userController.auth);
-
 // * ===== LOGGER ======
 server.use(morgan("dev"))
 
