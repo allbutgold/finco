@@ -1,12 +1,11 @@
-
-import './utils/config.js'
+import "./utils/config.js";
 import express from "express";
 import cors from "cors";
 import multer from "multer";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { getDb } from "./utils/db.js";
-
+import { getCardInfo } from "./controller/userController.js";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -23,15 +22,18 @@ server.use(cookieParser());
 //* ====== ROUTES ======
 
 // room for routes
-server.get("/",(req,res)=>{res.send("Hello,world")})
+server.get("/", (req, res) => {
+	res.send("Hello,world");
+});
 
-server.post('/register' , async (req,res)=> {
-  const db = await getDb();
-  const { username, password, email, agreedToTnC } = req.body;
-  const result = await db.collection('finco').insertOne(req.body);
-  res.json(result);
-})
+server.post("/register", async (req, res) => {
+	const db = await getDb();
+	const { username, password, email, agreedToTnC } = req.body;
+	const result = await db.collection("finco").insertOne(req.body);
+	res.json(result);
+});
 
+server.get("/getAccountData", getCardInfo);
 
 // * ===== LOGGER ======
 server.use(morgan("dev"));
