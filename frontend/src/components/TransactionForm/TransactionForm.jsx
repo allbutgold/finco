@@ -11,14 +11,19 @@ function TransactionForm({ type, handleSubmit }) {
 		setCategory(event.target.value);
 		setOpen(false);
 	};
-	console.log(selectedCat);
 
 	return (
 		<div className={styles.TransactionForm}>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="transaction">
 					<p>$</p>
-					<input type="number" name="amount" id="amount" placeholder="0" />
+					<input
+						type="number"
+						name="amount"
+						id="amount"
+						placeholder="0"
+						required
+					/>
 				</label>
 
 				<label htmlFor="category">Category</label>
@@ -31,12 +36,12 @@ function TransactionForm({ type, handleSubmit }) {
 					value={selectedCat}>
 					{selectedCat} <img src={forward} alt="arrow" />
 				</button>
-				<CategoryList onClick={handleCategory} open={open} />
+				<CategoryList onClick={handleCategory} open={open} required />
 				<div>
 					<label htmlFor="date">Date</label>
 					<label htmlFor="time">Time</label>
-					<input type="date" name="date" id="date" />
-					<input type="time" name="time" id="time" />
+					<input type="date" name="date" id="date" required />
+					<input type="time" name="time" id="time" required />
 				</div>
 				<button type="submit">Add {type}</button>
 			</form>
