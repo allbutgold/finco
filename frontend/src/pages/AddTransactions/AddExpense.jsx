@@ -25,6 +25,8 @@ const AddExpense = () => {
 			});
 
 			if (response.ok) {
+				const message = response.text();
+				console.log(message);
 			} else {
 				throw new Error("Could not add expense");
 			}
