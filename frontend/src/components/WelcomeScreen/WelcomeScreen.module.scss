@@ -1,0 +1,97 @@
+.WelcomeScreen {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: grid;
+	height: 100%;
+	grid-template-rows: 2fr 1fr 1fr;
+	justify-items: center;
+	background-color: var(--white);
+	transform: translateX(0%);
+	section {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		padding: 2rem;
+		h2 {
+			width: 50vw;
+		}
+	}
+	.img {
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		width: 35vw;
+		img:first-of-type {
+			animation: hover 3s infinite ease-in-out;
+		}
+		img:last-of-type {
+			animation: scale 3s infinite ease-in-out;
+		}
+	}
+	.actions {
+		align-self: center;
+		padding: 10vw;
+		display: flex;
+		align-items: center;
+		gap: 5vw;
+		a {
+			text-decoration: none;
+			color: var(--font-200);
+			font-size: 1.1rem;
+			font-variation-settings: "wght" 700;
+		}
+		img {
+			width: 30px;
+			animation: none;
+		}
+	}
+}
+
+//* ====== KEY FRAMES FOR ANIMATION ========
+
+//*  Image hovering effect
+@keyframes hover {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(20px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+//* Image Shadow getting smaller and bigger
+@keyframes scale {
+	0% {
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0.8);
+	}
+}
+
+//* Sliding out
+
+@keyframes move-out {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.moveOut {
+	width: 100%;
+	animation: move-out 300ms forwards ease-out;
+}

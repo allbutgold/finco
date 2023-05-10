@@ -1,11 +1,15 @@
-import styles from './Home.module.scss';
+import CreditCardDetails from "../../components/CreditCard/CreditCardDetails";
+import Header from "../../components/Header/Header";
+
+import styles from "./Home.module.scss";
 
 const Home = () => {
-  return ( 
-    <section className={styles.Home}>
-      <h1>Home</h1>
-    </section>
-  );
-}
+	return (
+		<section className={styles.Home}>
+			<Header name />
+			<CreditCardDetails />
+		</section>
+	);
+};
 
 export default Home;

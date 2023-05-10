@@ -1,0 +1,60 @@
+.SplashScreen {
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: grid;
+	place-content: center;
+	background-color: var(--white);
+	animation: vanish 1s linear 4s normal forwards;
+	transform: scale(1);
+	img {
+		animation: bounce 2.5s ease forwards, jumpOut 2s ease-in-out forwards 2.5s;
+		transform: translateY(0%);
+	}
+}
+
+//* ====== KEY FRAMES FOR ANIMATION ========
+
+//* Image vanishing
+@keyframes vanish {
+	0% {
+		// display: grid;
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		// display: none;
+	}
+}
+//* Bouncing effect
+@keyframes bounce {
+	0%,
+	20%,
+	50%,
+	80%,
+	90% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-30px);
+	}
+	60% {
+		transform: translateY(-15px);
+	}
+}
+
+//* Image moving out
+@keyframes jumpOut {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(50%);
+	}
+	100% {
+		transform: translateY(-500%);
+	}
+}
