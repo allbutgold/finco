@@ -1,0 +1,41 @@
+// .Header {
+// 	display: grid;
+// 	grid-template-columns: 3fr 1fr;
+// 	grid-template-rows: 1fr 1fr;
+// 	align-items: center;
+// 	img {
+// 		grid-row: 1/3;
+// 		grid-column: 2/3;
+// 		border-radius: 50%;
+// 		width: 3rem;
+// 		height: 3rem;
+// 		background-color: var(--bg-100);
+// 		align-self: center;
+// 		justify-self: end;
+// 	}
+// 	p {
+// 		font-variation-settings: "wght" 500;
+// 		font-size: 0.9rem;
+// 	}
+// }
+
+.Header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	img {
+		border-radius: 50%;
+		align-self: center;
+		justify-self: end;
+		background-color: var(--bg-100);
+	}
+	img:first-of-type {
+		background-color: transparent;
+		cursor: pointer;
+	}
+
+	p {
+		font-variation-settings: "wght" 500;
+		font-size: 0.9rem;
+	}
+}
