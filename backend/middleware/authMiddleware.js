@@ -1,4 +1,11 @@
 import jwt from "jsonwebtoken"
+import { createHmac } from "crypto"
+
+export const encryptPassword = (req, _, next) => {
+	const hmac = createHmac("sha256", req.body.account.password)
+	req.body.account.password = hmac.digest("hex")
+	next()
+}
 
 export const authMiddleware = (req, res, next) => {
 	try {
