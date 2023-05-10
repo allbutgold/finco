@@ -1,4 +1,4 @@
-//* functions
+//* format number to $1,222.000
 export const formatToDollar = (value) => {
 	return new Intl.NumberFormat("en-US", {
 		style: "currency",
@@ -48,4 +48,11 @@ export const categories = {
 		{ id: "24", name: "Taxes" },
 		{ id: "25", name: "Travel" },
 	],
+};
+
+//* delay redirect for better ux
+export const navigateWithDelay = (navigate, path, ms) => {
+	setTimeout(() => {
+		navigate(path);
+	}, ms);
 };
