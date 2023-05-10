@@ -5,6 +5,7 @@ const COL = "finco";
 
 export const getCardInfo = async (req, res) => {
 	const userID = req.query.id;
+  console.log(userID)
 	try {
 		const db = await getDb();
 		const result = await db

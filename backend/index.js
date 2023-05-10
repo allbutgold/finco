@@ -10,7 +10,7 @@ import { authMiddleware } from "./middleware/auth.middleware.js";
 import exp from "constants";
 import { ObjectId } from "mongodb";
 import { getCardInfo } from "./controller/userController.js";
-import { addTransaction } from "./controller/transactionsController.js";
+import { addTransaction, getAllTransactions } from "./controller/transactionsController.js";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -58,7 +58,7 @@ server.post("/setup", upload.single("profileImage"), async (req, res) => {
 		const { path } = req.file;
 		const { expDate } = req.body;
 		const { _id } = req.body;
-		console.log(_id);
+		// console.log(_id);
 		const db = await getDb();
 		const result = await db.collection("finco").updateOne(
 			{ _id: new ObjectId(_id) },
@@ -77,6 +77,9 @@ server.post("/setup", upload.single("profileImage"), async (req, res) => {
 		res.status(500).end();
 	}
 });
+
+server.get("/getAllTransactions", getAllTransactions);
+
 
 // * ===== LOGGER ======
 server.use(morgan("dev"));
