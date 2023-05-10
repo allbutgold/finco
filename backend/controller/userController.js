@@ -5,7 +5,6 @@ const register = async (req, res) => {
 	const db = await getDb()
 	if (await check(req.body.email)) {
 		await db.collection("finco").insertOne(req.body)
-
 		res.end()
 	} else {
 		res.status(401).end()

@@ -2,13 +2,13 @@ import CreditCardDetails from "../../components/CreditCard/CreditCardDetails";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import styles from "./AddIncome.module.scss";
 
-import { userStore } from "../../utils/userStore.js";
+// import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
 
 const AddIncome = () => {
 	const URL = import.meta.env.VITE_BACKEND_URL;
 
-	const userID = userStore.getState().userID;
+	// const userID = userStore.getState().userID;
 
 	const addIncome = async (event) => {
 		event.preventDefault();

@@ -1,19 +1,53 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import styles from "./Navigation.module.scss";
+import home from '../../assets/img/home.svg'
+import creditCard from '../../assets/img/credit-card.svg'
+import plusCircle from '../../assets/img/plus-circle.svg'
+import pieChart from '../../assets/img/pie-chart.svg'
+
+const Popup = ({ handleAddExpense, handleAddIncome }) => {
+  return (
+    <div className="popup">
+      <button onClick={handleAddIncome}>Income</button>
+      <button onClick={handleAddExpense}>Expense</button>
+    </div>
+  );
+};
+
 
 const Navigation = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+const handleAddExpense = () => {
+  navigate("/add-expense");
+  setShowPopup(false);
+};
+
+const handleAddIncome = () => {
+  navigate("/add-income");
+  setShowPopup(false);
+};
+
+const handleTogglePopup = () => {
+  setShowPopup(prevState => !prevState);
+};
+
+
   return ( 
-    <section>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
-      <Link to="/menu">Menu</Link>
-      <Link to="/add-expense">AddExpense</Link>
-      <Link to="/add-income">AddIncome</Link>
-      <Link to="/filter-transactions">FilterTranasactions</Link>
-      <Link to="/onboarding">Onboarding</Link>
-      <Link to="/report">Report</Link>
-      <Link to="/setup">Setup</Link>
-      <Link to="/transactions">Transactions</Link>
+    <section className={styles.Navigation}>
+      <Link to="/">{location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}</Link>
+      <Link to="/transactions">{location.pathname === "/transactions" ? "Transactions" : <img src={creditCard} alt="Transactions" />}</Link>
+      <button onClick={handleTogglePopup}>{location.pathname === "/add-income" || location.pathname === "/add-expense" ? "add" : <img src={plusCircle} />}</button>
+      {showPopup && (
+        <Popup
+          handleAddExpense={handleAddExpense}
+          handleAddIncome={handleAddIncome}
+        />
+      )}
+      <Link to="/report">{location.pathname === "/report" ? "Report" : <img src={pieChart} alt="Report" />}</Link>
     </section>
   );
 }
