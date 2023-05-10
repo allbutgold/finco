@@ -22,7 +22,10 @@ const AddIncome = () => {
 				credentials: "include",
 				body: form,
 			});
+
 			if (response.ok) {
+				const message = response.text();
+				console.log(message);
 			} else {
 				throw new Error("Could not add income");
 			}
