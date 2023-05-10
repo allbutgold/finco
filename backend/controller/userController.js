@@ -4,11 +4,12 @@ import { getDb } from "../utils/db.js";
 const COL = "finco";
 
 export const getCardInfo = async (req, res) => {
-	const id = req.query.id;
-	console.log(id);
+	const userID = req.query.id;
 	try {
 		const db = await getDb();
-		const result = await db.collection(COL).findOne({ _id: new ObjectId(id) });
+		const result = await db
+			.collection(COL)
+			.findOne({ _id: new ObjectId(userID) });
 		if (result === null) {
 			throw new Error("Could not find user");
 		} else {

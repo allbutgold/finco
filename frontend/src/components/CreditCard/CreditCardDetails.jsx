@@ -3,19 +3,22 @@ import styles from "./CreditCardDetails.module.scss";
 import chip from "../../assets/img/chip.svg";
 import check from "../../assets/img/check.svg";
 import { useEffect, useState } from "react";
+import { userStore } from "../../utils/userStore.js";
 
 function CreditCardDetails() {
 	const url = import.meta.env.VITE_BACKEND_URL;
 	const [cardInfo, setCardInfo] = useState({});
-	//TODO: Figure out how to get id after authentication is done
-	const id = "645a16533158d3749633f5df";
+	const [validCC, setValidCC] = useState(true);
+	const userID = userStore((state) => state.userID);
 
-	//TODO: Add credentials true whenever authentication is done
 	//! might overthrow below if data is received through page
+	//TODO Add valdiation of credit card; if valid show check else shox cross; do this in backend
 	useEffect(() => {
 		const getCreditCardInfo = async () => {
 			try {
-				const result = await fetch(url + "getAccountData?id=" + id);
+				const result = await fetch(url + "getAccountData?id=" + userID, {
+					credentials: "include",
+				});
 				const data = await result.json();
 
 				let date = new Intl.DateTimeFormat("default", {
