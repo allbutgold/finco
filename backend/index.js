@@ -5,11 +5,13 @@ import multer from "multer"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import { getDb } from "./utils/db.js"
-import userController from "./controller/user.controller.js"
-import { authMiddleware } from "./middleware/auth.middleware.js"
+import userController from "./controller/userController.js"
+import { authMiddleware, encryptPassword } from "./middleware/authMiddleware.js"
 import exp from "constants"
 import { ObjectId } from "mongodb"
-import { getCardInfo } from "./controller/userController.js"
+import { getCardInfo } from "./controller/cardController.js"
+import { addTransaction,  getAllTransactions } from "./controller/transactionsController.js"
+
 
 const server = express()
 const PORT = process.env.PORT
@@ -37,10 +39,15 @@ server.get("/", (req, res) => {
 // * get credit card info
 server.get("/getAccountData", getCardInfo)
 
-server.post("/login", userController.login)
+//*==== HANNI WAR HIER ====
+//* add transaction
+server.post("/addTransaction", upload.none(), authMiddleware, addTransaction)
+//*==== HANNI WAR HIER ====
+
+server.post("/login", encryptPassword, userController.login)
 server.get("/auth", authMiddleware, userController.auth)
 
-server.post("/register", async (req, res) => {
+server.post("/register", encryptPassword, async (req, res) => {
 	const db = await getDb()
 	const result = await db.collection("finco").insertOne(req.body)
 	res.json(result)
@@ -58,8 +65,8 @@ server.post("/setup", upload.single("profileImage"), async (req, res) => {
 			{ _id: new ObjectId(_id) },
 			{
 				$set: {
-					"account.cardNumber": cardNumber,
-					"account.expDate": expDate,
+					"account.card.cardNumber": cardNumber,
+					"account.card.expDate": expDate,
 					"account.profileImage": path,
 				},
 			}
@@ -71,6 +78,9 @@ server.post("/setup", upload.single("profileImage"), async (req, res) => {
 		res.status(500).end()
 	}
 })
+
+server.get("/getAllTransactions", getAllTransactions);
+
 
 // * ===== LOGGER ======
 server.use(morgan("dev"))

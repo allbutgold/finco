@@ -29,16 +29,17 @@ const RegisterForm = () => {
   }
   return ( 
     <section className={styles.RegisterForm}>
-      <h1>RegisterForm</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">username</label>
-        <input type="text" name='username' onChange={(e)=> setUsername(e.target.value)}/>
-        <label htmlFor="email">email</label>
-        <input type="email" name='email' onChange={(e)=> setEmail(e.target.value)} />
-        <label htmlFor="password">password</label>
-        <input type="password" name='password' onChange={(e)=> setPassword(e.target.value)} />
-        <label htmlFor="T&C">agree to T&C</label>
-        <input type="checkbox" name='T&C' value={true} onChange={(e)=> setAgreedToTnC(e.target.value)}/>
+
+        <input placeholder="Name" type="text" name='username' onChange={(e)=> setUsername(e.target.value)}/>
+
+        <input placeholder="Email" type="email" name='email' onChange={(e)=> setEmail(e.target.value)} />
+
+        <input placeholder="Password" type="password" name='password' onChange={(e)=> setPassword(e.target.value)} />
+        <div>
+          <input type="checkbox" name='T&C' value={true} onChange={(e)=> setAgreedToTnC(e.target.value)} required/>
+          <label htmlFor="T&C">Agree to our Terms and Service</label>
+        </div>
         <button type='submit'>Register</button>
       </form>
     </section>

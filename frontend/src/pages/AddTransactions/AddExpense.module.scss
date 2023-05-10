@@ -1,5 +1,9 @@
 .AddExpense {
-  h1 {
-    color: red;
-  }
+	padding: 5vw;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	h1 {
+		color: var(--font-400);
+	}
 }
