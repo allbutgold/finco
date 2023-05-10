@@ -64,8 +64,8 @@ server.post("/setup", upload.single("profileImage"), async (req, res) => {
 			{ _id: new ObjectId(_id) },
 			{
 				$set: {
-					"account.cardNumber": cardNumber,
-					"account.expDate": expDate,
+					"account.card.cardNumber": cardNumber,
+					"account.card.expDate": expDate,
 					"account.profileImage": path,
 				},
 			}

@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { userStore } from "../../utils/userStore.js";
 
 const SetupForm = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expDate, setExpDate] = useState('');
   const [image, setImage] = useState(null);
-  let _id = '645a227458e2eb3d5ea37dcd'
+  const _id = userStore.getState().userID;
+
 
   const URL = import.meta.env.VITE_BACKEND_URL;
 
