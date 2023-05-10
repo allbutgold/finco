@@ -28,7 +28,15 @@ function Header({ name, back }) {
 			) : (
 				<img src={logoIcon} alt="logo" width="45px" />
 			)}
-			<img src={pic} alt="profile image" width="45px" height="45px" />
+			<img
+				onClick={() => {
+					navigate("/menu");
+				}}
+				src={pic}
+				alt="profile image"
+				width="45px"
+				height="45px"
+			/>
 		</header>
 	);
 }
