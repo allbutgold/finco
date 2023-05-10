@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 
 import styles from "./TransactionsStats.module.scss";
 import more from "../../assets/img/more-horizontal.svg";
