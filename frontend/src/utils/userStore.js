@@ -6,6 +6,8 @@ export const userStore = create(
 		(set) => ({
 			userID: null,
 			username: null,
+			userPic: null,
+			setUserPic: (value) => set({ userPic: value }),
 			setUserID: (value) => set({ userID: value }),
 			setUsername: (value) => set({ username: value }),
 		}),

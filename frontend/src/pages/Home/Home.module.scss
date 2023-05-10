@@ -1,8 +1,8 @@
 .Home {
+	padding: 5vw;
 	gap: 2rem;
 	display: grid;
-	padding: 5vw;
-	grid-template-rows: min-content 1fr 1fr;
+	grid-template-rows: min-content min-content min-content min-content;
 
 	// height: 100%;
 

@@ -36,7 +36,13 @@ function CategoryList({ onClick, open }) {
 			{incomeCat.map((category) => (
 				<label onClick={onClick} htmlFor={category}>
 					{category}
-					<input type="radio" name="category" id={category} value={category} />
+					<input
+						type="radio"
+						name="category"
+						id={category}
+						value={category}
+						required
+					/>
 					<img src={forward} alt="icon" />
 				</label>
 			))}
