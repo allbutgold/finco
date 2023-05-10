@@ -36,7 +36,12 @@ function TransactionForm({ type, handleSubmit }) {
 					value={selectedCat}>
 					{selectedCat} <img src={forward} alt="arrow" />
 				</button>
-				<CategoryList onClick={handleCategory} open={open} required />
+				<CategoryList
+					onClick={handleCategory}
+					open={open}
+					required
+					type={type}
+				/>
 				<div>
 					<label htmlFor="date">Date</label>
 					<label htmlFor="time">Time</label>
