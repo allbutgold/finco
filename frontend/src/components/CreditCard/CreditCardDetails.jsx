@@ -19,16 +19,21 @@ function CreditCardDetails() {
 				const result = await fetch(url + "getAccountData?id=" + userID, {
 					credentials: "include",
 				});
-				const data = await result.json();
+				if (result.ok) {
+					const data = await result.json();
 
-				let date = new Intl.DateTimeFormat("default", {
-					year: "2-digit",
-					month: "numeric",
-				}).format(new Date(data.expDate));
+					let date = new Intl.DateTimeFormat("default", {
+						year: "2-digit",
+						month: "numeric",
+					}).format(new Date(data.expDate));
 
-				let cardNumber = data.cardNumber.split(" ")[3];
+					let cardNumber = data.cardNumber.split(" ")[3];
 
-				setCardInfo({ cardNumber: cardNumber, expDate: date });
+					setCardInfo({ cardNumber: cardNumber, expDate: date });
+				} else {
+					const message = await result.json();
+					throw new Error(message);
+				}
 			} catch (error) {
 				console.error(error);
 			}
