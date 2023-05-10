@@ -25,7 +25,7 @@ const AddExpense = () => {
 			});
 
 			if (response.ok) {
-				const message = response.text();
+				const message = await response.text();
 				console.log(message);
 			} else {
 				throw new Error("Could not add expense");
