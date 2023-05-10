@@ -8,16 +8,20 @@
 	--bg-100: #f7f7f7;
 	--font-100: #565c72;
 	--font-200: #0d1636;
+	--font-300: #298bff;
+	--font-400: #ffaa1a;
 	--primary-col: linear-gradient(180deg, #44bbfe 0%, #1e78fe 100%);
 	--secondary-col: linear-gradient(180deg, #ffcf53 0%, #ff9900 100%);
 	--stroke-100: #ebebeb;
 	--white: #ffffff;
 }
 
-body {
+body,
+html {
 	height: 100vh;
 	font-family: "Urbanist";
 	color: var(--font-200);
+	overflow: hidden;
 }
 
 @font-face {
