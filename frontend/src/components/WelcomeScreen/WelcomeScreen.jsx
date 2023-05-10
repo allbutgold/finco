@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
 import styles from "./WelcomeScreen.module.scss";
 
 import arrow from "../../assets/img/arrow-right.svg";
 import shadow from "../../assets/img/shadow.svg";
 
-function WelcomeScreen({ img, title, subtitle, button, onclick }) {
+function WelcomeScreen({ img, title, subtitle, button, onclick, skip, next }) {
 	return (
-		<div className={styles.WelcomeScreen}>
+		<div
+			className={
+				next
+					? `${styles.moveOut} ${styles.WelcomeScreen}`
+					: `${styles.WelcomeScreen}`
+			}>
 			<div className={styles.img}>
 				<img src={img} alt="Illustration" />
 				<img src={shadow} alt="shadow" />
@@ -15,6 +21,7 @@ function WelcomeScreen({ img, title, subtitle, button, onclick }) {
 				<p>{subtitle}</p>
 			</section>
 			<div className={styles.actions}>
+				{skip && <Link to="/">Skip</Link>}
 				<button onClick={onclick}>
 					{button} <img src={arrow} alt="Arrow Icon" width="20px" />
 				</button>

@@ -1,8 +1,15 @@
 .WelcomeScreen {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
 	display: grid;
 	height: 100%;
 	grid-template-rows: 2fr 1fr 1fr;
 	justify-items: center;
+	background-color: var(--white);
+	transform: translateX(0%);
 	section {
 		text-align: center;
 		display: flex;
@@ -29,6 +36,16 @@
 	}
 	.actions {
 		align-self: center;
+		padding: 10vw;
+		display: flex;
+		align-items: center;
+		gap: 5vw;
+		a {
+			text-decoration: none;
+			color: var(--font-200);
+			font-size: 1.1rem;
+			font-variation-settings: "wght" 700;
+		}
 		img {
 			width: 30px;
 			animation: none;
@@ -61,4 +78,20 @@
 	100% {
 		transform: scale(0.8);
 	}
+}
+
+//* Sliding out
+
+@keyframes move-out {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.moveOut {
+	width: 100%;
+	animation: move-out 300ms forwards ease-out;
 }
