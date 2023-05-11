@@ -1,3 +1,6 @@
+import forward from "../../assets/img/forward.svg";
+import logout from "../../assets/img/logout.svg";
+
 const LogoutButton = () => {
     const URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -19,7 +22,7 @@ const LogoutButton = () => {
         }
     };
 
-    return <button onClick={handleLogout}>Logout</button>;
+    return <button onClick={handleLogout}><img src={logout} alt="arrow" />Logout<img src={forward} alt="arrow" /></button>;
 };
 
 export default LogoutButton;

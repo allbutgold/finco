@@ -1,8 +1,16 @@
+// Import styles and images
 import styles from './Menu.module.scss';
+import forward from "../../assets/img/forward.svg";
+import toggle from "../../assets/img/toggle.png";
+import feather from "../../assets/img/feather.svg";
+import bell from "../../assets/img/bell.svg";
+import helpcircle from "../../assets/img/helpcircle.svg";
+import settings from "../../assets/img/settings.svg";
+
+// Import components
 import Header from "../../components/Header/Header";
 import LogoutButton from '../../components/Menu/LogoutButton';
 
-// import { userStore } from '../../utils/userStore';
 
 const handleLogout = () => {
   window.localStorage.clear();
@@ -13,16 +21,19 @@ const handleLogout = () => {
 const Menu = () => {
   return (
     <section className={styles.Menu}>
-      <Header name />
-      <div>My Wallet</div>
+      <Header name profile />
 
-      <div>
-        <div>Notification</div>
-        <div>Settings</div>
-        <div>FAQ</div>
+      <button><img src={feather} alt="feather" />My Wallet<img src={forward} alt="arrow" /></button>
+
+      <div className={styles.divMiddle}>
+        <button><img src={bell} alt="bell" />Notification<img src={toggle} alt="toggle" /></button>
+        <button className={styles.btnMiddle}><img src={settings} alt="settings" />Settings<img src={forward} alt="arrow" /></button>
+        <button className={styles.btnMiddle}><img src={helpcircle} alt="help-circle" />FAQ<img src={forward} alt="arrow" /></button>
       </div>
 
-      <div><LogoutButton onClick={handleLogout} /></div>
+      <div>
+        <LogoutButton onClick={handleLogout} />
+      </div>
     </section>
 
   );
