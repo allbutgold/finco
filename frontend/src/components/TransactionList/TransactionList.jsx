@@ -21,23 +21,27 @@ const TransactionList = () => {
         }
       })
       const data = await response.json();
-      const sortedTransactions = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-      setTransactions(sortedTransactions);
       setTransactions(data);
     }
     getTransactions();
-  }, [])
+  }, []) 
 
-
+console.log(transactions)
   return (
     <section>
       <h1>TransactionList</h1>
       <article>
-        {transactions.map((transaction) => (
-          <div style={{padding:'20px'}} key={transaction._id}>
-            <p>{transaction.category}</p>
-            <p className={transaction.type === 'expense' ? 'red' : 'green'}>{transaction.amount}</p>
-            <p>{transaction.date}</p>
+        {Object.entries(transactions).map(([key, array]) => (
+          <div style={{padding:'40px'}} key={key}>
+            <h1>{key}</h1>
+            {array.map((transaction, index) => (
+              <div style={{ padding: '20px' }} key={index}>
+              <p>{transaction.category}</p>
+              <p className={transaction.type === 'expense' ? 'red' : 'green'}>{transaction.amount}</p>
+              <p>{transaction.date}</p>
+            </div>
+            ))}
+            
           </div>
         ))}
         </article>
