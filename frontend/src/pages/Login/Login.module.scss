@@ -1,5 +1,42 @@
 .Login {
-  h1 {
-    color: red;
-  }
+	padding: 7vw;
+	height: 100%;
+	display: grid;
+	grid-template-rows: min-content 1fr 1.5fr 8fr min-content;
+	h1,
+	p {
+		text-align: center;
+		margin: 0 auto;
+		width: 70vw;
+	}
+	p,
+	a {
+		font-size: 0.9rem;
+		font-variation-settings: "wght" 500;
+		color: var(--font-100);
+	}
+	a {
+		text-align: right;
+	}
+	p > a {
+		text-align: right;
+		background: var(--primary-col);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		input {
+			padding: 1.3rem 1.5rem;
+			border: 1px solid var(--stroke-100);
+			border-radius: 30px;
+		}
+		button {
+			justify-content: center;
+			margin: 20vw 0;
+		}
+	}
 }

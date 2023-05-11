@@ -40,7 +40,7 @@ const AddIncome = () => {
 
 	return (
 		<section className={styles.AddIncome}>
-			<Header back />
+			<Header back profile />
 			<h1>Add Income</h1>
 			<CreditCardDetails />
 
