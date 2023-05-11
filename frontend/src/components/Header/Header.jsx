@@ -1,12 +1,12 @@
 import styles from "./Header.module.scss";
 
+import { useNavigate } from "react-router-dom";
 import { userStore } from "../../utils/userStore";
 
 import backIcon from "../../assets/img/back.svg";
 import logoIcon from "../../assets/img/logo.svg";
-import { useNavigate } from "react-router-dom";
 
-function Header({ name, back }) {
+function Header({ name, back, profile }) {
 	const navigate = useNavigate();
 	const username = userStore((state) => state.username);
 	const pic = userStore((state) => state.userPic);
@@ -28,15 +28,17 @@ function Header({ name, back }) {
 			) : (
 				<img src={logoIcon} alt="logo" width="45px" />
 			)}
-			<img
-				onClick={() => {
-					navigate("/menu");
-				}}
-				src={pic}
-				alt="profile image"
-				width="45px"
-				height="45px"
-			/>
+			{profile && (
+				<img
+					onClick={() => {
+						navigate("/menu");
+					}}
+					src={pic}
+					alt="profile image"
+					width="45px"
+					height="45px"
+				/>
+			)}
 		</header>
 	);
 }
