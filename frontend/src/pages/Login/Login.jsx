@@ -38,9 +38,13 @@ const Login = () => {
 			const user = await response.json();
 			setUser(user.id);
 			setUsername(user.user);
-			setUserPic(URL + user.pic);
-			//*==== HANNI WAR HIER ====
-			navigator("/");
+			if (user.pic) {
+				setUserPic(URL + user.pic);
+				//*==== HANNI WAR HIER ====
+				navigator("/");
+			} else {
+				navigator("/setup");
+			}
 		}
 	};
 
