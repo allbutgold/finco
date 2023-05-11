@@ -1,0 +1,58 @@
+.TransactionSection {
+  /* Add any section-level styles here */
+
+  h1 {
+    /* Styles for h1 */
+  }
+}
+
+.TransactionList {
+  /* Add any article-level styles here */
+}
+
+.TransactionContainer {
+  margin: 30px 0 30px 0;
+
+  h1 {
+    margin: 20px;
+  }
+}
+
+.SingleTransaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .TransactionImage {
+    /* Styles for the image */
+  }
+
+  .TransactionDetails {
+    margin-left: 10px; /* Adjust as needed */
+
+    h4 {
+      /* Styles for h4 */
+    }
+
+    .DateTime {
+      display: flex;
+
+      p {
+        /* Styles for p */
+      }
+    }
+  }
+
+
+  .Amount {
+    margin-left: 100px; /* Adjust as needed */
+
+    &.Red {
+      color: red;
+    }
+
+    &.Green {
+      color: green;
+    }
+  }
+}
