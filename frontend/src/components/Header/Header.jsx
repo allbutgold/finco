@@ -6,7 +6,7 @@ import { userStore } from "../../utils/userStore";
 import backIcon from "../../assets/img/back.svg";
 import logoIcon from "../../assets/img/logo.svg";
 
-function Header({ name, back, profile }) {
+function Header({ name, back, profile, profileMenu }) {
 	const navigate = useNavigate();
 	const username = userStore((state) => state.username);
 	const pic = userStore((state) => state.userPic);
@@ -33,6 +33,15 @@ function Header({ name, back, profile }) {
 					onClick={() => navigate("/menu")}
 					src={pic}
 					alt="profile"
+					width="45px"
+					height="45px"
+				/>
+			)}
+			{profileMenu && (
+				<img
+					onClick={() => navigate("/")}
+					src={pic}
+					alt="profileMenu"
 					width="45px"
 					height="45px"
 				/>
