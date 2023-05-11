@@ -13,16 +13,16 @@ import SettingsButton from '../../components/Menu/SettingsButton';
 import LogoutButton from '../../components/Menu/LogoutButton';
 
 
-const handleLogout = () => {
-  window.localStorage.clear();
-  window.cookies.clear();
-  window.location.href = "/login";
-}
+// const handleLogout = () => {
+//   window.localStorage.clear();
+//   window.cookies.clear();
+//   window.location.href = "/login";
+// }
 
 const Menu = () => {
   return (
     <section className={styles.Menu}>
-      <Header name profile />
+      <Header name profileMenu />
 
       <button><img src={feather} alt="feather" />My Wallet<img src={forward} alt="arrow" /></button>
 
