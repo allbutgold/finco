@@ -31,13 +31,12 @@ const TransactionList = () => {
 console.log(transactions)
   return (
     <section className={styles.TransactionSection}>
-      <h1>TransactionList</h1>
       <article className={styles.TransactionList}>
         {Object.entries(transactions).map(([key, array]) => (
           <div className={styles.TransactionContainer}  key={key}>
             <h1>{key}</h1>
             {array.map((transaction, index) => (
-              <div className={styles.SingleTransaction} style={{ padding: '20px' }} key={index}>
+              <div className={styles.SingleTransaction}key={index}>
                 <img src={circle} alt="" className={styles.TransactionImage}/>
                 <div className={styles.TransactionDetails}>
                   <h4>{transaction.category}</h4>    
@@ -47,7 +46,7 @@ console.log(transactions)
                   </div>        
                   
                 </div>
-              <p className={transaction.type === 'expense' ? 'red' : 'green'}>{transaction.amount}</p>
+              <p className={transaction.type === 'expense' ? 'red' : 'green'}>${transaction.amount}</p>
             </div>
             ))}
             
