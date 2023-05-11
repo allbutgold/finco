@@ -25,8 +25,9 @@ html,
 	height: 100vh;
 	font-family: "Urbanist";
 	color: var(--font-200);
-/* 	overflow: hidden;
- */}
+	/* 	overflow: hidden;
+ */
+}
 
 @font-face {
 	font-family: "Urbanist";
@@ -56,4 +57,10 @@ button:active {
 
 a {
 	text-decoration: none;
+}
+
+.layout {
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto min-content;
 }
