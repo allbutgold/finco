@@ -1,6 +1,10 @@
 .Report {
-  padding: 5vw;
-  h1 {
-    margin-top: 5vw;
-  }
+	padding: 5vw;
+	display: grid;
+	grid-template-rows: min-content min-content auto;
+	overflow: hidden;
+
+	h1 {
+		margin-top: 5vw;
+	}
 }

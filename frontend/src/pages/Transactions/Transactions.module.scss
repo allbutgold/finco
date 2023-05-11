@@ -1,6 +1,11 @@
 .Transactions {
-  padding: 5vw;
-  h1:nth-of-type(1) {
-    margin-bottom: 2rem;
-  }
+	padding: 5vw;
+	display: grid;
+	height: 100%;
+	// overflow: scroll;
+
+	grid-template-rows: min-content min-content min-content min-content;
+	h1:nth-of-type(1) {
+		margin-bottom: 2rem;
+	}
 }
