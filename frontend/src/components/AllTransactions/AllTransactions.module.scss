@@ -20,7 +20,7 @@
 
 .SingleTransaction {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
   align-items: center;
   justify-content: space-around;
   margin-bottom: 5vw;
@@ -48,7 +48,7 @@
 
 
   .Amount {
-    margin-left: 100px; /* Adjust as needed */
+    margin-left: auto; /* Adjust as needed */
 
     &.Red {
       color: red;
