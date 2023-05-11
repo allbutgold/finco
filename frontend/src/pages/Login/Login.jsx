@@ -17,6 +17,9 @@ const Login = () => {
 	const setUsername = (value) => {
 		userStore.getState().setUsername(value);
 	};
+	const setUserPic = (value) => {
+		userStore.getState().setUserPic(value);
+	};
 	//*==== HANNI WAR HIER ====
 
 	const login = async (event) => {
@@ -30,7 +33,7 @@ const Login = () => {
 				account: {
 					email: inputEmail,
 					password: inputPassword,
-				}
+				},
 			}),
 			credentials: "include",
 		});
@@ -39,6 +42,7 @@ const Login = () => {
 			const user = await response.json();
 			setUser(user.id);
 			setUsername(user.user);
+			setUserPic(URL + user.pic);
 			//*==== HANNI WAR HIER ====
 			navigator("/");
 		}

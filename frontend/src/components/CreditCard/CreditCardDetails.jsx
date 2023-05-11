@@ -2,6 +2,7 @@ import styles from "./CreditCardDetails.module.scss";
 
 import chip from "../../assets/img/chip.svg";
 import check from "../../assets/img/check.svg";
+import cross from "../../assets/img/cross.svg";
 import { useEffect, useState } from "react";
 import { userStore } from "../../utils/userStore.js";
 
@@ -46,7 +47,7 @@ function CreditCardDetails() {
 	return (
 		<div className={styles.CreditCard}>
 			<div className={styles.verification}>
-				<img src={check} alt="verification icon" />
+				<img src={validCC ? check : cross} alt="verification icon" />
 			</div>
 			<div className={styles.container}>
 				<p>Credit Card</p>

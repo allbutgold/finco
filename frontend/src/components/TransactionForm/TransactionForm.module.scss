@@ -50,6 +50,7 @@
 	background: var(--bg-100);
 	color: var(--font-200);
 	justify-content: space-between;
+	box-shadow: none;
 }
 
 .CategoryList {
@@ -62,6 +63,7 @@
 	width: 100%;
 	background-color: var(--white);
 	transform: translate(100%);
+	overflow: scroll;
 	input[type="radio"] {
 		all: unset;
 	}

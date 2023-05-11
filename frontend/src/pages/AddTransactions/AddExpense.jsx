@@ -4,9 +4,12 @@ import TransactionForm from "../../components/TransactionForm/TransactionForm";
 
 // import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
+import { useNavigate } from "react-router-dom";
+import { navigateWithDelay } from "../../utils/helper.js";
 
 const AddExpense = () => {
 	const URL = import.meta.env.VITE_BACKEND_URL;
+	const navigate = useNavigate();
 
 	// const userID = userStore.getState().userID;
 
@@ -16,8 +19,6 @@ const AddExpense = () => {
 			const form = new FormData(event.target);
 			form.append("type", "expense");
 
-			console.log([...form.entries()]);
-
 			const response = await fetch(URL + "addTransaction", {
 				method: "POST",
 				credentials: "include",
@@ -25,8 +26,9 @@ const AddExpense = () => {
 			});
 
 			if (response.ok) {
-				const message = response.text();
+				const message = await response.text();
 				console.log(message);
+				navigateWithDelay(navigate, "/", 1000);
 			} else {
 				throw new Error("Could not add expense");
 			}
