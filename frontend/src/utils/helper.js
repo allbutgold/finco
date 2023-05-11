@@ -24,7 +24,7 @@ export const categories = {
 		{ id: "2", name: "Parental allowance" },
 		{ id: "3", name: "Capital gains" },
 		{ id: "4", name: "Child benefit" },
-		{ id: "5", name: "Benefits from the Federal Employment Agency" },
+		{ id: "5", name: "Unemployment Agency" },
 		{ id: "6", name: "Salary/wages" },
 		{ id: "7", name: "Rental income" },
 		{ id: "8", name: "Pension" },
