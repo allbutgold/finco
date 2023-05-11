@@ -12,7 +12,7 @@ const Register = () => {
 			<p>Never miss a payment again with our finance tracking app.</p>
 			<RegisterForm />
 			<p>
-				Already have an account? <Link to="/">Sign in</Link>
+				Already have an account? <Link to="/login">Sign in</Link>
 			</p>
 		</section>
 	);

@@ -24,7 +24,7 @@ const Auth = () => {
 
 				return;
 			}
-			navigator("/login");
+			navigator("/onboarding");
 		})();
 	}, []);
 
