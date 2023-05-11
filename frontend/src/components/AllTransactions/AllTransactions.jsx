@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { userStore } from "../../utils/userStore.js";
+import circle from "../../assets/img/bg.svg";
 
 
 const TransactionList = () => {
@@ -33,6 +34,7 @@ const TransactionList = () => {
             .flatMap(([key, array]) => array)
             .map((transaction, index) => (
               <div style={{ padding: '20px' }} key={index}>
+                <img src={circle} alt="" />
                 <p>{transaction.category}</p>
                 <p className={transaction.type === 'expense' ? 'red' : 'green'}>{transaction.amount}</p>
                 <p>{transaction.date}</p>

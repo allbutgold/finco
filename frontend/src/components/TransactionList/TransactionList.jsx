@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { userStore } from "../../utils/userStore.js";
 import "./TransactionList.css"
+import styles from './TransactionList.module.scss';
+import circle from "../../assets/img/bg.svg";
 
 
 const TransactionList = () => {
@@ -28,17 +30,24 @@ const TransactionList = () => {
 
 console.log(transactions)
   return (
-    <section>
+    <section className={styles.TransactionSection}>
       <h1>TransactionList</h1>
-      <article>
+      <article className={styles.TransactionList}>
         {Object.entries(transactions).map(([key, array]) => (
-          <div style={{padding:'40px'}} key={key}>
+          <div className={styles.TransactionContainer}  key={key}>
             <h1>{key}</h1>
             {array.map((transaction, index) => (
-              <div style={{ padding: '20px' }} key={index}>
-              <p>{transaction.category}</p>
+              <div className={styles.SingleTransaction} style={{ padding: '20px' }} key={index}>
+                <img src={circle} alt="" className={styles.TransactionImage}/>
+                <div className={styles.TransactionDetails}>
+                  <h4>{transaction.category}</h4>    
+                  <div className={styles.DateTime}>
+                    <p>{transaction.time}</p>
+                    <p>{transaction.date}</p>
+                  </div>        
+                  
+                </div>
               <p className={transaction.type === 'expense' ? 'red' : 'green'}>{transaction.amount}</p>
-              <p>{transaction.date}</p>
             </div>
             ))}
             
