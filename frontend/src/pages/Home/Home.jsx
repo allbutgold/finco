@@ -39,7 +39,7 @@ const Home = () => {
 
 	return (
 		<section className={styles.Home}>
-			<Header name />
+			<Header name profile />
 			<CreditCardDetails />
 			<h3>Total wallet</h3>
 			<TranscactionsStats
