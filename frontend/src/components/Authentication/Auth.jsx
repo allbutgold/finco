@@ -34,8 +34,12 @@ const Auth = () => {
 
 	return (
 		<div className="layout">
-			<Outlet />
-			<Navigation />
+			<div className="content">
+				<Outlet />
+			</div>
+			<div className="nav">
+				<Navigation />
+			</div>
 		</div>
 	);
 };

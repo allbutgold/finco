@@ -2,7 +2,6 @@
 	overflow-y: scroll;
 	//TODO: MAKE HEIGHT DYNAMIC
 
-	height: 500px;
 	background-color: blue;
 	/* Add any section-level styles here */
 	h1 {
@@ -11,9 +10,8 @@
 }
 
 .TransactionList {
-	height: 550px;
+	height: 100%;
 	overflow-y: scroll;
-	// background-color: red;
 	/* Add any article-level styles here */
 }
 
