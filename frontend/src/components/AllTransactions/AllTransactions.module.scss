@@ -1,61 +1,63 @@
 .TransactionSection {
-  /* Add any section-level styles here */
+	//TODO: MAKE HEIGHT DYNAMIC
+	height: 660px;
+	overflow-y: scroll;
+	/* Add any section-level styles here */
 
-  h1 {
-    /* Styles for h1 */
-  }
+	h1 {
+		/* Styles for h1 */
+	}
 }
 
 .TransactionList {
-  /* Add any article-level styles here */
+	/* Add any article-level styles here */
 }
 
 .TransactionContainer {
-  margin: 10px 0 10px 0;
+	margin: 10px 0 10px 0;
 
-  h1 {
-    margin: 20px;
-  }
+	h1 {
+		margin: 20px;
+	}
 }
 
 .SingleTransaction {
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 5vw;
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 5vw;
 
-  .TransactionImage {
-    /* Styles for the image */
-  }
+	.TransactionImage {
+		/* Styles for the image */
+	}
 
-  .TransactionDetails {
-    margin-left: 10px; /* Adjust as needed */
+	.TransactionDetails {
+		margin-left: 10px; /* Adjust as needed */
 
-    h4 {
-      /* Styles for h4 */
-    }
+		h4 {
+			/* Styles for h4 */
+		}
 
-    .DateTime {
-      display: flex;
+		.DateTime {
+			display: flex;
 
-      p {
-        margin-right: 10px;
-        font-weight: 400;
-      }
-    }
-  }
+			p {
+				margin-right: 10px;
+				font-weight: 400;
+			}
+		}
+	}
 
+	.Amount {
+		margin-left: auto; /* Adjust as needed */
 
-  .Amount {
-    margin-left: auto; /* Adjust as needed */
+		&.Red {
+			color: red;
+		}
 
-    &.Red {
-      color: red;
-    }
-
-    &.Green {
-      color: green;
-    }
-  }
+		&.Green {
+			color: green;
+		}
+	}
 }
