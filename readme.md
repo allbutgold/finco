@@ -1,1 +1,1 @@
-finco-frontend-production.up.railway.app
+https://finco-frontend-production.up.railway.app

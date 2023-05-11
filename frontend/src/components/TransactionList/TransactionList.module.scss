@@ -11,17 +11,19 @@
 }
 
 .TransactionContainer {
-  margin: 30px 0 30px 0;
+  margin: 10vw 0 10vw 0;
 
   h1 {
-    margin: 20px;
+    margin: 1vw;
   }
 }
 
 .SingleTransaction {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 5vw;
 
   .TransactionImage {
     /* Styles for the image */
@@ -38,7 +40,8 @@
       display: flex;
 
       p {
-        /* Styles for p */
+        margin-right: 10px;
+        font-weight: 400;
       }
     }
   }

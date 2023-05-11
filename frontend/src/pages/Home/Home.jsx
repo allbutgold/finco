@@ -5,7 +5,7 @@ import CreditCardDetails from "../../components/CreditCard/CreditCardDetails";
 import Header from "../../components/Header/Header";
 import TranscactionsStats from "../../components/TransactionsStats/TranscactionsStats";
 import TransactionsCardMini from "../../components/TransactionsStats/TransactionsCardMini.jsx";
-
+import AccountBalance from "../../components/AccountBalance/AccountBalance.jsx";
 import styles from "./Home.module.scss";
 import alert from "../../assets/img/alert.svg";
 import { expenseStyles } from "../../utils/helper.js";
@@ -42,6 +42,7 @@ const Home = () => {
 			<Header name profile />
 			<CreditCardDetails />
 			<h3>Total wallet</h3>
+      <AccountBalance />
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}

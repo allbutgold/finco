@@ -34,7 +34,7 @@ function Header({ name, back, profile }) {
 						navigate("/menu");
 					}}
 					src={pic}
-					alt="profile image"
+					alt="profile"
 					width="45px"
 					height="45px"
 				/>

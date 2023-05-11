@@ -1,13 +1,15 @@
 .Navigation {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   padding: 10px;
   width: 100%;
+  background-color: white;
   a img {
-    width: 40px;
+    width: 30px;
+    color: transparent;
   }
   button {
     background: none;
@@ -18,7 +20,7 @@
     text-align: center;
   }
   button img {
-    width: 40px;
+    width: 30px;
   }
   div {
     position: absolute;

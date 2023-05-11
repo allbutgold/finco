@@ -12,6 +12,9 @@
 		background-color: transparent;
 		cursor: pointer;
 	}
+	img[alt="profile"] {
+		object-fit: cover;
+	}
 
 	p {
 		font-variation-settings: "wght" 500;
