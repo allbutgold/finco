@@ -1,12 +1,25 @@
-.Home {
+.Menu {
 	padding: 5vw;
 	gap: 2rem;
 	display: grid;
 	grid-template-rows: min-content min-content min-content min-content;
-
-	// height: 100%;
-
-	h1 {
-		color: red;
+	button {
+		width: 100%;
+		border: none;
+		border-radius: 10px;
+		background: var(--bg-100);
+		color: var(--font-200);
+		box-shadow: none;
+		font-family: Urbanist;
+		justify-content: space-between;
 	}
+}
+
+.divMiddle {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.btnMiddle {
+	margin-top: 0.25rem;
 }
