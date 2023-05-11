@@ -33,10 +33,10 @@ const Auth = () => {
 	}
 
 	return (
-		<>
+		<div className="layout">
 			<Outlet />
 			<Navigation />
-		</>
+		</div>
 	);
 };
 
