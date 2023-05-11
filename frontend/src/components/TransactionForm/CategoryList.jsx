@@ -16,7 +16,14 @@ function CategoryList({ onClick, open, type }) {
 					? `${styles.CategoryList}`
 					: `${styles.CategoryList} ${styles.moveOut}`
 			}>
-			{/* <input type="search" name="search" id="search" /> */}
+			{/* <input
+				type="search"
+				name="search"
+				id="search"
+				onChange={() => {
+					categories[`${type}`].filter((category) => {});
+				}}
+			/> */}
 			<h2>Choose a Category</h2>
 			{categories[`${type}`].map((category) => (
 				<label onClick={onClick} key={category.id} htmlFor={category.name}>

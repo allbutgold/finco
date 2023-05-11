@@ -30,9 +30,7 @@ function Header({ name, back, profile }) {
 			)}
 			{profile && (
 				<img
-					onClick={() => {
-						navigate("/menu");
-					}}
+					onClick={() => navigate("/menu")}
 					src={pic}
 					alt="profile"
 					width="45px"
