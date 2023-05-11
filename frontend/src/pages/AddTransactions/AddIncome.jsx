@@ -5,8 +5,12 @@ import styles from "./AddIncome.module.scss";
 // import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
 
+import { useNavigate } from "react-router-dom";
+import { navigateWithDelay } from "../../utils/helper.js";
+
 const AddIncome = () => {
 	const URL = import.meta.env.VITE_BACKEND_URL;
+	const navigate = useNavigate();
 
 	// const userID = userStore.getState().userID;
 
@@ -15,7 +19,6 @@ const AddIncome = () => {
 		try {
 			const form = new FormData(event.target);
 			form.append("type", "income");
-			console.log([...form.entries()]);
 
 			const response = await fetch(URL + "addTransaction", {
 				method: "POST",
@@ -24,8 +27,9 @@ const AddIncome = () => {
 			});
 
 			if (response.ok) {
-				const message = response.text();
+				const message = await response.text();
 				console.log(message);
+				navigateWithDelay(navigate, "/", 1000);
 			} else {
 				throw new Error("Could not add income");
 			}
@@ -36,7 +40,7 @@ const AddIncome = () => {
 
 	return (
 		<section className={styles.AddIncome}>
-			<Header back />
+			<Header back profile />
 			<h1>Add Income</h1>
 			<CreditCardDetails />
 

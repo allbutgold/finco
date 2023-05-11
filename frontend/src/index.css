@@ -12,17 +12,21 @@
 	--font-400: #ffaa1a;
 	--primary-col: linear-gradient(180deg, #44bbfe 0%, #1e78fe 100%);
 	--secondary-col: linear-gradient(180deg, #ffcf53 0%, #ff9900 100%);
+	--danger-col: linear-gradient(180deg, #ff539b 0%, #ff0000 100%);
+	--boxShadow-100: 0px 15px 35px rgba(32, 124, 254, 0.2);
+	--boxShadow-200: 0px 10px 30px rgba(255, 153, 0, 0.2);
 	--stroke-100: #ebebeb;
 	--white: #ffffff;
 }
 
 body,
-html {
+html,
+#root {
 	height: 100vh;
 	font-family: "Urbanist";
 	color: var(--font-200);
-	overflow: hidden;
-}
+/* 	overflow: hidden;
+ */}
 
 @font-face {
 	font-family: "Urbanist";
@@ -30,7 +34,7 @@ html {
 }
 
 button {
-	box-shadow: 0px 15px 35px rgba(32, 124, 254, 0.2);
+	box-shadow: var(--boxShadow-100);
 	background: var(--primary-col);
 	color: var(--white);
 	border-radius: 30px;
@@ -48,4 +52,8 @@ button {
 
 button:active {
 	transform: translateY(3px);
+}
+
+a {
+	text-decoration: none;
 }
