@@ -16,7 +16,7 @@ import { getCardInfo } from "./controller/cardController.js";
 import {
 	addTransaction,
 	getAllTransactions,
-	getTotalTransactions,
+	getTotalTransactions, getTotalTransactionsByMonth
 } from "./controller/transactionsController.js";
 
 const server = express();
@@ -50,6 +50,8 @@ server.get("/getAccountData", getCardInfo);
 server.post("/addTransaction", upload.none(), authMiddleware, addTransaction);
 
 server.get("/getTotalTransactions", authMiddleware, getTotalTransactions);
+server.get("/getTotalTransactionsByMonth",authMiddleware, getTotalTransactionsByMonth);
+
 //*==== HANNI WAR HIER ====
 
 server.post("/login", encryptPassword, userController.login);
