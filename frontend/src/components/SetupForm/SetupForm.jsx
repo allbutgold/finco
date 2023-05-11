@@ -74,9 +74,14 @@ const SetupForm = () => {
 				/>
 				<label htmlFor="expDate">Expiration Date</label>
 				<input
-					type="date"
+					type="text"
 					name="expDate"
 					id="expDate"
+					placeholder="dd/mm/yyyy"
+					onMouseOver={(e) => {
+						e.currentTarget.type = "date";
+						e.currentTarget.focus();
+					}}
 					onChange={(e) => setExpDate(e.target.value)}
 				/>
 

@@ -41,6 +41,10 @@
 			background-color: var(--bg-100);
 			padding: 1rem 2.5rem;
 			font-family: Urbanist;
+			-webkit-appearance: none;
+			min-width: 96%;
+			min-height: 3rem;
+			font-size: 1rem;
 		}
 		input[type="file"] {
 			display: none;

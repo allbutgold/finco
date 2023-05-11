@@ -5,15 +5,23 @@
 		gap: 1rem;
 		overflow: hidden;
 
-		input {
+		input:not(input[type="search"]) {
 			border-radius: 30px;
 			border: none;
 			background-color: var(--bg-100);
 			padding: 1rem 2.5rem;
 			font-family: Urbanist;
+			width: 100%;
 		}
-		input[type="date"] {
+		input[name="date"] {
 			padding: 1rem 1rem;
+			// min-width: 96%;
+			-webkit-appearance: none;
+		}
+		input[name="time"] {
+			// min-width: 96%;
+			min-height: 3rem;
+			-webkit-appearance: none;
 		}
 
 		input[type="number"] {
@@ -32,7 +40,7 @@
 				font-size: 1.2rem;
 			}
 		}
-		div {
+		div:not(.categoryHeader) {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			gap: 1rem;
@@ -44,7 +52,6 @@
 
 		button:last-of-type {
 			justify-content: center;
-			margin-top: 1rem;
 		}
 	}
 }
@@ -56,8 +63,6 @@
 }
 
 .CategoryList {
-	display: none;
-
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -68,6 +73,9 @@
 	background-color: var(--white);
 	transform: translateX(100%);
 	overflow-y: scroll;
+	display: grid;
+	grid-template-rows: repeat(auto-fill, 4rem);
+	align-items: center;
 	input[type="radio"] {
 		all: unset;
 	}
@@ -77,9 +85,58 @@
 		grid-column: 1/3;
 		padding: 1rem 2.5rem;
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
 	}
+}
+
+.notFound {
+	grid-column: 1/3;
+	text-align: center;
+}
+
+.categoryHeader {
+	grid-column: 1/3;
+	display: flex;
+	position: relative;
+	align-items: center;
+	justify-content: space-between;
+	h2 {
+		font-size: 1rem;
+	}
+	button {
+		all: unset;
+		width: 40px;
+		height: 40px;
+	}
+	label {
+		all: unset;
+		position: absolute;
+		right: 0;
+		border-radius: 50%;
+		img {
+			position: absolute;
+			top: 50%;
+			left: 1rem;
+			transform: translateY(-50%);
+		}
+		input[type="search"] {
+			all: unset;
+			background: var(--bg-100);
+			border-radius: 30px;
+			font-size: 1.1rem;
+			padding: 1rem 2.8rem;
+			width: 200px;
+			transition: width 0.4s ease;
+			caret-color: var(--font-200);
+		}
+	}
+}
+
+.moveIn {
+	width: 100%;
+	animation: move-in 300ms forwards ease-out;
 }
 
 @keyframes move-in {
@@ -93,10 +150,6 @@
 	}
 }
 
-.moveIn {
-	width: 100%;
-	animation: move-in 300ms forwards ease-out;
-}
 .moveOut {
 	width: 100%;
 	animation: move-out 300ms forwards ease-out;

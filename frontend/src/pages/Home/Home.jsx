@@ -9,6 +9,7 @@ import AccountBalance from "../../components/AccountBalance/AccountBalance.jsx";
 import styles from "./Home.module.scss";
 import alert from "../../assets/img/alert.svg";
 import { expenseStyles } from "../../utils/helper.js";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
 	const [totalExpenses, setTotalExpenses] = useState(0);
@@ -42,7 +43,7 @@ const Home = () => {
 			<Header name profile />
 			<CreditCardDetails />
 			<h3>Total wallet</h3>
-      <AccountBalance />
+			<AccountBalance />
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
@@ -54,6 +55,7 @@ const Home = () => {
 				content="Monthly spending limit"
 				options
 			/>
+			<Toaster />
 		</section>
 	);
 };

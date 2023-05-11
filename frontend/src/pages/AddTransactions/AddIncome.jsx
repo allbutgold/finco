@@ -1,6 +1,7 @@
 import CreditCardDetails from "../../components/CreditCard/CreditCardDetails";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import styles from "./AddIncome.module.scss";
+import toast, { Toaster } from "react-hot-toast";
 
 // import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
@@ -13,29 +14,44 @@ const AddIncome = () => {
 	const navigate = useNavigate();
 
 	// const userID = userStore.getState().userID;
-
 	const addIncome = async (event) => {
 		event.preventDefault();
-		try {
-			const form = new FormData(event.target);
-			form.append("type", "income");
+		const form = new FormData(event.target);
+		form.append("type", "income");
 
-			const response = await fetch(URL + "addTransaction", {
-				method: "POST",
-				credentials: "include",
-				body: form,
+		const incomeFetch = fetch(URL + "addTransaction", {
+			method: "POST",
+			credentials: "include",
+			body: form,
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Could not add expense");
+				}
+				return response.text();
+			})
+			.then((message) => {
+				console.log(message);
+				return message;
+			})
+			.catch((err) => {
+				console.error(err);
+				throw new Error("Could not add income. Please try again later.");
 			});
 
-			if (response.ok) {
-				const message = await response.text();
+		await toast.promise(incomeFetch, {
+			loading: "Submitting..",
+			success: (message) => {
 				console.log(message);
-				navigateWithDelay(navigate, "/", 1000);
-			} else {
-				throw new Error("Could not add income");
-			}
-		} catch (error) {
-			console.error(error);
-		}
+				return "Added income!";
+			},
+			error: (err) => {
+				console.error(err);
+				return "Could not add income. Please try again later.";
+			},
+		});
+
+		navigateWithDelay(navigate, "/", 1000);
 	};
 
 	return (
@@ -43,6 +59,7 @@ const AddIncome = () => {
 			<Header back profile />
 			<h1>Add Income</h1>
 			<CreditCardDetails />
+			<Toaster />
 
 			<TransactionForm type="income" handleSubmit={addIncome} />
 		</section>
