@@ -20,12 +20,13 @@
 }
 
 body,
-html {
+html,
+#root {
 	height: 100vh;
 	font-family: "Urbanist";
 	color: var(--font-200);
-	overflow: hidden;
-}
+/* 	overflow: hidden;
+ */}
 
 @font-face {
 	font-family: "Urbanist";
@@ -51,4 +52,8 @@ button {
 
 button:active {
 	transform: translateY(3px);
+}
+
+a {
+	text-decoration: none;
 }

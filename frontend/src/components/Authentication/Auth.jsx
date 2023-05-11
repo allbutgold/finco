@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { userStore } from "../../utils/userStore.js";
 
+import Navigation from "../Navigation/Navigation.jsx";
+
 const Auth = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const navigator = useNavigate();
 
 	const URL = import.meta.env.VITE_BACKEND_URL;
-	//* HAN
 	const setUser = (value) => {
 		userStore.getState().setUserID(value);
 	};
-	//* HAN
 
 	useEffect(() => {
 		(async () => {
@@ -20,9 +20,7 @@ const Auth = () => {
 				setIsLoading(false);
 				const user = await response.json();
 				// console.log(user);
-				//*HAN
 				setUser(user);
-				//*HAN
 
 				return;
 			}
@@ -37,6 +35,7 @@ const Auth = () => {
 	return (
 		<>
 			<Outlet />
+			<Navigation />
 		</>
 	);
 };

@@ -23,7 +23,7 @@ function CategoryList({ onClick, open, type }) {
 					{category.name}
 					<input
 						type="radio"
-						name={type}
+						name="category"
 						id={category.name}
 						value={category.name}
 						required

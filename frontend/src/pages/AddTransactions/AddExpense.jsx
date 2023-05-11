@@ -38,7 +38,7 @@ const AddExpense = () => {
 	};
 	return (
 		<section className={styles.AddExpense}>
-			<Header back />
+			<Header back profile />
 			<h1>Add Expense</h1>
 			<CreditCardDetails />
 			<TransactionForm type="expense" handleSubmit={addExpense} />
