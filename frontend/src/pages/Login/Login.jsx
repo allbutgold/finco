@@ -64,6 +64,7 @@ const Login = () => {
 					value={inputEmail}
 					onChange={(event) => setInputEmail(event.target.value)}
 					placeholder="Email"
+          required
 				/>
 				<label htmlFor="password" hidden>
 					Password
@@ -75,6 +76,7 @@ const Login = () => {
 					value={inputPassword}
 					onChange={(event) => setInputPassword(event.target.value)}
 					placeholder="Password"
+          required
 				/>
 				<Link>Forgot password?</Link>
 				<button type="submit">Login</button>
