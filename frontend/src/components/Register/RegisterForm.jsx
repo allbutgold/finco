@@ -1,11 +1,14 @@
 import styles from "./RegisterForm.module.scss";
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 const RegisterForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [agreedToTnC, setAgreedToTnC] = useState(false);
+	const navigate = useNavigate();
 
 	const URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -25,7 +28,8 @@ const RegisterForm = () => {
 		});
 		const data = await response.json();
 		console.log(data);
-		e.target.reset();
+		// e.target.reset();
+		navigate("/setup");
 	};
 	return (
 		<section className={styles.RegisterForm}>
@@ -71,7 +75,7 @@ const RegisterForm = () => {
 						Agree to our<b> Terms and Service</b>
 					</label>
 				</div>
-				<button type="submit">Register</button>
+				<button type="submit">Register Now</button>
 			</form>
 		</section>
 	);
