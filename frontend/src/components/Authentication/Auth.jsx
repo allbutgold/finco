@@ -24,7 +24,7 @@ const Auth = () => {
 
 				return;
 			}
-			navigator("/login");
+			navigator("/onboarding");
 		})();
 	}, []);
 
@@ -33,10 +33,10 @@ const Auth = () => {
 	}
 
 	return (
-		<>
+		<div className="layout">
 			<Outlet />
 			<Navigation />
-		</>
+		</div>
 	);
 };
 
