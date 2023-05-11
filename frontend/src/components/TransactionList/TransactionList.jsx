@@ -46,7 +46,7 @@ console.log(transactions)
                   </div>        
                   
                 </div>
-              <p className={transaction.type === 'expense' ? 'red' : 'green'}>${transaction.amount}</p>
+              <p className={transaction.type === 'expense' ? 'red' : 'green'}>{`$${transaction.amount}`}</p>
             </div>
             ))}
             
