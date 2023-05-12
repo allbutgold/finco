@@ -1,9 +1,10 @@
 import styles from "./Login.module.scss";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { userStore } from "../../utils/userStore.js";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import toast, { Toaster } from "react-hot-toast";
+import { navigateWithDelay } from "../../utils/helper";
 
 const Login = () => {
 	const [inputEmail, setInputEmail] = useState("");
@@ -12,15 +13,14 @@ const Login = () => {
 	const URL = import.meta.env.VITE_BACKEND_URL;
 	const navigator = useNavigate();
 
-	//*==== HANNI WAR HIER ====
+	//* userStore
 	const setUser = (value) => userStore.getState().setUserID(value);
 	const setUsername = (value) => userStore.getState().setUsername(value);
 	const setUserPic = (value) => userStore.getState().setUserPic(value);
-	//*==== HANNI WAR HIER ====
 
 	const login = async (event) => {
 		event.preventDefault();
-		const response = await fetch(URL + "login", {
+		const loginUser = fetch(URL + "login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -32,24 +32,42 @@ const Login = () => {
 				},
 			}),
 			credentials: "include",
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Invalid mail or password");
+				} else {
+					return response.json();
+				}
+			})
+			.then((user) => {
+				setUser(user.id);
+				setUsername(user.user);
+				if (user.pic) {
+					setUserPic(URL + user.pic);
+					navigateWithDelay(navigator, "/", 2000);
+				} else {
+					navigateWithDelay(navigator, "/setup", 2000);
+				}
+			})
+			.catch((err) => {
+				console.error(err);
+				throw new Error(err);
+			});
+
+		await toast.promise(loginUser, {
+			loading: "Checking Credentials",
+			success: "Perfect! You logged in!",
+			error: (err) => {
+				console.error(err);
+				return "Please try again :(";
+			},
 		});
-		if (response.ok) {
-			//*==== HANNI WAR HIER ====
-			const user = await response.json();
-			setUser(user.id);
-			setUsername(user.user);
-			if (user.pic) {
-				setUserPic(URL + user.pic);
-				//*==== HANNI WAR HIER ====
-				navigator("/");
-			} else {
-				navigator("/setup");
-			}
-		}
 	};
 
 	return (
 		<section className={styles.Login}>
+			<Toaster />
 			<Header />
 			<h1>Welcome back</h1>
 			<p>Never miss a payment again with our finance tracking app.</p>

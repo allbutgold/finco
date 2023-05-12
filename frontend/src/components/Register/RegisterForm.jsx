@@ -1,7 +1,9 @@
 import styles from "./RegisterForm.module.scss";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import { useNavigate } from "react-router-dom";
+import { navigateWithDelay } from "../../utils/helper";
 
 const RegisterForm = () => {
 	const [username, setUsername] = useState("");
@@ -15,24 +17,46 @@ const RegisterForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch(URL + "register", {
+		const createAccount = fetch(URL + "register", {
 			credentials: "include",
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-
 			body: JSON.stringify({
 				account: { username, password, email, agreedToTnC },
 			}),
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Invalid mail or password");
+				} else {
+					return response.text();
+				}
+			})
+			.then((data) => {
+				console.log(data);
+				// e.target.reset();
+				navigateWithDelay(navigate, "/login", 1500);
+			})
+			.catch((error) => {
+				console.error(error);
+				throw new Error(err);
+			});
+
+		await toast.promise(createAccount, {
+			loading: "Checking Credentials",
+			success: "Perfect! You signed up!",
+			error: (err) => {
+				console.error(err);
+				return "Could not register! SORRY!!!";
+			},
 		});
-		const data = await response.json();
-		console.log(data);
-		// e.target.reset();
-		navigate("/setup");
 	};
+
 	return (
 		<section className={styles.RegisterForm}>
+			<Toaster />
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="name" hidden>
 					Name

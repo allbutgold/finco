@@ -1,33 +1,36 @@
 .Navigation {
-	bottom: 0;
+	// position: fixed;
+	// bottom: 0;
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
 	padding: 10px;
 	width: 100%;
+	box-shadow: 0px -15px 10px rgba(13, 22, 54, 0.05);
+	background-color: var(--white);
 	a img {
-		width: 40px;
+		width: 30px;
 	}
 	button {
 		background: none;
-		color: #000;
+		color: #000;  
 		border: none;
 		box-shadow: none;
 		padding: 0;
 		text-align: center;
 	}
 	button img {
-		width: 40px;
+		width: 30px;
 	}
 	div {
 		position: absolute;
-		background-color: white;
-		bottom: +100px;
-		border: #000 1px solid;
+    right: 20px;
+		background-color:white;
+		bottom: 70px;
+		border:  0.5px solid;
 		border-radius: 30px;
 		display: flex;
 		justify-content: center;
-		margin: auto 50% auto 50%;
 		flex-direction: column;
 		padding: 10px;
 		button {

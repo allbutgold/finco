@@ -9,8 +9,10 @@ const Auth = () => {
 	const navigator = useNavigate();
 
 	const URL = import.meta.env.VITE_BACKEND_URL;
-	const setUser = (value) => {
-		userStore.getState().setUserID(value);
+	const setUser = (value) => userStore.getState().setUserID(value);
+	const clearStorage = () => {
+		userStore.setState({ userID: null, username: null, userPic: null });
+		console.log("Cleared Storage");
 	};
 
 	useEffect(() => {
@@ -24,6 +26,7 @@ const Auth = () => {
 
 				return;
 			}
+			clearStorage();
 			navigator("/onboarding");
 		})();
 	}, []);
@@ -34,8 +37,12 @@ const Auth = () => {
 
 	return (
 		<div className="layout">
-			<Outlet />
-			<Navigation />
+			<div className="content">
+				<Outlet />
+			</div>
+			<div className="nav">
+				<Navigation />
+			</div>
 		</div>
 	);
 };

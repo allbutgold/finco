@@ -31,7 +31,7 @@ const Onboarding = () => {
 				subtitle="Track and analyze your expenses to improve your financial health."
 				button="Get Started"
 				onclick={() => {
-					navigate("/login");
+					navigate("/register");
 				}}
 			/>
 			<WelcomeScreen
