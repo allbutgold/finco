@@ -13,6 +13,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
   const [currentBudget, setCurrentBudget] = useState(0);
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [isBudgetExceeded, setIsBudgetExceeded] = useState(false);
+  const [isBudgetChanged, setIsBudgetChanged] = useState(false);
 
   const changeBudget = async (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
       const data = await response.json();
       console.log(data);
       dialogRef.current.close();
+      setIsBudgetChanged(true);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +48,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
         });
         const data = await response.json();
         setCurrentBudget(data.budget);
-        console.log(data)
+        // console.log(data)
       } catch (error) {
         console.log(error);
       }
@@ -71,14 +73,14 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 
     getBudget();
     getTotalExpenses();
-  }, [userID, URL]);
+  }, [userID, URL, isBudgetChanged]);
 
   useEffect(() => {
     setIsBudgetExceeded(totalExpenses > currentBudget);
   }, [totalExpenses, currentBudget]);
 
   const dialogRef = useRef();
-  console.log(currentBudget)
+  // console.log(currentBudget)
   return (
     <article className={styles.TransactionCardMini}>
       {isBudgetExceeded ? (
