@@ -3,65 +3,51 @@ import { useEffect } from "react";
 import { userStore } from "../../utils/userStore.js";
 import "./TransactionList.css";
 import styles from "./TransactionList.module.scss";
-import circle from "../../assets/img/bg.svg";
-import { formatToDollar } from "../../utils/helper.js";
-
-
+import { formatToWeekday } from "../../utils/helper.js";
+import SingleTransaction from "./SingleTransaction.jsx";
 
 const TransactionList = () => {
-  const [transactions, setTransactions] = useState([]);
-  const userID = userStore((state) => state.userID);
+	const [transactions, setTransactions] = useState([]);
+	const userID = userStore((state) => state.userID);
 
-  const URL = import.meta.env.VITE_BACKEND_URL;
+	const URL = import.meta.env.VITE_BACKEND_URL;
 
-  useEffect(() => {
-    const getTransactions = async () => {
-      const response = await fetch(URL + "getAllTransactions?id=" + userID, {
-        credentials: "include",
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
+	useEffect(() => {
+		const getTransactions = async () => {
+			const response = await fetch(URL + "getAllTransactions?id=" + userID, {
+				credentials: "include",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const data = await response.json();
 
-      const sortedTransactions = Object.entries(data).sort(
-        (a, b) => new Date(b[0]) - new Date(a[0])
-      );
+			const sortedTransactions = Object.entries(data).sort(
+				(a, b) => new Date(b[0]) - new Date(a[0])
+			);
 
-      setTransactions(sortedTransactions);
-    };
+			setTransactions(sortedTransactions);
+		};
 
-    getTransactions();
-  }, []);
+		getTransactions();
+	}, []);
 
-  console.log(transactions);
+	// console.log(transactions);
 
-  return (
-    <article className={styles.TransactionList}>
-      {transactions.map(([date, array]) => (
-        <div className={styles.TransactionContainer} key={date}>
-          <h1>{date}</h1>
-          {array.map((transaction, index) => (
-            <div className={styles.SingleTransaction} key={index}>
-              <img src={circle} alt="" className={styles.TransactionImage} />
-              <div className={styles.TransactionDetails}>
-                <h4>{transaction.category}</h4>
-                <div className={styles.DateTime}>
-                  <p>{transaction.time}</p>
-                  <p>{transaction.date}</p>
-                </div>
-              </div>
-              <p className={transaction.type === "expense" ? "red" : "green"}>
-                {formatToDollar(transaction.amount)}
-              </p>
-            </div>
-          ))}
-        </div>
-      ))}
-    </article>
-  );
+	return (
+		<article className={styles.TransactionList}>
+			{transactions.map(([date, array]) => (
+				<div className={styles.TransactionContainer} key={date}>
+					<h3>{formatToWeekday(date)}</h3>
+					<h2>{date}</h2>
+					{array.map((transaction, index) => (
+						<SingleTransaction transaction={transaction} key={index} />
+					))}
+				</div>
+			))}
+		</article>
+	);
 };
 
 export default TransactionList;
-
