@@ -101,3 +101,54 @@ export const getTotalTransactionsByMonth = async (req, res) => {
   }
 };
 
+
+export const setBudget = async (req, res) => {
+  const userID = req.query.id; // Assuming the user ID is passed as a query parameter
+  const { budget } = req.body; // Extract the budget value from the request body
+
+  try {
+    const db = await getDb();
+    const response = await db
+      .collection(COL)
+      .findOneAndUpdate(
+        { _id: new ObjectId(userID) },
+        { $set: { 'account.budget': budget }}, // Update the budget field directly with the extracted value
+        { returnDocument: "after" }
+      );
+    res.status(200).send("Added budget successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(400).send("Something went wrong");
+  }
+};
+
+export const getTotalExpensesByMonth = async (req, res) => {
+  try {
+    const db = await getDb();
+    const result = await db
+      .collection(COL)
+      .findOne({ _id: new ObjectId(req.userClaims.sub) });
+
+    const currentMonthStart = getCurrentMonthStart();
+    const currentMonthEnd = getCurrentMonthEnd();
+
+    let totalExpense = 0;
+    Object.entries(result.transactions).forEach(([key, value]) => {
+      value.forEach((transaction) => {
+        const transactionDate = new Date(transaction.date);
+        if (
+          transactionDate >= currentMonthStart &&
+          transactionDate <= currentMonthEnd &&
+          transaction.type === "expense"
+        ) {
+          totalExpense += +transaction.amount;
+        }
+      });
+    });
+
+    res.status(200).json(totalExpense);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send("Something went wrong");
+  }
+};
