@@ -6,8 +6,10 @@ import {
 	PointElement,
 	LineElement,
 	Title,
+	Filler,
 	Tooltip,
-	Legend,
+
+	// Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -16,9 +18,10 @@ ChartJS.register(
 	LinearScale,
 	PointElement,
 	LineElement,
+	Filler,
 	Title,
-	Tooltip,
-	Legend
+	Tooltip
+	// Legend
 );
 
 function MultiAxis({ transactions }) {
@@ -37,25 +40,27 @@ function MultiAxis({ transactions }) {
 		},
 		{ incomeData: [], expensesData: [], labels: [] }
 	);
-	console.log(data);
 
-	// Creating the chart data object
 	const chartData = {
 		labels: data.labels,
 		datasets: [
 			{
 				label: "Income",
+				fill: true,
 				data: data.incomeData,
 				yAxisID: "income",
-				backgroundColor: "#298bff",
+				backgroundColor: "#298bff50",
 				borderColor: "#298bff",
+				tension: 0.5,
 			},
 			{
 				label: "Expenses",
+				fill: true,
 				data: data.expensesData,
 				yAxisID: "expenses",
-				backgroundColor: " #ffaa1a",
+				backgroundColor: " #ffaa1a50",
 				borderColor: " #ffaa1a",
+				tension: 0.5,
 			},
 		],
 	};
@@ -71,25 +76,43 @@ function MultiAxis({ transactions }) {
 			},
 		},
 		scales: {
-			y: {
-				type: "linear",
-				display: false,
-				position: "left",
-				id: "income-axis",
+			x: {
 				ticks: {
-					beginAtZero: true,
+					callback: (value, index, values) => {
+						if (index === 0 || index === values.length - 1) {
+							return chartData.labels[index];
+						}
+					},
 				},
 			},
-			y1: {
-				type: "linear",
-				display: false,
-				position: "right",
-				id: "expenses-axis",
-				ticks: {
-					beginAtZero: true,
+			y: {
+				grid: {
+					display: true,
+					drawBorder: true,
+					drawTicks: false,
+					drawOnChartArea: true,
 				},
-				gridLines: {
-					drawOnChartArea: false,
+				display: true,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+			expenses: {
+				grid: {
+					display: true,
+				},
+				display: false,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+			income: {
+				display: false,
+				beginAtZero: true,
+				ticks: {
+					display: false,
 				},
 			},
 		},
