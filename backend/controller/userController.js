@@ -1,5 +1,6 @@
 import { getDb } from "../utils/db.js";
 import { createToken } from "../utils/create-token.utils.js";
+import { ObjectId } from "mongodb";
 
 const register = async (req, res) => {
 	const db = await getDb();
@@ -48,8 +49,29 @@ const auth = async (req, res) => {
 	}
 };
 
+
+export const getAllAccountData = async (req, res) => {
+	const userID = req.query.id;
+	try {
+		const db = await getDb();
+		const result = await db
+			.collection('finco')
+			.findOne({ _id: new ObjectId(userID) });
+		if (result === null) {
+			throw new Error("Could not find user");
+		} else {
+			res.status(200).json(result.account).toString();
+		}
+		console.log(result);
+	} catch (error) {
+		console.error(error);
+		res.status(400).json({ message: "Could not get data!" });
+	}
+};
+
 export default {
 	register,
 	login,
 	auth,
+  getAllAccountData
 };
