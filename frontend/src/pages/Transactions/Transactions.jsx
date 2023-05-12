@@ -40,7 +40,7 @@ const Transactions = () => {
 				expenseAmount={totalExpenses}
 			/>
 
-			<TransactionList />
+			<TransactionList mini />
 		</section>
 	);
 };

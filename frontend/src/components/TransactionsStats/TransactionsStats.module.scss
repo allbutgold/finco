@@ -20,8 +20,35 @@
 	}
 }
 
+.MiniCard {
+	padding: 1rem;
+	display: grid;
+	gap: 0.5rem 1rem;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: 1fr 1fr;
+	background-color: var(--bg-100);
+	border-radius: 30px;
+	width: 100%;
+	img {
+		border-radius: 50%;
+		padding: 1rem;
+		grid-column: 1/2;
+		grid-row: 1/3;
+	}
+	p {
+		font-size: 0.9rem;
+		font-variation-settings: "wght" 400;
+		align-self: end;
+	}
+	h4,
+	p {
+		grid-column: 2 / 3;
+		display: flex;
+	}
+}
+
 .TransactionCardMini {
-	padding: 0.8rem;
+	padding-right: 0.8rem;
 	display: grid;
 	grid-template-columns: min-content 1fr min-content;
 	align-items: center;
