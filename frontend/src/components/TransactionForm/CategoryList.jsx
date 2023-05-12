@@ -1,4 +1,4 @@
-import styles from "./TransactionForm.module.scss";
+import styles from "./CategoryList.module.scss";
 import { categories } from "../../utils/helper.js";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
