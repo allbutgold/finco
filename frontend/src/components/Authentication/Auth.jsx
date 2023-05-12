@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { userStore } from "../../utils/userStore.js";
 
 import Navigation from "../Navigation/Navigation.jsx";
+import SplashScreen from "../SplashScreen/SplashScreen.jsx";
 
 const Auth = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ const Auth = () => {
 	}, []);
 
 	if (isLoading) {
-		return <h1>Loading...</h1>;
+		return <SplashScreen />;
 	}
 
 	return (
