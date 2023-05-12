@@ -79,7 +79,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 			}
 		};
 
-		// getBudget();
+		getBudget();
 		getTotalExpenses();
 	}, [userID, URL, isBudgetChanged]);
 

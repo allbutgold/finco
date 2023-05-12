@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { userStore } from "../../utils/userStore.js";
+import { formatToDollar } from "../../utils/helper.js";
 import circle from "../../assets/img/bg.svg";
 import styles from "./AllTransactions.module.scss";
 
@@ -21,7 +22,7 @@ const TransactionList = ({ transactions }) => {
 							</div>
 
 							<p className={transaction.type === "expense" ? "red" : "green"}>
-								${transaction.amount}
+								{formatToDollar(transaction.amount)}
 							</p>
 						</div>
 					))}
