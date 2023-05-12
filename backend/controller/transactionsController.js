@@ -101,3 +101,24 @@ export const getTotalTransactionsByMonth = async (req, res) => {
   }
 };
 
+
+export const setBudget = async (req, res) => {
+  const userID = req.query.id; // Assuming the user ID is passed as a query parameter
+  const { budget } = req.body; // Extract the budget value from the request body
+
+  try {
+    const db = await getDb();
+    const response = await db
+      .collection(COL)
+      .findOneAndUpdate(
+        { _id: new ObjectId(userID) },
+        { $set: { 'account.budget': budget }}, // Update the budget field directly with the extracted value
+        { returnDocument: "after" }
+      );
+    res.status(200).send("Added budget successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(400).send("Something went wrong");
+  }
+};
+
