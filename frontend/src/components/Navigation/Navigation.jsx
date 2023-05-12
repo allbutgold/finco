@@ -38,16 +38,26 @@ const handleTogglePopup = () => {
 
   return ( 
     <section className={styles.Navigation}>
-      <Link to="/">{location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}</Link>
-      <Link to="/transactions">{location.pathname === "/transactions" ? "Transactions" : <img src={creditCard} alt="Transactions" />}</Link>
-      <button onClick={handleTogglePopup}>{location.pathname === "/add-income" || location.pathname === "/add-expense" ? "add" : <img src={plusCircle} />}</button>
+      <Link to="/">
+        {location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}
+      </Link>
+      
+      <Link to="/transactions">
+        {location.pathname === "/transactions" ? "Transactions" : <img src={creditCard} alt="Transactions" />}
+      </Link>
+      
+      <Link to="/report">
+        {location.pathname === "/report" ? "Report" : <img src={pieChart} alt="Report" />}
+        </Link>
+        <button onClick={handleTogglePopup}>
+        {location.pathname === "/add-income" || location.pathname === "/add-expense" ? "add" : <img src={plusCircle} />}
+      </button>
       {showPopup && (
         <Popup
           handleAddExpense={handleAddExpense}
           handleAddIncome={handleAddIncome}
         />
       )}
-      <Link to="/report">{location.pathname === "/report" ? "Report" : <img src={pieChart} alt="Report" />}</Link>
     </section>
   );
 }
