@@ -51,7 +51,7 @@ const FilterTransactionList = () => {
             </div>
             <article className={styles.TransactionList}>
                 {filteredTransactions.length === 0 ? (
-                    <p>Nothing found</p>
+                    <p>Sorry, nothing found</p>
                 ) : (
                     filteredTransactions.map(([key, array]) => (
                         <div className={styles.TransactionContainer} key={key}>
