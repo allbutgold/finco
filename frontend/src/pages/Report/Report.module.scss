@@ -1,13 +1,15 @@
 .Report {
-	padding: 7vw 7vw 0 7vw;
+	// padding: 7vw 7vw 0 7vw;
 	display: grid;
 	height: 100%;
-	gap: 1rem;
+	gap: 3vw;
 	grid-template-rows: min-content min-content min-content min-content auto;
 }
 
 .graph {
 	border: 1px solid var(--stroke-100);
 	border-radius: 20px;
-	padding: 1rem 0;
+	display: grid;
+	place-content: center;
+	padding: 3vw;
 }

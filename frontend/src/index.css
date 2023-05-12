@@ -62,16 +62,17 @@ a {
 }
 
 .layout {
-	height: 100vh;
+	height: 100dvh;
 	display: grid;
 	grid-template-rows: auto min-content;
 	grid-template-areas: "content" "nav";
 }
 
 .content {
+	padding: 5vw;
 	grid-area: content;
 	height: 100%;
-	overflow: scroll;
+	overflow: hidden;
 }
 
 .nav {

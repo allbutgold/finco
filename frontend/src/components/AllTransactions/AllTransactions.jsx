@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { userStore } from "../../utils/userStore.js";
-import styles from "./AllTransactions.module.scss";
 import SingleTransaction from "../TransactionList/SingleTransaction.jsx";
+import { useState, useEffect } from "react";
+import { userStore } from "../../utils/userStore.js";
+
+import styles from "./AllTransactions.module.scss";
 
 const TransactionList = () => {
 	const [transactions, setTransactions] = useState([]);
@@ -26,15 +26,13 @@ const TransactionList = () => {
 	}, []);
 
 	return (
-		<article className={styles.TransactionSection}>
-			<div className={styles.TransactionContainer}>
-				{Object.entries(transactions)
-					.flatMap(([key, array]) => array)
-					.map((transaction, index) => (
-						<SingleTransaction transaction={transaction} key={index} />
-					))}
-			</div>
-		</article>
+		<div className={styles.TransactionContainer}>
+			{Object.entries(transactions)
+				.flatMap(([key, array]) => array)
+				.map((transaction, index) => (
+					<SingleTransaction transaction={transaction} key={index} />
+				))}
+		</div>
 	);
 };
 

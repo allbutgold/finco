@@ -1,20 +1,5 @@
-.TransactionSection {
-	//TODO: MAKE HEIGHT DYNAMIC
-	/* Add any section-level styles here */
-	overflow-y: scroll;
-	height: 100%;
-
-	h1 {
-		/* Styles for h1 */
-	}
-}
-
-.TransactionList {
-	/* Add any article-level styles here */
-}
-
 .TransactionContainer {
-	margin: 10px 0 10px 0;
+	// margin: 10px 0 10px 0;
 	overflow-y: scroll;
 	height: 100%;
 	h1 {

@@ -79,32 +79,35 @@
 dialog:modal {
 	border: none;
 	border-radius: 10px;
-	padding: 1rem;
+	padding: 4vw;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	button {
-		padding: 0.3rem 0.6rem;
-		border-radius: 5px;
-		background: var(--bg-100);
-	}
-	img {
-		padding: 0;
-		border-radius: 50%;
-		background: transparent;
-	}
-	input[type="number"] {
-		background: var(--bg-100);
-		border-radius: 30px;
-		padding: 0.5rem;
-		border: none;
-	}
-	div {
+	form {
 		display: flex;
-		justify-content: space-around;
+		flex-direction: column;
+		gap: 1rem;
+		button {
+			padding: 0.3rem 0.6rem;
+			border-radius: 5px;
+			background: var(--bg-100);
+		}
+		img {
+			padding: 0;
+			border-radius: 50%;
+			background: transparent;
+		}
+		input[type="number"] {
+			background: var(--bg-100);
+			border-radius: 30px;
+			padding: 0.5rem;
+			border: none;
+			text-align: center;
+		}
+		div {
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 }
