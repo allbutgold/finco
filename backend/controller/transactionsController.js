@@ -122,3 +122,33 @@ export const setBudget = async (req, res) => {
   }
 };
 
+export const getTotalExpensesByMonth = async (req, res) => {
+  try {
+    const db = await getDb();
+    const result = await db
+      .collection(COL)
+      .findOne({ _id: new ObjectId(req.userClaims.sub) });
+
+    const currentMonthStart = getCurrentMonthStart();
+    const currentMonthEnd = getCurrentMonthEnd();
+
+    let totalExpense = 0;
+    Object.entries(result.transactions).forEach(([key, value]) => {
+      value.forEach((transaction) => {
+        const transactionDate = new Date(transaction.date);
+        if (
+          transactionDate >= currentMonthStart &&
+          transactionDate <= currentMonthEnd &&
+          transaction.type === "expense"
+        ) {
+          totalExpense += +transaction.amount;
+        }
+      });
+    });
+
+    res.status(200).json(totalExpense);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send("Something went wrong");
+  }
+};
