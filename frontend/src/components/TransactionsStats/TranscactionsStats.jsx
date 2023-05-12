@@ -6,7 +6,7 @@ import trendingDown from "../../assets/img/trending-down.svg";
 import TransactionCard from "./TransactionCard";
 import { incomeStyles, expenseStyles } from "../../utils/helper.js";
 
-function TranscactionsStats({ incomeAmount, expenseAmount }) {
+function TranscactionsStats({ incomeAmount, expenseAmount, mini }) {
 	return (
 		<div className={styles.TranscactionsStats}>
 			<TransactionCard
@@ -14,6 +14,7 @@ function TranscactionsStats({ incomeAmount, expenseAmount }) {
 				img={trendingUp}
 				style={incomeStyles}
 				content="Income"
+				mini={mini}
 			/>
 
 			<TransactionCard
@@ -21,6 +22,7 @@ function TranscactionsStats({ incomeAmount, expenseAmount }) {
 				img={trendingDown}
 				style={expenseStyles}
 				content="Expense"
+				mini={mini}
 			/>
 		</div>
 	);
