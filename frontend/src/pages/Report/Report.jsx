@@ -5,7 +5,7 @@ import { userStore } from "../../utils/userStore.js";
 import { useEffect, useState } from "react";
 import MultiAxis from "../../components/Charts/MultiAxis";
 import TranscactionsStats from "../../components/TransactionsStats/TranscactionsStats";
-import { formatToDollar } from "../../utils/helper.jsx";
+import { formatToDollar } from "../../utils/helper.js";
 
 const Report = () => {
 	const [transactions, setTransactions] = useState([]);
