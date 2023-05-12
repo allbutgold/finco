@@ -41,12 +41,34 @@ function TransactionForm({ type, handleSubmit }) {
 					open={open}
 					required
 					type={type}
+					onclick={() => setOpen(false)}
 				/>
+
 				<div>
 					<label htmlFor="date">Date</label>
 					<label htmlFor="time">Time</label>
-					<input type="date" name="date" id="date" required />
-					<input type="time" name="time" id="time" required />
+					<input
+						type="text"
+						name="date"
+						id="date"
+						placeholder="dd/mm/yyyy"
+						onMouseOver={(e) => {
+							e.currentTarget.type = "date";
+							e.currentTarget.focus();
+						}}
+						required
+					/>
+					<input
+						type="text"
+						name="time"
+						id="time"
+						placeholder="hh/mm"
+						onMouseOver={(e) => {
+							e.currentTarget.type = "time";
+							e.currentTarget.focus();
+						}}
+						required
+					/>
 				</div>
 				<button type="submit">Add {type}</button>
 			</form>

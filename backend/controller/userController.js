@@ -5,9 +5,9 @@ const register = async (req, res) => {
 	const db = await getDb();
 	if (await check(req.body.email)) {
 		await db.collection("finco").insertOne(req.body);
-		res.end();
+		res.status(200).send("Successfully registered");
 	} else {
-		res.status(401).end();
+		res.status(401).send("Invalid email or password");
 	}
 };
 
@@ -26,13 +26,11 @@ const login = async (req, res) => {
 			secure: true,
 			httpOnly: true,
 		});
-		//*HAN
 		res.status(200).json({
 			id: foundUser._id,
 			user: foundUser.account.username,
 			pic: foundUser.account.profileImage,
 		});
-		//*HAN
 	} catch (error) {
 		console.log("userController-login: ", error);
 		res.status(500).end();
