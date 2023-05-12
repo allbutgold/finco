@@ -15,8 +15,8 @@ const AccountBalance = () => {
         });
         if (result.ok) {
           const data = await result.json();
-          setBalance(data);
-          console.log(data)
+          setBalance(data.total);
+          // console.log(data)
         } else {
           const message = await result.json();
           throw new Error(message);

@@ -18,13 +18,14 @@ const Home = () => {
 
 	const getStats = async () => {
 		try {
-			const response = await fetch(URL + "getTotalTransactions", {
+			const response = await fetch(URL + "getTotalTransactionsByMonth", {
 				credentials: "include",
 			});
 			if (response.ok) {
 				const data = await response.json();
-				setTotalExpenses(formatToDollar(data.expense));
-				setTotalIncome(formatToDollar(data.income));
+				setTotalExpenses(formatToDollar(data.totalExpense));
+				setTotalIncome(formatToDollar(data.totalIncome));
+        
 			} else {
 				throw new Error("Could not get info!");
 			}
