@@ -1,13 +1,15 @@
-
 import styles from "./Report.module.scss";
 import AllTransactions from "../../components/AllTransactions/AllTransactions.jsx";
 import Header from "../../components/Header/Header.jsx";
 import { userStore } from "../../utils/userStore.js";
 import { useEffect, useState } from "react";
 import MultiAxis from "../../components/Charts/MultiAxis";
+import TranscactionsStats from "../../components/TransactionsStats/TranscactionsStats";
+import { formatToDollar } from "../../utils/helper.jsx";
 
 const Report = () => {
 	const [transactions, setTransactions] = useState([]);
+	const [total, setTotal] = useState({ income: 0, expense: 0 });
 	const URL = import.meta.env.VITE_BACKEND_URL;
 	const userID = userStore((state) => state.userID);
 
@@ -22,6 +24,15 @@ const Report = () => {
 			});
 			const data = await response.json();
 			setTransactions(data);
+			const total = { income: 0, expense: 0 };
+			Object.entries(data).forEach(([key, value]) => {
+				value.forEach((transaction) => {
+					transaction.type == "income"
+						? (total.income += +transaction.amount)
+						: (total.expense += +transaction.amount);
+				});
+			});
+			setTotal(total);
 		};
 		getTransactions();
 	}, []);
@@ -29,8 +40,15 @@ const Report = () => {
 	return (
 		<section className={styles.Report}>
 			<Header profile />
-			<MultiAxis transactions={transactions} />
-			<h1>Total Transactions</h1>
+			<h1>Report</h1>
+			<TranscactionsStats
+				incomeAmount={formatToDollar(total.income)}
+				expenseAmount={formatToDollar(total.expense)}
+			/>
+			<div className={styles.graph}>
+				<MultiAxis transactions={transactions} />
+			</div>
+			<h3>Total Transactions</h3>
 			<AllTransactions transactions={transactions} />
 		</section>
 	);
