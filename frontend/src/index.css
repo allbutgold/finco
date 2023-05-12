@@ -20,13 +20,15 @@
 }
 
 body,
-html,
-#root {
-	height: 100vh;
+html {
+	height: 100dvh;
 	font-family: "Urbanist";
 	color: var(--font-200);
-	/* 	overflow: hidden;
- */
+	/* overflow: hidden; */
+}
+
+#root {
+	height: 100%;
 }
 
 @font-face {
@@ -60,7 +62,19 @@ a {
 }
 
 .layout {
-	height: 100%;
+	height: 100vh;
 	display: grid;
 	grid-template-rows: auto min-content;
+	grid-template-areas: "content" "nav";
+}
+
+.content {
+	grid-area: content;
+	height: 100%;
+	overflow: scroll;
+}
+
+.nav {
+	grid-area: nav;
+	height: 100%;
 }
