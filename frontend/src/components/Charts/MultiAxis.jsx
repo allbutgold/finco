@@ -90,6 +90,11 @@ function MultiAxis({ transactions }) {
 					// color: "transparent",
 					// display: false,
 				},
+				plugins: {
+					tooltip: {
+						enabled: true,
+					},
+				},
 
 				grid: {
 					drawBorder: true,
