@@ -65,3 +65,37 @@
 		}
 	}
 }
+
+
+.FilterContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  div {
+    margin: auto;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+  }
+  div div {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    input {
+      padding: 2vw;
+      border: 1px solid var(--stroke-100);
+      border-radius: 30px;
+      font-size: 1rem;
+      margin: 2vw 2vw 2vw 2vw;
+      font-size: 1rem;
+    }
+    button {
+      background: none;
+      color: #000;  
+      border: none;
+      box-shadow: none;
+    }
+  }
+}
