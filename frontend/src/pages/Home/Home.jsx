@@ -54,7 +54,6 @@ const Home = () => {
 				content="Monthly spending limit"
 				options
 			/>
-			<Toaster />
 		</section>
 	);
 };

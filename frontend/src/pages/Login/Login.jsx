@@ -5,6 +5,7 @@ import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
 import toast, { Toaster } from "react-hot-toast";
 import { navigateWithDelay } from "../../utils/helper";
+import Password from "../../components/Basic/Password";
 
 const Login = () => {
 	const [inputEmail, setInputEmail] = useState("");
@@ -82,22 +83,31 @@ const Login = () => {
 					value={inputEmail}
 					onChange={(event) => setInputEmail(event.target.value)}
 					placeholder="Email"
-          required
+					required
 				/>
 				<label htmlFor="password" hidden>
 					Password
 				</label>
-				<input
+				{/* <input
 					type="password"
 					id="password"
 					name="password"
 					value={inputPassword}
 					onChange={(event) => setInputPassword(event.target.value)}
 					placeholder="Password"
-          required
+					required
+				/> */}
+				<Password
+					value={inputPassword}
+					onChange={(event) => setInputPassword(event.target.value)}
 				/>
+
 				<Link>Forgot password?</Link>
-				<button type="submit">Login</button>
+				<button
+					className={inputEmail == " " && inputPassword == " " && "failed"}
+					type="submit">
+					Login
+				</button>
 			</form>
 			<p>
 				Don`t have an account ? <Link to="/register">Sign up</Link>
