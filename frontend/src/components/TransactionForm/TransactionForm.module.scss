@@ -5,7 +5,7 @@
 		gap: 1rem;
 		overflow: hidden;
 
-		input:not(input[type="search"]) {
+		input:not(input[type="search"], input[type="radio"]) {
 			border-radius: 30px;
 			border: none;
 			background-color: var(--bg-100);

@@ -25,7 +25,6 @@ const Home = () => {
 				const data = await response.json();
 				setTotalExpenses(formatToDollar(data.totalExpense));
 				setTotalIncome(formatToDollar(data.totalIncome));
-        
 			} else {
 				throw new Error("Could not get info!");
 			}
@@ -52,11 +51,9 @@ const Home = () => {
 			<TransactionsCardMini
 				img={alert}
 				style={expenseStyles}
-				amount="$6000"
 				content="Monthly spending limit"
 				options
 			/>
-			<Toaster />
 		</section>
 	);
 };

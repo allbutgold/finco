@@ -27,8 +27,8 @@ function CategoryList({ onClick, open, type, onclick }) {
 				open
 					? `${styles.moveIn} ${styles.CategoryList}`
 					: open === null
-						? `${styles.CategoryList}`
-						: `${styles.CategoryList} ${styles.moveOut}`
+					? `${styles.CategoryList}`
+					: `${styles.CategoryList} ${styles.moveOut}`
 			}>
 			<div className={styles.categoryHeader}>
 				<button onClick={onclick}>
@@ -52,7 +52,8 @@ function CategoryList({ onClick, open, type, onclick }) {
 			{filteredCat.length > 0 ? (
 				filteredCat.map((category) => (
 					<label onClick={onClick} key={category.id} htmlFor={category.name}>
-						{category.name}
+						<img src={category.icon} alt={category.icon} width="25px" />
+						<p>{category.name}</p>
 						<input
 							type="radio"
 							name="category"

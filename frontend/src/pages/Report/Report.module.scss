@@ -1,9 +1,15 @@
 .Report {
-	padding: 7vw 7vw 0 7vw;
+	// padding: 7vw 7vw 0 7vw;
 	display: grid;
 	height: 100%;
-	grid-template-rows: min-content min-content auto;
-	h1 {
-		margin-top: 5vw;
-	}
+	gap: 3vw;
+	grid-template-rows: min-content min-content min-content min-content auto;
+}
+
+.graph {
+	border: 1px solid var(--stroke-100);
+	border-radius: 20px;
+	display: grid;
+	place-content: center;
+	padding: 3vw;
 }

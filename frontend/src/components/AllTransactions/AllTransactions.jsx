@@ -1,33 +1,38 @@
+import SingleTransaction from "../TransactionList/SingleTransaction.jsx";
 import { useState, useEffect } from "react";
 import { userStore } from "../../utils/userStore.js";
-import { formatToDollar } from "../../utils/helper.js";
-import circle from "../../assets/img/bg.svg";
+
 import styles from "./AllTransactions.module.scss";
 
-const TransactionList = ({ transactions }) => {
-	return (
-		<article className={styles.TransactionSection}>
-			<div className={styles.TransactionContainer}>
-				{Object.entries(transactions)
-					.flatMap(([key, array]) => array)
-					.map((transaction, index) => (
-						<div key={index} className={styles.SingleTransaction}>
-							<img src={circle} alt="" />
-							<div className={styles.TransactionDetails}>
-								<h4>{transaction.category}</h4>
-								<div className={styles.DateTime}>
-									<p>{transaction.time}</p>
-									<p>{transaction.date}</p>
-								</div>
-							</div>
+const TransactionList = () => {
+	const [transactions, setTransactions] = useState([]);
+	const userID = userStore((state) => state.userID);
 
-							<p className={transaction.type === "expense" ? "red" : "green"}>
-								{formatToDollar(transaction.amount)}
-							</p>
-						</div>
-					))}
-			</div>
-		</article>
+	const URL = import.meta.env.VITE_BACKEND_URL;
+
+	useEffect(() => {
+		const getTransactions = async () => {
+			const response = await fetch(URL + "getAllTransactions?id=" + userID, {
+				credentials: "include",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			const data = await response.json();
+			setTransactions(data);
+		};
+		getTransactions();
+	}, []);
+
+	return (
+		<div className={styles.TransactionContainer}>
+			{Object.entries(transactions)
+				.flatMap(([key, array]) => array)
+				.map((transaction, index) => (
+					<SingleTransaction transaction={transaction} key={index} />
+				))}
+		</div>
 	);
 };
 
