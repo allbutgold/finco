@@ -36,7 +36,7 @@ const Navigation = () => {
 
 	return (
 		<nav className={styles.Navigation}>
-			<Link to="/">
+			<Link to="/" >
 				{location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}
 			</Link>
 			<Link to="/transactions">
@@ -55,10 +55,10 @@ const Navigation = () => {
 				)}
 			</button>
 			{showPopup && (
-				<Popup
+          <Popup className={styles.popup}
 					handleAddExpense={handleAddExpense}
 					handleAddIncome={handleAddIncome}
-				/>
+          />
 			)}
 			<Link to="/report">
 				{location.pathname === "/report" ? (
