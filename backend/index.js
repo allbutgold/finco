@@ -5,7 +5,7 @@ import multer from "multer";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import { getDb } from "./utils/db.js";
-import  userController  from "./controller/userController.js";
+import userController from "./controller/userController.js";
 import { getAllAccountData } from "./controller/userController.js";
 import {
 	authMiddleware,
@@ -17,10 +17,10 @@ import { getCardInfo } from "./controller/cardController.js";
 import {
 	addTransaction,
 	getAllTransactions,
-	getTotalTransactions, 
-  getTotalTransactionsByMonth,
-  setBudget,
-  getTotalExpensesByMonth
+	getTotalTransactions,
+	getTotalTransactionsByMonth,
+	setBudget,
+	getTotalExpensesByMonth,
 } from "./controller/transactionsController.js";
 
 const server = express();
@@ -50,18 +50,21 @@ server.get("/", (req, res) => {
 server.get("/getAccountData", getCardInfo);
 server.get("/getAllAccountData", getAllAccountData);
 
-//*==== HANNI WAR HIER ====
 //* add transaction
 server.post("/addTransaction", upload.none(), authMiddleware, addTransaction);
 
 server.get("/getTotalTransactions", authMiddleware, getTotalTransactions);
-server.get("/getTotalTransactionsByMonth",authMiddleware, getTotalTransactionsByMonth);
+server.get(
+	"/getTotalTransactionsByMonth",
+	authMiddleware,
+	getTotalTransactionsByMonth
+);
 
 server.get("/getTotalExpensesByMonth", authMiddleware, getTotalExpensesByMonth);
 
-server.post("/setBudget", authMiddleware, setBudget )
-//*==== HANNI WAR HIER ====
+server.post("/setBudget", authMiddleware, setBudget);
 
+//* auth routes
 server.post("/login", encryptPassword, userController.login);
 server.get("/auth", authMiddleware, userController.auth);
 server.post("/logout", (req, res) => {

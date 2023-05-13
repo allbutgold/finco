@@ -28,7 +28,8 @@ function CreditCardDetails() {
 						month: "numeric",
 					}).format(new Date(data.expDate));
 
-					let cardNumber = data.cardNumber.split(" ")[3];
+					let cardNumber = data.cardNumber.substr(-4);
+					// let cardNumber = data.cardNumber.split(" ")[3];
 
 					setCardInfo({ cardNumber: cardNumber, expDate: date });
 				} else {

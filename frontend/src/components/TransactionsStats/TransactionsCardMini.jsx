@@ -10,7 +10,6 @@ import { formatToDollar } from "../../utils/helper.js";
 function TransactionsCardMini({ img, style, content, options, amount }) {
 	const userID = userStore((state) => state.userID);
 	const URL = import.meta.env.VITE_BACKEND_URL;
-	const [budget, setBudget] = useState(0);
 	const [currentBudget, setCurrentBudget] = useState(0);
 	const [totalExpenses, setTotalExpenses] = useState(0);
 	const [isBudgetExceeded, setIsBudgetExceeded] = useState(false);
@@ -40,7 +39,6 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 			console.log(error);
 		}
 	};
-	console.log("firsct", currentBudget);
 
 	useEffect(() => {
 		const getBudget = async () => {
@@ -54,7 +52,6 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 				});
 				const data = await response.json();
 				setCurrentBudget(data.budget);
-				// console.log(data)
 			} catch (error) {
 				console.log(error);
 			}
@@ -88,7 +85,6 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 	}, [totalExpenses, currentBudget]);
 
 	const dialogRef = useRef();
-	// console.log(currentBudget)
 	return (
 		<article className={styles.TransactionCardMini}>
 			{isBudgetExceeded ? (

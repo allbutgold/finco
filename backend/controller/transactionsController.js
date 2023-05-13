@@ -93,7 +93,7 @@ export const getTotalTransactionsByMonth = async (req, res) => {
 		});
 
 		const total = totalIncome - totalExpense;
-		res.status(200).json({total, totalIncome, totalExpense});
+		res.status(200).json({ total, totalIncome, totalExpense });
 	} catch (error) {
 		console.error(error);
 		res.status(400).send("Something went wrong");

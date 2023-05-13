@@ -11,6 +11,7 @@ import {
 
 	// Legend,
 } from "chart.js";
+
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -50,6 +51,7 @@ function MultiAxis({ transactions }) {
 				data: data.incomeData,
 				yAxisID: "income",
 				backgroundColor: "#298bff50",
+				// backgroundColor: gradient,
 				borderColor: "#298bff",
 				tension: 0.5,
 			},
@@ -78,11 +80,25 @@ function MultiAxis({ transactions }) {
 		scales: {
 			x: {
 				ticks: {
+					align: "inner",
 					callback: (value, index, values) => {
 						if (index === 0 || index === values.length - 1) {
 							return chartData.labels[index];
 						}
+						// return value;
 					},
+					// color: "transparent",
+					// display: false,
+				},
+				plugins: {
+					tooltip: {
+						enabled: true,
+					},
+				},
+
+				grid: {
+					drawBorder: true,
+					drawTicks: true,
 				},
 			},
 			y: {
