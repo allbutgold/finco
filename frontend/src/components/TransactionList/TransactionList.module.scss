@@ -22,7 +22,6 @@
 	align-items: center;
 	justify-content: space-around;
 	margin-bottom: 5vw;
-
 	.TransactionImage {
 		background-color: var(--bg-100);
 		padding: 0.8rem;
@@ -37,31 +36,13 @@
 	}
 
 	.TransactionDetails {
-		margin-left: 10px; /* Adjust as needed */
-
-		h4 {
-			/* Styles for h4 */
-		}
-
+		margin-left: 10px;
 		.DateTime {
 			display: flex;
-
 			p {
 				margin-right: 10px;
 				font-weight: 400;
 			}
-		}
-	}
-
-	.Amount {
-		/* Adjust as needed */
-
-		&.Red {
-			color: red;
-		}
-
-		&.Green {
-			color: green;
 		}
 	}
 }
@@ -71,31 +52,17 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  div {
-    margin: auto;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-  }
+  justify-content: center;
+  gap: 2vw;
   div div {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     input {
       padding: 2vw;
       border: 1px solid var(--stroke-100);
       border-radius: 30px;
       font-size: 1rem;
-      margin: 2vw 2vw 2vw 2vw;
-      font-size: 1rem;
     }
     button {
       background: none;
-      color: #000;  
-      border: none;
-      box-shadow: none;
     }
   }
 }
