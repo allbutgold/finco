@@ -4,7 +4,7 @@
 }
 
 .TransactionContainer {
-	margin: 10vw 0 10vw 0;
+	//margin: 10vw 0 10vw 0;
 	h3 {
 		font-size: 0.8rem;
 		font-variation-settings: "wght" 400;
@@ -53,6 +53,7 @@
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 5vw;
   gap: 2vw;
   div div {
     input {
