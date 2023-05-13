@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./TransactionList.module.scss";
 import { formatToDollar, mapImage } from "../../utils/helper.js";
 
