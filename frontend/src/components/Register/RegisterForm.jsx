@@ -59,7 +59,7 @@ const RegisterForm = () => {
 		<section className={styles.RegisterForm}>
 			<Toaster />
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="name" hidden>
+				<label htmlFor="username" hidden>
 					Name
 				</label>
 
@@ -67,6 +67,7 @@ const RegisterForm = () => {
 					placeholder="Name"
 					type="text"
 					name="username"
+					id="username"
 					onChange={(e) => setUsername(e.target.value)}
 				/>
 
@@ -77,6 +78,7 @@ const RegisterForm = () => {
 					placeholder="Email"
 					type="email"
 					name="email"
+					id="email"
 					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<label htmlFor="password" hidden>
@@ -94,6 +96,7 @@ const RegisterForm = () => {
 					<input
 						type="checkbox"
 						name="T&C"
+						id="T&C"
 						value={true}
 						onChange={(e) => setAgreedToTnC(e.target.value)}
 						required
