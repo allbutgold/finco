@@ -6,13 +6,32 @@
 		margin: 20px;
 	}
 }
+.FilterContainer {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 5vw;
+	gap: 2vw;
+	div {
+		input {
+			padding: 2vw;
+			border: 1px solid var(--stroke-100);
+			border-radius: 30px;
+			font-size: 1rem;
+		}
+		button {
+			background: none;
+		}
+	}
+}
 
 .SingleTransaction {
 	display: grid;
 	grid-template-columns: 1fr 4fr 1fr;
 	align-items: center;
 	justify-content: space-around;
- margin-bottom: 5vw;
+  margin-bottom: 5vw;
 
 	.TransactionImage {
 		// background-color: var(--bg-100);
@@ -36,9 +55,6 @@
 	.TransactionDetails {
 		margin-left: 10px; /* Adjust as needed */
 
-		h4 {
-			/* Styles for h4 */
-		}
 
 		.DateTime {
 			display: flex;
