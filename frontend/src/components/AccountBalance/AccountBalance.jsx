@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { userStore } from "../../utils/userStore.js";
 import styles from "./AccountBalance.module.scss";
+import { formatToDollar } from "../../utils/helper.js";
 
 const AccountBalance = () => {
 	const [balance, setBalance] = useState(0);
@@ -30,12 +31,18 @@ const AccountBalance = () => {
 		};
 		getMontlyBalance();
 	});
+
 	return (
 		<div className={styles.AccountBalance}>
 			<p>Monthly Balance</p>
-			<h4>
+			{/* <h4>
 				{balance < 0 ? "-$" : "$"}
 				{Math.abs(balance)}
+			</h4> */}
+
+			{/* format to Dollar */}
+			<h4>
+				{formatToDollar(balance)}
 			</h4>
 		</div>
 	);
