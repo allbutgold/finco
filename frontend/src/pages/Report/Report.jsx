@@ -56,6 +56,8 @@ const Report = () => {
 				mini
 				incomeAmount={formatToDollar(total.income)}
 				expenseAmount={formatToDollar(total.expense)}
+        expensePath="/report/expense"
+        incomePath="/report/income"
 			/>
 			<div className={styles.graph}>
 				<MultiAxis filteredTransaction={transactions} />
