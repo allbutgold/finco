@@ -142,10 +142,13 @@ const FilterTransactionList = () => {
 		<section className={styles.Transactions}>
 			<div className={styles.DateFilterContainer}>
 				<label>
-					<DatePicker selected={startDate} onChange={handleStartDateChange}
+					<DatePicker
+						selected={startDate}
+						onChange={handleStartDateChange}
 						dateFormat="yyyy-MM-dd"
 						isClearable
-						placeholderText="Select start date" />
+						placeholderText="Select start date"
+					/>
 				</label>
 				<label>
 					<DatePicker selected={endDate} onChange={handleEndDateChange}
