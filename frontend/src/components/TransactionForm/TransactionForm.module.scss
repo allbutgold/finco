@@ -80,6 +80,8 @@
 		position: absolute;
 		&:checked + label[for="expense"] {
 			background: var(--secondary-col);
+			color: var(--white);
+			font-variation-settings: "wght" 600;
 		}
 	}
 
@@ -87,6 +89,8 @@
 		all: unset;
 		position: absolute;
 		&:checked + label {
+			color: var(--white);
+			font-variation-settings: "wght" 600;
 			background: var(--primary-col);
 		}
 	}

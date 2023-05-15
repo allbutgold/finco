@@ -1,6 +1,11 @@
 .TranscactionsStats {
 	display: flex;
+
 	gap: 1rem;
+	a {
+		color: var(--font-200);
+		width: 100%;
+	}
 }
 
 .TransactionCard {
