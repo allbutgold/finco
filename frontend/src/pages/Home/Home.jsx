@@ -26,10 +26,11 @@ const Home = () => {
 				setTotalExpenses(formatToDollar(data.totalExpense));
 				setTotalIncome(formatToDollar(data.totalIncome));
 			} else {
-				throw new Error("Could not get info!");
+				const data = await response.text();
+				throw new Error(data);
 			}
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	};
 	useEffect(() => {
