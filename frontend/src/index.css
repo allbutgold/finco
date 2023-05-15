@@ -79,3 +79,38 @@ a {
 	grid-area: nav;
 	height: 100%;
 }
+
+.failed {
+	animation: failed 0.4s ease-in-out forwards;
+	background-color: black;
+	transform: translateX(0);
+}
+
+@keyframes failed {
+	0% {
+		transform: translateX(0px);
+	}
+	20% {
+		transform: translateX(-5px);
+	}
+	40% {
+		transform: translateX(5px);
+	}
+	60% {
+		transform: translateX(-5px);
+	}
+	80% {
+		transform: translateX(5px);
+	}
+	100% {
+		transform: translateX(0px);
+	}
+}
+
+button:disabled {
+	background: var(--bg-100);
+	color: var(--font-100);
+	&:hover {
+		transform: none;
+	}
+}

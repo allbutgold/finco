@@ -39,9 +39,10 @@ const Transactions = () => {
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
+				mini
 			/>
 
-			<TransactionList mini />
+			<TransactionList />
 		</section>
 	);
 };

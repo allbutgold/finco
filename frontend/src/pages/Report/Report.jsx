@@ -37,11 +37,13 @@ const Report = () => {
 		getTransactions();
 	}, []);
 
+	// console.log(getBalance(total.expense, total.income));
 	return (
 		<section className={styles.Report}>
 			<Header profile />
 			<h1>Report</h1>
 			<TranscactionsStats
+				mini
 				incomeAmount={formatToDollar(total.income)}
 				expenseAmount={formatToDollar(total.expense)}
 			/>

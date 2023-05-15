@@ -9,11 +9,14 @@ import { formatToDollar } from "../../utils/helper.js";
 
 function TransactionsCardMini({ img, style, content, options, amount }) {
 	const userID = userStore((state) => state.userID);
-	const URL = import.meta.env.VITE_BACKEND_URL;
+	const budget = userStore((state) => state.budget);
+	const setBudget = userStore((state) => state.setBudget);
 	const [currentBudget, setCurrentBudget] = useState(0);
 	const [totalExpenses, setTotalExpenses] = useState(0);
 	const [isBudgetExceeded, setIsBudgetExceeded] = useState(false);
 	const [isBudgetChanged, setIsBudgetChanged] = useState(false);
+
+	const URL = import.meta.env.VITE_BACKEND_URL;
 
 	const changeBudget = async (e) => {
 		e.preventDefault();
@@ -30,8 +33,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 				throw new Error("Could not set budget");
 			} else {
 				const data = await response.json();
-				console.log("data", data);
-				setCurrentBudget(data.budget);
+				setBudget(data.budget);
 				dialogRef.current.close();
 				setIsBudgetChanged(true);
 			}
@@ -39,24 +41,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 			console.log(error);
 		}
 	};
-
 	useEffect(() => {
-		const getBudget = async () => {
-			try {
-				const response = await fetch(URL + "getAllAccountData?id=" + userID, {
-					credentials: "include",
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-					},
-				});
-				const data = await response.json();
-				setCurrentBudget(data.budget);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
 		const getTotalExpenses = async () => {
 			try {
 				const response = await fetch(
@@ -69,14 +54,17 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 						},
 					}
 				);
-				const data = await response.json();
-				setTotalExpenses(data);
+				if (response.ok) {
+					const data = await response.json();
+					setTotalExpenses(data);
+				} else {
+					setTotalExpenses(0);
+				}
 			} catch (error) {
 				console.log(error);
 			}
 		};
 
-		getBudget();
 		getTotalExpenses();
 	}, [userID, URL, isBudgetChanged]);
 
@@ -96,7 +84,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 				<p>{content}</p>
 				<h4>
 					{/* {content === "Expense" || content === "Current" ? "-" : "+"}{" "} */}
-					{formatToDollar(currentBudget)}
+					{formatToDollar(budget)}
 				</h4>
 			</div>
 			{options ? (
@@ -116,9 +104,8 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 						type="number"
 						name="budget"
 						id="budget"
-						value={currentBudget}
 						onChange={(e) => setCurrentBudget(e.target.value)}
-						placeholder={currentBudget}
+						placeholder={budget}
 					/>
 					<div>
 						<button type="submit">CHANGE</button>

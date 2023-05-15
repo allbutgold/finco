@@ -43,24 +43,59 @@ export const getAllTransactions = async (req, res) => {
 	}
 };
 
+export const getTypeTransactionsbyMonth = async (req, res) => {
+	const user = req.userClaims.sub;
+	const type = req.query.type;
+	console.log(user, type);
+	// const month = req.query.month;
+	try {
+		const db = await getDb();
+		const result = await db
+			.collection(COL)
+			.findOne({ _id: new ObjectId(user) });
+		if (result == null) {
+			throw new Error("Could not find user");
+		} else {
+			let allTransactions = result.transactions;
+			let subject = { transactions: [], total: 0 };
+			Object.entries(allTransactions).forEach(([key, value]) => {
+				value.forEach((transaction) => {
+					if (transaction.type == type) {
+						subject.transactions.push(transaction);
+						subject.total += +transaction.amount;
+					}
+				});
+			});
+			res.status(200).json(subject);
+		}
+	} catch (error) {
+		console.log(error);
+		res.status(400).send(error.message);
+	}
+};
+
 export const getTotalTransactions = async (req, res) => {
 	try {
 		const db = await getDb();
 		const result = await db
 			.collection(COL)
 			.findOne({ _id: new ObjectId(req.userClaims.sub) });
-		const total = { income: 0, expense: 0 };
-		Object.entries(result.transactions).forEach(([key, value]) => {
-			value.forEach((transaction) => {
-				transaction.type == "income"
-					? (total.income += +transaction.amount)
-					: (total.expense += +transaction.amount);
+		if (result.hasOwnProperty("transactions")) {
+			const total = { income: 0, expense: 0 };
+			Object.entries(result.transactions).forEach(([key, value]) => {
+				value.forEach((transaction) => {
+					transaction.type == "income"
+						? (total.income += +transaction.amount)
+						: (total.expense += +transaction.amount);
+				});
 			});
-		});
-		res.status(200).json(total);
+			res.status(200).json(total);
+		} else {
+			throw new Error("You don't have any transactions yet");
+		}
 	} catch (error) {
 		console.error(error);
-		res.status(400).send("Something went wrong");
+		res.status(400).send("Something went wrong", error.message);
 	}
 };
 
@@ -70,33 +105,36 @@ export const getTotalTransactionsByMonth = async (req, res) => {
 		const result = await db
 			.collection(COL)
 			.findOne({ _id: new ObjectId(req.userClaims.sub) });
-
+		console.log("RESULT", result);
 		const currentMonthStart = getCurrentMonthStart();
 		const currentMonthEnd = getCurrentMonthEnd();
-
-		let totalIncome = 0;
-		let totalExpense = 0;
-		Object.entries(result.transactions).forEach(([key, value]) => {
-			value.forEach((transaction) => {
-				const transactionDate = new Date(transaction.date);
-				if (
-					transactionDate >= currentMonthStart &&
-					transactionDate <= currentMonthEnd
-				) {
-					if (transaction.type === "income") {
-						totalIncome += +transaction.amount;
-					} else if (transaction.type === "expense") {
-						totalExpense += +transaction.amount;
+		if (result.hasOwnProperty("transactions")) {
+			let totalIncome = 0;
+			let totalExpense = 0;
+			Object.entries(result.transactions).forEach(([key, value]) => {
+				value.forEach((transaction) => {
+					const transactionDate = new Date(transaction.date);
+					if (
+						transactionDate >= currentMonthStart &&
+						transactionDate <= currentMonthEnd
+					) {
+						if (transaction.type === "income") {
+							totalIncome += +transaction.amount;
+						} else if (transaction.type === "expense") {
+							totalExpense += +transaction.amount;
+						}
 					}
-				}
+				});
 			});
-		});
 
-		const total = totalIncome - totalExpense;
-		res.status(200).json({ total, totalIncome, totalExpense });
+			const total = totalIncome - totalExpense;
+			res.status(200).json({ total, totalIncome, totalExpense });
+		} else {
+			throw new Error("You don't have any transactions");
+		}
 	} catch (error) {
-		console.error(error);
-		res.status(400).send("Something went wrong");
+		// console.error(error.message);
+		res.status(400).send(error.message);
 	}
 };
 
@@ -127,24 +165,27 @@ export const getTotalExpensesByMonth = async (req, res) => {
 
 		const currentMonthStart = getCurrentMonthStart();
 		const currentMonthEnd = getCurrentMonthEnd();
-
-		let totalExpense = 0;
-		Object.entries(result.transactions).forEach(([key, value]) => {
-			value.forEach((transaction) => {
-				const transactionDate = new Date(transaction.date);
-				if (
-					transactionDate >= currentMonthStart &&
-					transactionDate <= currentMonthEnd &&
-					transaction.type === "expense"
-				) {
-					totalExpense += +transaction.amount;
-				}
+		if (result.hasOwnProperty("transactions")) {
+			let totalExpense = 0;
+			Object.entries(result.transactions).forEach(([key, value]) => {
+				value.forEach((transaction) => {
+					const transactionDate = new Date(transaction.date);
+					if (
+						transactionDate >= currentMonthStart &&
+						transactionDate <= currentMonthEnd &&
+						transaction.type === "expense"
+					) {
+						totalExpense += +transaction.amount;
+					}
+				});
 			});
-		});
 
-		res.status(200).json(totalExpense);
+			res.status(200).json(totalExpense);
+		} else {
+			throw new Error("You don't have any expenes yet");
+		}
 	} catch (error) {
-		console.error(error);
-		res.status(400).send("Something went wrong");
+		console.error(error.message);
+		res.status(400).send(error.message);
 	}
 };

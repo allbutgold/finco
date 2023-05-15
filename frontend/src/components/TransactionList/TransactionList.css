@@ -1,10 +1,19 @@
-.red {
-  color: #ffaa1a;
-  margin-left: auto;
+.negative {
+	margin-left: auto;
+	font-size: 1rem;
+	background: var(--secondary-col);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-variation-settings: "wght" 700;
 }
 
-.green {
-  color: #298bff;
-  margin-left: auto;
+.positive {
+	margin-left: auto;
+	background: var(--primary-col);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 1rem;
+	font-variation-settings: "wght" 700;
 }
-

@@ -26,20 +26,39 @@ ChartJS.register(
 );
 
 function MultiAxis({ transactions }) {
+	// const data = Object.entries(transactions).reduce(
+	// 	(acc, [date, items]) => {
+	// 		const income = items
+	// 			.filter((item) => item.type === "income")
+	// 			.reduce((sum, item) => sum + +item.amount, 0);
+	// 		const expenses = items
+	// 			.filter((item) => item.type === "expense")
+	// 			.reduce((sum, item) => sum + +item.amount, 0);
+	// 		acc.incomeData.push(income);
+	// 		acc.expensesData.push(expenses);
+	// 		acc.labels.push(date);
+	// 		return acc;
+	// 	},
+	// 	{ incomeData: [], expensesData: [], labels: [] }
+	// );
+
 	const data = Object.entries(transactions).reduce(
-		(acc, [date, items]) => {
+		(acc, [date, items], i) => {
 			const income = items
 				.filter((item) => item.type === "income")
 				.reduce((sum, item) => sum + +item.amount, 0);
 			const expenses = items
 				.filter((item) => item.type === "expense")
 				.reduce((sum, item) => sum + +item.amount, 0);
+			const prevBalance = i > 0 ? acc.balanceData[i - 1] : 0;
+			const balance = prevBalance + income - expenses;
 			acc.incomeData.push(income);
 			acc.expensesData.push(expenses);
+			acc.balanceData.push(balance);
 			acc.labels.push(date);
 			return acc;
 		},
-		{ incomeData: [], expensesData: [], labels: [] }
+		{ incomeData: [], expensesData: [], balanceData: [], labels: [] }
 	);
 
 	const chartData = {
@@ -64,8 +83,20 @@ function MultiAxis({ transactions }) {
 				borderColor: " #ffaa1a",
 				tension: 0.5,
 			},
+			{
+				label: "Balance",
+				fill: false,
+				data: data.balanceData,
+				yAxisID: "balance",
+				backgroundColor: " #1aff4850",
+				borderColor: " #1aff35b5",
+				tension: 0.5,
+			},
 		],
 	};
+	const maxValue = Math.max(
+		...chartData.datasets.flatMap((dataset) => dataset.data)
+	);
 
 	// Creating the chart options object
 	const options = {
@@ -76,6 +107,7 @@ function MultiAxis({ transactions }) {
 				display: false,
 				text: "Transactions",
 			},
+			legend: { display: false },
 		},
 		scales: {
 			x: {
@@ -102,6 +134,7 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			y: {
+				suggestedMax: maxValue,
 				grid: {
 					display: true,
 					drawBorder: true,
@@ -115,6 +148,8 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			expenses: {
+				suggestedMax: maxValue,
+
 				grid: {
 					display: true,
 				},
@@ -125,6 +160,17 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			income: {
+				suggestedMax: maxValue,
+
+				display: false,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+
+			balance: {
+				suggestedMax: maxValue,
 				display: false,
 				beginAtZero: true,
 				ticks: {
