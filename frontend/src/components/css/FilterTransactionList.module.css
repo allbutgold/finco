@@ -1,0 +1,54 @@
+.TransactionSection {
+  overflow-y: scroll;
+  background-color: blue;
+  /* Add any section-level styles here */
+}
+.TransactionSection h1 {
+  /* Styles for h1 */
+}
+
+.TransactionList {
+  height: 100%;
+  overflow-y: scroll;
+  /* Add any article-level styles here */
+}
+
+.TransactionContainer {
+  margin: 10vw 0 10vw 0;
+}
+.TransactionContainer h1 {
+  margin: 1vw;
+}
+
+.SingleTransaction {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5vw;
+}
+.SingleTransaction .TransactionImage {
+  /* Styles for the image */
+}
+.SingleTransaction .TransactionDetails {
+  margin-left: 10px; /* Adjust as needed */
+}
+.SingleTransaction .TransactionDetails h4 {
+  /* Styles for h4 */
+}
+.SingleTransaction .TransactionDetails .DateTime {
+  display: flex;
+}
+.SingleTransaction .TransactionDetails .DateTime p {
+  margin-right: 10px;
+  font-weight: 400;
+}
+.SingleTransaction .Amount {
+  /* Adjust as needed */
+}
+.SingleTransaction .Amount.Red {
+  color: red;
+}
+.SingleTransaction .Amount.Green {
+  color: green;
+}/*# sourceMappingURL=FilterTransactionList.module.css.map */

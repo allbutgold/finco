@@ -1,0 +1,6 @@
+.Transactions {
+  display: grid;
+  gap: 3vw;
+  height: 100%;
+  grid-template-rows: min-content min-content min-content auto;
+}/*# sourceMappingURL=Transactions.module.css.map */

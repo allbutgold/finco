@@ -1,0 +1,8 @@
+.AddIncome {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+}
+.AddIncome h1 {
+  color: var(--font-300);
+}/*# sourceMappingURL=AddIncome.module.css.map */

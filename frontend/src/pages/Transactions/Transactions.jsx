@@ -2,6 +2,7 @@ import styles from "./Transactions.module.scss";
 import { useState, useEffect } from "react";
 import { formatToDollar } from "../../utils/helper.js";
 
+import FilterTransactionList from "../../components/FilterTransactionList/FilterTransactionList";
 import TransactionList from "../../components/TransactionList/TransactionList";
 import TranscactionsStats from "../../components/TransactionsStats/TranscactionsStats";
 import Header from "../../components/Header/Header.jsx";
@@ -41,8 +42,8 @@ const Transactions = () => {
 				expenseAmount={totalExpenses}
 				mini
 			/>
-
 			<TransactionList />
+
 		</section>
 	);
 };

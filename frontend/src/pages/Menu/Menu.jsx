@@ -28,7 +28,9 @@ const Menu = () => {
 
       <div className={styles.divMiddle}>
         <button><img src={bell} alt="bell" />Notification<img src={toggle} alt="toggle" /></button>
-        <SettingsButton />
+        <div className={styles.btnMiddle}>
+          <SettingsButton />
+        </div>
         <button className={styles.btnMiddle}><img src={helpcircle} alt="help-circle" />FAQ<img src={forward} alt="arrow" /></button>
       </div>
 

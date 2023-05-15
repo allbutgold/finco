@@ -1,0 +1,27 @@
+.Report {
+  display: grid;
+  height: 100%;
+  gap: 3vw;
+  grid-template-rows: min-content min-content min-content min-content min-content auto;
+}
+
+.graph {
+  border: 1px solid var(--stroke-100);
+  border-radius: 20px;
+  display: grid;
+  place-content: center;
+  padding: 3vw;
+}
+
+.Expenses {
+  display: grid;
+  height: 100%;
+  gap: 3vw;
+  grid-template-rows: min-content min-content min-content 30vh min-content auto;
+}
+.Expenses .container {
+  overflow-y: scroll;
+}
+.Expenses article {
+  width: 50%;
+}/*# sourceMappingURL=Report.module.css.map */
