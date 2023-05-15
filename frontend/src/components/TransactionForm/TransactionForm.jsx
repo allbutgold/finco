@@ -15,7 +15,7 @@ function TransactionForm({ type, handleSubmit }) {
 	return (
 		<div className={styles.TransactionForm}>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="transaction">
+				<label htmlFor="amount">
 					<p>$</p>
 					<input
 						type="number"
