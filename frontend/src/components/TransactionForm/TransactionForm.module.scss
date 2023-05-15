@@ -2,25 +2,25 @@
 	form {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.5vh;
 		overflow: hidden;
 
 		input:not(input[type="search"], input[type="radio"]) {
 			border-radius: 30px;
 			border: none;
 			background-color: var(--bg-100);
-			padding: 1rem 2.5rem;
+			padding: 2vh 2.5rem;
 			font-family: Urbanist;
 			width: 100%;
 		}
 		input[name="date"] {
-			padding: 1rem 1rem;
+			padding: 2vh 1rem;
 			// min-width: 96%;
 			-webkit-appearance: none;
 		}
 		input[name="time"] {
 			// min-width: 96%;
-			min-height: 3rem;
+			min-height: 3vh;
 			-webkit-appearance: none;
 		}
 
@@ -36,7 +36,7 @@
 			p {
 				position: absolute;
 				left: 0;
-				margin: 1rem;
+				margin: 1.5vh;
 				font-size: 1.2rem;
 			}
 		}
@@ -60,6 +60,7 @@
 	color: var(--font-200);
 	justify-content: space-between;
 	box-shadow: none;
+	padding: 2vh 5vw;
 }
 
 .notFound {
