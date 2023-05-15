@@ -66,3 +66,37 @@
 	grid-column: 1/3;
 	text-align: center;
 }
+
+.Toggle {
+	display: flex;
+	border-radius: 10px;
+	justify-content: space-between;
+	background: var(--bg-100);
+	padding: 0.5rem;
+	gap: 0.5rem;
+
+	input {
+		all: unset;
+		position: absolute;
+		&:checked + label[for="expense"] {
+			background: var(--secondary-col);
+		}
+	}
+
+	input {
+		all: unset;
+		position: absolute;
+		&:checked + label {
+			background: var(--primary-col);
+		}
+	}
+	label {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		border-radius: 10px;
+		background: var(--bg-100);
+		text-align: center;
+		color: var(--font-200);
+		font-size: 1rem;
+	}
+}
