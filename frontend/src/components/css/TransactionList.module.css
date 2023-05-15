@@ -1,0 +1,80 @@
+.TransactionList {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.TransactionContainer {
+  margin-top: 2rem;
+}
+.TransactionContainer h3 {
+  font-size: 0.8rem;
+  font-variation-settings: "wght" 400;
+}
+.TransactionContainer h2 {
+  margin: 2vw 0 4vw;
+  font-size: 1.1rem;
+}
+
+.SingleTransaction {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5vw;
+}
+.SingleTransaction .TransactionImage {
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.SingleTransaction .TransactionImage img {
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+.SingleTransaction .TransactionImage h3 {
+  font-size: 1.3rem;
+  line-height: 1rem;
+}
+.SingleTransaction .TransactionDetails {
+  margin-left: 10px;
+}
+.SingleTransaction .TransactionDetails .DateTime {
+  display: flex;
+}
+.SingleTransaction .TransactionDetails .DateTime p {
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.FilterContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 5vw;
+  gap: 2vw;
+}
+.FilterContainer div input {
+  padding: 2vw;
+  border: 1px solid var(--stroke-100);
+  border-radius: 30px;
+  font-size: 1rem;
+}
+.FilterContainer div button {
+  background: none;
+}
+
+.CategoryFilterContainer input {
+  padding: 2vw;
+  border: 1px solid var(--stroke-100);
+  border-radius: 30px;
+  font-size: 1rem;
+}
+
+.Sorry {
+  margin-top: 1rem;
+}/*# sourceMappingURL=TransactionList.module.css.map */

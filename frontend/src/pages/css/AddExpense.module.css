@@ -1,0 +1,8 @@
+.AddExpense {
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+}
+.AddExpense h1 {
+  color: var(--font-400);
+}/*# sourceMappingURL=AddExpense.module.css.map */

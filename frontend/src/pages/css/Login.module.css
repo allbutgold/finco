@@ -1,0 +1,43 @@
+.Login {
+  padding: 7vw;
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr 1.5fr 8fr min-content;
+}
+.Login h1,
+.Login p {
+  text-align: center;
+  margin: 0 auto;
+  width: 70vw;
+}
+.Login p,
+.Login a {
+  font-size: 0.9rem;
+  font-variation-settings: "wght" 500;
+  color: var(--font-100);
+}
+.Login a {
+  text-align: right;
+}
+.Login p > a {
+  text-align: right;
+  background: var(--primary-col);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Login form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.Login form input {
+  font-size: 1rem;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--stroke-100);
+  border-radius: 30px;
+}
+.Login form button {
+  justify-content: center;
+  margin: 20vw 0;
+}/*# sourceMappingURL=Login.module.css.map */

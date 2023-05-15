@@ -1,0 +1,54 @@
+.TransactionContainer {
+  overflow-y: scroll;
+  height: 100%;
+}
+.TransactionContainer h1 {
+  margin: 20px;
+}
+
+.SingleTransaction {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5vw;
+}
+.SingleTransaction .TransactionImage {
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.SingleTransaction .TransactionImage img {
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  height: 100%;
+}
+.SingleTransaction .TransactionImage h3 {
+  font-size: 1.3rem;
+  line-height: 1rem;
+}
+.SingleTransaction .TransactionDetails {
+  margin-left: 10px; /* Adjust as needed */
+}
+.SingleTransaction .TransactionDetails h4 {
+  /* Styles for h4 */
+}
+.SingleTransaction .TransactionDetails .DateTime {
+  display: flex;
+}
+.SingleTransaction .TransactionDetails .DateTime p {
+  margin-right: 10px;
+  font-weight: 400;
+}
+.SingleTransaction .Amount {
+  margin-left: auto; /* Adjust as needed */
+}
+.SingleTransaction .Amount.Red {
+  color: red;
+}
+.SingleTransaction .Amount.Green {
+  color: green;
+}/*# sourceMappingURL=AllTransactions.module.css.map */

@@ -1,0 +1,75 @@
+.CreditCard {
+  border-radius: 15px;
+  background: linear-gradient(#9c2cf3, #3a49f9);
+  box-shadow: 0px 10px 30px rgba(156, 44, 243, 0.2);
+  aspect-ratio: 3/1.6;
+  color: var(--white);
+  position: relative;
+  z-index: 0;
+}
+.CreditCard .container {
+  border-radius: 15px;
+  position: absolute;
+  overflow: hidden;
+  padding: 1.5rem 1rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 0.3rem;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 2fr min-content min-content min-content;
+  align-items: end;
+}
+.CreditCard .container h5,
+.CreditCard .container img {
+  grid-column: 1/2;
+  letter-spacing: 0.2rem;
+}
+.CreditCard .container h5 span,
+.CreditCard .container img span {
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+}
+.CreditCard .container h6 {
+  justify-self: end;
+}
+
+.verification {
+  background: var(--secondary-col);
+  display: inline;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-content: center;
+  position: absolute;
+  z-index: 100;
+  top: -15px;
+  right: 30px;
+}
+
+.container::before {
+  content: " ";
+  position: absolute;
+  background: #0d1636;
+  opacity: 0.1;
+  width: 500px;
+  height: 220px;
+  border-radius: 50%;
+  top: -40%;
+  left: 50%;
+}
+
+.container::after {
+  content: " ";
+  position: absolute;
+  background: #0d1636;
+  opacity: 0.1;
+  width: 500px;
+  height: 220px;
+  border-radius: 50%;
+  top: 55%;
+  right: 40%;
+}/*# sourceMappingURL=CreditCardDetails.module.css.map */
