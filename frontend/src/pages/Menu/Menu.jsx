@@ -1,5 +1,5 @@
 // Import styles and images
-import styles from './Menu.module.scss';
+import styles from "./Menu.module.scss";
 import forward from "../../assets/img/forward.svg";
 import toggle from "../../assets/img/toggle.png";
 import feather from "../../assets/img/feather.svg";
@@ -9,9 +9,9 @@ import helpcircle from "../../assets/img/helpcircle.svg";
 
 // Import components
 import Header from "../../components/Header/Header";
-import SettingsButton from '../../components/Menu/SettingsButton';
-import LogoutButton from '../../components/Menu/LogoutButton';
-
+import SettingsButton from "../../components/Menu/SettingsButton";
+import LogoutButton from "../../components/Menu/LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 // const handleLogout = () => {
 //   window.localStorage.clear();
@@ -20,26 +20,42 @@ import LogoutButton from '../../components/Menu/LogoutButton';
 // }
 
 const Menu = () => {
-  return (
-    <section className={styles.Menu}>
-      <Header name profileMenu />
+	const navigate = useNavigate();
+	return (
+		<section className={styles.Menu}>
+			<Header name profileMenu />
 
-      <button><img src={feather} alt="feather" />My Wallet<img src={forward} alt="arrow" /></button>
+			<button>
+				<img src={feather} alt="feather" />
+				My Wallet
+				<img src={forward} alt="arrow" />
+			</button>
 
-      <div className={styles.divMiddle}>
-        <button><img src={bell} alt="bell" />Notification<img src={toggle} alt="toggle" /></button>
-        <div className={styles.btnMiddle}>
-          <SettingsButton />
-        </div>
-        <button className={styles.btnMiddle}><img src={helpcircle} alt="help-circle" />FAQ<img src={forward} alt="arrow" /></button>
-      </div>
+			<div className={styles.divMiddle}>
+				<button>
+					<img src={bell} alt="bell" />
+					Notification
+					<img src={toggle} alt="toggle" />
+				</button>
+				<div className={styles.btnMiddle}>
+					<SettingsButton />
+				</div>
+				<button
+					onClick={() => {
+						navigate("/faq");
+					}}
+					className={styles.btnMiddle}>
+					<img src={helpcircle} alt="help-circle" />
+					FAQ
+					<img src={forward} alt="arrow" />
+				</button>
+			</div>
 
-      <div>
-        <LogoutButton />
-      </div>
-    </section>
-
-  );
-}
+			<div>
+				<LogoutButton />
+			</div>
+		</section>
+	);
+};
 
 export default Menu;
