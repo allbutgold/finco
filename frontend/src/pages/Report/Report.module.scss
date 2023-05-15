@@ -26,3 +26,23 @@
 		width: 50%;
 	}
 }
+
+.FilterContainer {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 5vw;
+	gap: 2vw;
+	div {
+		input {
+			padding: 2vw;
+			border: 1px solid var(--stroke-100);
+			border-radius: 30px;
+			font-size: 1rem;
+		}
+		button {
+			background: none;
+		}
+	}
+}

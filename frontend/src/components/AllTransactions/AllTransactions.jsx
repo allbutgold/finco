@@ -25,6 +25,7 @@ const TransactionList = ({ transactions }) => {
 	console.log(transactions);
 	return (
 		<div className={styles.TransactionContainer}>
+
 			<div className={styles.FilterContainer}>
 				{/* <label htmlFor="startDatePicker">Start Date:</label> */}
 				<DatePicker

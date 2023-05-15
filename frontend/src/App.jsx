@@ -20,8 +20,10 @@ import Report from "./pages/Report/Report.jsx";
 import Setup from "./pages/Setup/Setup.jsx";
 import Transactions from "./pages/Transactions/Transactions.jsx";
 import Auth from "./components/Authentication/Auth";
+import CategoryReport from "./pages/Report/CategoryReport.jsx";
 import FAQ from "./pages/Menu/FAQ";
 // import AnimatedOnboarding from "./AnimatedOnboarding";
+
 
 function App() {
 	return (
@@ -49,6 +51,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/onboarding" element={<Onboarding />} />
 					<Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="/category-report" element={<CategoryReport />} />
 				</Routes>
 			</Router>
 		</>
