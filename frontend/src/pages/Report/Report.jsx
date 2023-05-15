@@ -24,6 +24,7 @@ const Report = () => {
 			});
 			const data = await response.json();
 			setTransactions(data);
+
 			const total = { income: 0, expense: 0 };
 			Object.entries(data).forEach(([key, value]) => {
 				value.forEach((transaction) => {
@@ -37,6 +38,7 @@ const Report = () => {
 		getTransactions();
 	}, []);
 
+	if (!transactions) return;
 	// console.log(getBalance(total.expense, total.income));
 	return (
 		<section className={styles.Report}>
