@@ -18,6 +18,7 @@ const AddExpense = () => {
 		event.preventDefault();
 		const form = new FormData(event.target);
 		form.append("type", "expense");
+		form.delete("search");
 		const expenseFetch = fetch(URL + "addTransaction", {
 			method: "POST",
 			credentials: "include",

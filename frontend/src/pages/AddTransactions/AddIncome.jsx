@@ -18,6 +18,7 @@ const AddIncome = () => {
 		event.preventDefault();
 		const form = new FormData(event.target);
 		form.append("type", "income");
+		form.delete("search");
 
 		const incomeFetch = fetch(URL + "addTransaction", {
 			method: "POST",

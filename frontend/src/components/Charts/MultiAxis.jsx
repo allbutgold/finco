@@ -25,22 +25,39 @@ ChartJS.register(
 	// Legend
 );
 
-function MultiAxis({ transactions }) {
-	const data = Object.entries(transactions).reduce(
-		(acc, [date, items]) => {
-			const income = items
-				.filter((item) => item.type === "income")
-				.reduce((sum, item) => sum + +item.amount, 0);
-			const expenses = items
-				.filter((item) => item.type === "expense")
-				.reduce((sum, item) => sum + +item.amount, 0);
-			acc.incomeData.push(income);
-			acc.expensesData.push(expenses);
-			acc.labels.push(date);
-			return acc;
-		},
-		{ incomeData: [], expensesData: [], labels: [] }
-	);
+function MultiAxis({ filteredTransaction }) {
+	const data = {
+		incomeData: [],
+		expensesData: [],
+		balanceData: [],
+		labels: [],
+	};
+
+	for (const [date, transactions] of filteredTransaction) {
+		let income = 0;
+		let expenses = 0;
+
+		for (const transaction of transactions) {
+			if (transaction.type === "income") {
+				income += +transaction.amount;
+			} else if (transaction.type === "expense") {
+				expenses += +transaction.amount;
+			}
+		}
+
+		const prevBalance =
+			data.balanceData.length > 0
+				? data.balanceData[data.balanceData.length - 1]
+				: 0;
+		const balance = prevBalance + income - expenses;
+
+		data.incomeData.push(income);
+		data.expensesData.push(expenses);
+		data.balanceData.push(balance);
+		data.labels.push(date);
+	}
+
+	console.log(data);
 
 	const chartData = {
 		labels: data.labels,
@@ -51,7 +68,6 @@ function MultiAxis({ transactions }) {
 				data: data.incomeData,
 				yAxisID: "income",
 				backgroundColor: "#298bff50",
-				// backgroundColor: gradient,
 				borderColor: "#298bff",
 				tension: 0.5,
 			},
@@ -64,11 +80,23 @@ function MultiAxis({ transactions }) {
 				borderColor: " #ffaa1a",
 				tension: 0.5,
 			},
+			{
+				label: "Balance",
+				fill: false,
+				data: data.balanceData,
+				yAxisID: "balance",
+				backgroundColor: " #1aff4850",
+				borderColor: " #1aff35b5",
+				tension: 0.5,
+			},
 		],
 	};
+	const maxValue = Math.max(
+		...chartData.datasets.flatMap((dataset) => dataset.data)
+	);
 
 	// Creating the chart options object
-	const options = {
+	/* 	const options = {
 		responsive: true,
 		stacked: true,
 		plugins: {
@@ -76,6 +104,7 @@ function MultiAxis({ transactions }) {
 				display: false,
 				text: "Transactions",
 			},
+			legend: { display: false },
 		},
 		scales: {
 			x: {
@@ -102,6 +131,7 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			y: {
+				suggestedMax: maxValue,
 				grid: {
 					display: true,
 					drawBorder: true,
@@ -115,6 +145,8 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			expenses: {
+				suggestedMax: maxValue,
+
 				grid: {
 					display: true,
 				},
@@ -125,10 +157,98 @@ function MultiAxis({ transactions }) {
 				},
 			},
 			income: {
+				suggestedMax: maxValue,
+
 				display: false,
 				beginAtZero: true,
 				ticks: {
 					display: false,
+				},
+			},
+			balance: {
+				suggestedMax: maxValue,
+				display: false,
+				beginAtZero: false,
+				ticks: {
+					display: false,
+					reverse: true,
+				},
+			},
+		},
+	};
+ */
+
+	const options = {
+		responsive: true,
+		stacked: true,
+		plugins: {
+			title: {
+				display: false,
+				text: "Transactions",
+			},
+			legend: { display: false },
+		},
+		scales: {
+			x: {
+				ticks: {
+					align: "inner",
+					callback: (value, index, values) => {
+						if (index === 0 || index === values.length - 1) {
+							return chartData.labels[index];
+						}
+						// return value;
+					},
+				},
+				plugins: {
+					tooltip: {
+						enabled: true,
+					},
+				},
+				grid: {
+					drawBorder: true,
+					drawTicks: true,
+				},
+			},
+			y: {
+				suggestedMax: maxValue,
+				grid: {
+					display: true,
+					drawBorder: true,
+					drawTicks: false,
+					drawOnChartArea: true,
+				},
+				display: true,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+			expenses: {
+				suggestedMax: maxValue,
+				grid: {
+					display: true,
+				},
+				display: false,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+			income: {
+				suggestedMax: maxValue,
+				display: false,
+				beginAtZero: true,
+				ticks: {
+					display: false,
+				},
+			},
+			balance: {
+				suggestedMax: maxValue,
+				display: false,
+				beginAtZero: false, // Set to false to include negative values
+				ticks: {
+					display: false,
+					reverse: false,
 				},
 			},
 		},

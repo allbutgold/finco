@@ -1,6 +1,11 @@
 .TranscactionsStats {
 	display: flex;
+
 	gap: 1rem;
+	a {
+		color: var(--font-200);
+		width: 100%;
+	}
 }
 
 .TransactionCard {
@@ -21,22 +26,23 @@
 }
 
 .MiniCard {
-	padding: 1rem;
+	padding: 0.5rem 0.6rem;
 	display: grid;
-	gap: 0.5rem 1rem;
-	grid-template-columns: 1fr 2fr;
+	row-gap: 0.3rem;
+	grid-template-columns: 1fr 2.5fr;
 	grid-template-rows: 1fr 1fr;
 	background-color: var(--bg-100);
-	border-radius: 30px;
+	border-radius: 15px;
+	align-items: center;
 	width: 100%;
 	img {
-		border-radius: 50%;
-		padding: 1rem;
+		border-radius: 10px;
+		padding: 0.5rem;
 		grid-column: 1/2;
 		grid-row: 1/3;
 	}
 	p {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-variation-settings: "wght" 400;
 		align-self: end;
 	}
@@ -110,4 +116,7 @@ dialog:modal {
 			justify-content: space-between;
 		}
 	}
+}
+dialog::backdrop {
+	backdrop-filter: blur(2px);
 }

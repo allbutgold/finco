@@ -21,6 +21,7 @@ import {
 	getTotalTransactionsByMonth,
 	setBudget,
 	getTotalExpensesByMonth,
+	getTypeTransactionsbyMonth,
 } from "./controller/transactionsController.js";
 
 const server = express();
@@ -29,7 +30,6 @@ const upload = multer({ dest: "./img" });
 
 // * ===== BODY PARSER ======
 // enabling cors
-
 server.use(cors({ origin: true, credentials: true }));
 
 // for JSON
@@ -50,15 +50,20 @@ server.get("/", (req, res) => {
 server.get("/getAccountData", getCardInfo);
 server.get("/getAllAccountData", getAllAccountData);
 
+
+
 //* add transaction
 server.post("/addTransaction", upload.none(), authMiddleware, addTransaction);
 
 server.get("/getTotalTransactions", authMiddleware, getTotalTransactions);
+
 server.get(
 	"/getTotalTransactionsByMonth",
 	authMiddleware,
 	getTotalTransactionsByMonth
 );
+
+server.get("/transactions", authMiddleware, getTypeTransactionsbyMonth);
 
 server.get("/getTotalExpensesByMonth", authMiddleware, getTotalExpensesByMonth);
 
@@ -81,23 +86,40 @@ server.post("/register", encryptPassword, async (req, res) => {
 
 server.post("/setup", upload.single("profileImage"), async (req, res) => {
 	try {
-		const { cardNumber } = req.body;
-		const { path } = req.file;
-		const { expDate } = req.body;
-		const { _id } = req.body;
+		const { cardNumber, expDate, _id, budget } = req.body;
+		// const { path } = req.file;
+		// const { expDate } = req.body;
+		// const { _id } = req.body;
 		console.log(_id);
 		const db = await getDb();
-		const result = await db.collection("finco").updateOne(
+		const updateFields = {};
+		if (cardNumber && cardNumber.length === 19) {
+			updateFields["account.card.cardNumber"] = cardNumber;
+		}
+		if (expDate && new Date(expDate) > new Date()) {
+			updateFields["account.card.expDate"] = expDate;
+		}
+		if (req.file) {
+			updateFields["account.profileImage"] = req.file.path;
+		}
+		if (budget && parseFloat(budget) > 0) {
+			updateFields["account.budget"] = parseFloat(budget);
+		}
+		const result = await db.collection("finco").findOneAndUpdate(
 			{ _id: new ObjectId(_id) },
 			{
 				$set: {
-					"account.card.cardNumber": cardNumber,
-					"account.card.expDate": expDate,
-					"account.profileImage": path,
+					// "account.card.cardNumber": cardNumber,
+					// "account.card.expDate": expDate,
+					// "account.profileImage": path,
+					// "account.budget": path,
+					...updateFields,
 				},
-			}
+			},
+			{ returnDocument: "after" }
 		);
-		res.json({ message: "success", pic: path });
+
+		res.status(200).json(result.value);
 	} catch (err) {
 		console.log(err);
 		res.status(500).end();

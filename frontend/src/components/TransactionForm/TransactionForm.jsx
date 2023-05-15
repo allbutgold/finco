@@ -1,21 +1,32 @@
 import styles from "./TransactionForm.module.scss";
 import forward from "../../assets/img/forward.svg";
 import CategoryList from "./CategoryList";
-import { useState } from "react";
+import { categories } from "../../utils/helper.js";
+import { useEffect, useState } from "react";
+import { transactionStore } from "../../utils/transactionStore.js";
 
-function TransactionForm({ type, handleSubmit }) {
+function TransactionForm({ handleSubmit, type }) {
+	const currentType = transactionStore.getState().transactionType;
 	const [open, setOpen] = useState(null);
-	const [selectedCat, setCategory] = useState("Assistance");
+	const [selectedCat, setCategory] = useState(categories[`${type}`][0].name);
 
 	const handleCategory = (event) => {
 		setCategory(event.target.value);
-		setOpen(false);
+		setOpen(null);
 	};
+
+	console.log("open", open);
+
+	useEffect(() => {
+		setOpen(null);
+		setCategory(categories[`${type}`][0].name);
+		// setType(currentType);
+	}, [currentType, type]);
 
 	return (
 		<div className={styles.TransactionForm}>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="transaction">
+				<label htmlFor="amount">
 					<p>$</p>
 					<input
 						type="number"
@@ -37,10 +48,10 @@ function TransactionForm({ type, handleSubmit }) {
 					{selectedCat} <img src={forward} alt="arrow" />
 				</button>
 				<CategoryList
+					key={String(type)}
 					onClick={handleCategory}
 					open={open}
 					required
-					type={type}
 					onclick={() => setOpen(false)}
 				/>
 

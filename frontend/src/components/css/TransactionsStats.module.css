@@ -1,0 +1,119 @@
+.TranscactionsStats {
+  display: flex;
+  gap: 1rem;
+}
+
+.TransactionCard {
+  padding: 1rem;
+  display: grid;
+  gap: 0.5rem;
+  background-color: var(--bg-100);
+  border-radius: 10px;
+  width: 100%;
+}
+.TransactionCard img {
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+.TransactionCard p {
+  font-size: 0.9rem;
+  font-variation-settings: "wght" 400;
+}
+
+.MiniCard {
+  padding: 0.5rem 0.6rem;
+  display: grid;
+  row-gap: 0.3rem;
+  grid-template-columns: 1fr 2.5fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: var(--bg-100);
+  border-radius: 15px;
+  align-items: center;
+  width: 100%;
+}
+.MiniCard img {
+  border-radius: 10px;
+  padding: 0.5rem;
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+.MiniCard p {
+  font-size: 0.8rem;
+  font-variation-settings: "wght" 400;
+  align-self: end;
+}
+.MiniCard h4,
+.MiniCard p {
+  grid-column: 2/3;
+  display: flex;
+}
+
+.TransactionCardMini {
+  padding-right: 0.8rem;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-100);
+  border-radius: 40px;
+  width: 100%;
+}
+.TransactionCardMini img {
+  border-radius: 50%;
+  padding: 1rem;
+  grid-column: 1/2;
+}
+.TransactionCardMini p {
+  font-size: 0.9rem;
+  font-variation-settings: "wght" 400;
+  padding-bottom: 0.5rem;
+}
+.TransactionCardMini h4,
+.TransactionCardMini p {
+  grid-column: 2/3;
+}
+.TransactionCardMini button {
+  all: unset;
+  cursor: pointer;
+}
+
+dialog:modal {
+  border: none;
+  border-radius: 10px;
+  padding: 4vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+dialog:modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+dialog:modal form button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  background: var(--bg-100);
+}
+dialog:modal form img {
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+dialog:modal form input[type=number] {
+  background: var(--bg-100);
+  border-radius: 30px;
+  padding: 0.5rem;
+  border: none;
+  text-align: center;
+}
+dialog:modal form div {
+  display: flex;
+  justify-content: space-between;
+}
+
+dialog::backdrop {
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+}/*# sourceMappingURL=TransactionsStats.module.css.map */

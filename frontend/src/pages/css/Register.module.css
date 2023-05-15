@@ -1,0 +1,25 @@
+.Register {
+  padding: 7vw;
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content 1fr 1.5fr 8fr min-content;
+}
+.Register h1,
+.Register p {
+  text-align: center;
+  margin: 0 auto;
+  width: 70vw;
+}
+.Register p,
+.Register a {
+  font-size: 0.9rem;
+  font-variation-settings: "wght" 500;
+  color: var(--font-100);
+}
+.Register a {
+  text-align: right;
+  background: var(--primary-col);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}/*# sourceMappingURL=Register.module.css.map */

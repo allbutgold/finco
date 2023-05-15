@@ -1,37 +1,62 @@
 import SingleTransaction from "../TransactionList/SingleTransaction.jsx";
-import { useState, useEffect } from "react";
-import { userStore } from "../../utils/userStore.js";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import styles from "./AllTransactions.module.scss";
 
-const TransactionList = () => {
-	const [transactions, setTransactions] = useState([]);
-	const userID = userStore((state) => state.userID);
+const TransactionList = ({ transactions }) => {
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
 
-	const URL = import.meta.env.VITE_BACKEND_URL;
-
-	useEffect(() => {
-		const getTransactions = async () => {
-			const response = await fetch(URL + "getAllTransactions?id=" + userID, {
-				credentials: "include",
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
+	const filterTransactions = () => {
+		if (startDate && endDate) {
+			const filteredTransactions = transactions.filter(([date]) => {
+				const transactionDate = new Date(date);
+				return (
+					transactionDate >= startDate &&
+					transactionDate <= new Date(endDate.getTime() + 86400000)
+				);
 			});
-			const data = await response.json();
-			setTransactions(data);
-		};
-		getTransactions();
-	}, []);
-
+			return filteredTransactions;
+		}
+		return transactions;
+	};
+	console.log(transactions);
 	return (
 		<div className={styles.TransactionContainer}>
-			{Object.entries(transactions)
-				.flatMap(([key, array]) => array)
-				.map((transaction, index) => (
-					<SingleTransaction transaction={transaction} key={index} />
+
+			<div className={styles.FilterContainer}>
+				{/* <label htmlFor="startDatePicker">Start Date:</label> */}
+				<DatePicker
+					id="startDatePicker"
+					selected={startDate}
+					onChange={(date) => setStartDate(date)}
+					dateFormat="yyyy-MM-dd"
+					isClearable
+					placeholderText="Select start date"
+				/>
+
+				{/*  <label htmlFor="endDatePicker">End Date:</label> */}
+				<DatePicker
+					id="endDatePicker"
+					selected={endDate}
+					onChange={(date) => setEndDate(date)}
+					dateFormat="yyyy-MM-dd"
+					isClearable
+					placeholderText="Select end date"
+				/>
+			</div>
+
+			<div className={styles.List}>
+				{filterTransactions().map(([date, array]) => (
+					<div key={date}>
+						{array.map((transaction, index) => (
+							<SingleTransaction transaction={transaction} key={index} />
+						))}
+					</div>
 				))}
+			</div>
 		</div>
 	);
 };

@@ -3,7 +3,7 @@
 	display: grid;
 	height: 100%;
 	gap: 3vw;
-	grid-template-rows: min-content min-content min-content min-content auto;
+	grid-template-rows: min-content min-content min-content min-content min-content auto;
 }
 
 .graph {
@@ -12,4 +12,37 @@
 	display: grid;
 	place-content: center;
 	padding: 3vw;
+}
+
+.Expenses {
+	display: grid;
+	height: 100%;
+	gap: 3vw;
+	grid-template-rows: min-content min-content min-content 30vh min-content auto;
+	.container {
+		overflow-y: scroll;
+	}
+	article {
+		width: 50%;
+	}
+}
+
+.FilterContainer {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 5vw;
+	gap: 2vw;
+	div {
+		input {
+			padding: 2vw;
+			border: 1px solid var(--stroke-100);
+			border-radius: 30px;
+			font-size: 1rem;
+		}
+		button {
+			background: none;
+		}
+	}
 }

@@ -1,0 +1,27 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Header img {
+  border-radius: 50%;
+  align-self: center;
+  justify-self: end;
+  background-color: var(--bg-100);
+}
+.Header img:first-of-type {
+  background-color: transparent;
+  cursor: pointer;
+}
+.Header img[alt=profile] {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.Header img[alt=profileMenu] {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.Header p {
+  font-variation-settings: "wght" 500;
+  font-size: 0.9rem;
+}/*# sourceMappingURL=Header.module.css.map */

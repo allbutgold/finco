@@ -9,48 +9,61 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const TransactionList = () => {
-	const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null); 
-	const userID = userStore((state) => state.userID);
+  const [endDate, setEndDate] = useState(null);
+  const userID = userStore((state) => state.userID);
 
-	const URL = import.meta.env.VITE_BACKEND_URL;
+  //category filter state
+  const [categoryFilter, setCategoryFilter] = useState("");
 
-	useEffect(() => {
-		const getTransactions = async () => {
-			const response = await fetch(URL + "getAllTransactions?id=" + userID, {
-				credentials: "include",
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const data = await response.json();
+  const URL = import.meta.env.VITE_BACKEND_URL;
 
-			const sortedTransactions = Object.entries(data).sort(
-				(a, b) => new Date(b[0]) - new Date(a[0])
-			);
+  useEffect(() => {
+    const getTransactions = async () => {
+      const response = await fetch(URL + "getAllTransactions?id=" + userID, {
+        credentials: "include",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
 
-			setTransactions(sortedTransactions);
-		};
+      const sortedTransactions = Object.entries(data).sort(
+        (a, b) => new Date(b[0]) - new Date(a[0])
+      );
 
-		getTransactions();
-	}, []);
+      setTransactions(sortedTransactions);
+    };
 
-	
+    getTransactions();
+  }, []);
+
+
   const filterTransactions = () => {
+    let filteredTransactions = transactions;
     if (startDate && endDate) {
-      const filteredTransactions = transactions.filter(([date]) => {
+      filteredTransactions = filteredTransactions.filter(([date]) => {
         const transactionDate = new Date(date);
         return (
-          transactionDate >= startDate && transactionDate <= new Date(endDate.getTime() + 86400000)
+          transactionDate >= startDate &&
+          transactionDate <= new Date(endDate.getTime() + 86400000)
         );
       });
-      return filteredTransactions;
     }
-    return transactions;
+    if (categoryFilter) {
+      filteredTransactions = filteredTransactions.filter(([_, array]) =>
+        array.some((transaction) =>
+          transaction.category
+            .toLowerCase()
+            .includes(categoryFilter.toLowerCase())
+        )
+      );
+    }
+    return filteredTransactions;
   };
-  
+
 
   return (
     <article className={styles.TransactionList}>
@@ -65,7 +78,7 @@ const TransactionList = () => {
           placeholderText="Select start date"
         />
 
-       {/*  <label htmlFor="endDatePicker">End Date:</label> */}
+        {/*  <label htmlFor="endDatePicker">End Date:</label> */}
         <DatePicker
           id="endDatePicker"
           selected={endDate}
@@ -75,7 +88,34 @@ const TransactionList = () => {
           placeholderText="Select end date"
         />
       </div>
-      {filterTransactions().map(([date, array]) => (
+
+      {/* input for category filter */}
+      <div className={styles.CategoryFilterContainer}>
+        <input
+          type="text"
+          placeholder="Filter by category"
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+        />
+      </div>
+
+
+      {filterTransactions().length > 0 ? (
+        filterTransactions().map(([date, array]) => (
+          <div className={styles.TransactionContainer} key={date}>
+            <h3>{formatToWeekday(date)}</h3>
+            <h2>{date}</h2>
+            {array.map((transaction, index) => (
+              <SingleTransaction transaction={transaction} key={index} />
+            ))}
+          </div>
+        ))
+      ) : (
+        <p className={styles.Sorry}>Sorry, category not found.</p>
+      )}
+
+
+      {/* {filterTransactions().map(([date, array]) => (
         <div className={styles.TransactionContainer} key={date}>
           <h3>{formatToWeekday(date)}</h3>
           <h2>{date}</h2>
@@ -83,7 +123,7 @@ const TransactionList = () => {
             <SingleTransaction transaction={transaction} key={index} />
           ))}
         </div>
-      ))}
+      ))} */}
     </article>
   );
 };
