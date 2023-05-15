@@ -1,7 +1,7 @@
 .TranscactionsStats {
 	display: flex;
 
-	gap: 1rem;
+	gap: 3vw;
 	a {
 		color: var(--font-200);
 		width: 100%;
@@ -9,7 +9,7 @@
 }
 
 .TransactionCard {
-	padding: 1rem;
+	padding: 1.5vh 2vw;
 	display: grid;
 	gap: 0.5rem;
 	background-color: var(--bg-100);
@@ -54,17 +54,17 @@
 }
 
 .TransactionCardMini {
-	padding-right: 0.8rem;
+	padding-right: 2vw;
 	display: grid;
 	grid-template-columns: min-content 1fr min-content;
 	align-items: center;
-	gap: 1rem;
+	gap: 2vh;
 	background-color: var(--bg-100);
 	border-radius: 40px;
 	width: 100%;
 	img {
 		border-radius: 50%;
-		padding: 1rem;
+		padding: 2vw;
 		grid-column: 1/2;
 	}
 	p {

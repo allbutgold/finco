@@ -34,9 +34,9 @@ const Transactions = () => {
 
 	return (
 		<section className={styles.Transactions}>
-			<Header profile />
+			<Header profile title="All Transactions" />
 
-			<h1>All Transactions</h1>
+			{/* <h1>All Transactions</h1> */}
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
@@ -44,7 +44,6 @@ const Transactions = () => {
 			/>
 			<FilterTransactionList />
 			{/* <TransactionList /> */}
-
 		</section>
 	);
 };

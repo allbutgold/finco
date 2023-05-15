@@ -3,7 +3,7 @@
 	display: grid;
 	height: 100%;
 	gap: 3vw;
-	grid-template-rows: min-content min-content min-content min-content min-content auto;
+	grid-template-rows: min-content min-content min-content min-content auto;
 }
 
 .graph {
@@ -18,7 +18,7 @@
 	display: grid;
 	height: 100%;
 	gap: 3vw;
-	grid-template-rows: min-content min-content min-content 30vh min-content auto;
+	grid-template-rows: min-content min-content 30vh min-content auto;
 	.container {
 		overflow-y: scroll;
 	}

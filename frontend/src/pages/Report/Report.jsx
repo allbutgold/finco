@@ -50,14 +50,14 @@ const Report = () => {
 
 	return (
 		<section className={styles.Report}>
-			<Header profile />
-			<h1>Report</h1>
+			<Header profile title="Report" />
+			{/* <h1>Report</h1> */}
 			<TranscactionsStats
 				mini
 				incomeAmount={formatToDollar(total.income)}
 				expenseAmount={formatToDollar(total.expense)}
-        expensePath="/report/expense"
-        incomePath="/report/income"
+				expensePath="/report/expense"
+				incomePath="/report/income"
 			/>
 			<div className={styles.graph}>
 				<MultiAxis filteredTransaction={transactions} />

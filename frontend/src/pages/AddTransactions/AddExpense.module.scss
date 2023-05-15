@@ -2,8 +2,9 @@
 	// padding: 5vw;
 	display: flex;
 	flex-direction: column;
-	gap: 3vw;
+	gap: 1vh;
 	h1 {
-		color: var(--font-400);
+		color: var(--font-200);
+		font-size: 1.3rem;
 	}
 }

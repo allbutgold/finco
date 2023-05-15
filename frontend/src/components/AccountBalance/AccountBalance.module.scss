@@ -1,12 +1,12 @@
 .AccountBalance {
-  padding: 1rem;
+	padding: 2vh;
 	display: grid;
-	gap: 0.5rem;
+	gap: 1vh;
 	background-color: var(--bg-100);
 	border-radius: 40px;
 	width: 100%;
-  text-align: center;
-  p {
+	text-align: center;
+	p {
 		font-size: 0.9rem;
 		font-variation-settings: "wght" 400;
 	}
