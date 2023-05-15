@@ -30,7 +30,6 @@ const upload = multer({ dest: "./img" });
 
 // * ===== BODY PARSER ======
 // enabling cors
-
 server.use(cors({ origin: true, credentials: true }));
 
 // for JSON
@@ -50,6 +49,8 @@ server.get("/", (req, res) => {
 // * get credit card info
 server.get("/getAccountData", getCardInfo);
 server.get("/getAllAccountData", getAllAccountData);
+
+
 
 //* add transaction
 server.post("/addTransaction", upload.none(), authMiddleware, addTransaction);
