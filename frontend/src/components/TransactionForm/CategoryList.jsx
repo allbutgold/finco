@@ -1,17 +1,25 @@
 import styles from "./CategoryList.module.scss";
 import { categories } from "../../utils/helper.js";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //TODO: Write categories into database ?
 //TODO: BONUS: ADD search function and add Category function
 import forward from "../../assets/img/forward.svg";
 import search from "../../assets/img/search.svg";
 import back from "../../assets/img/back.svg";
+import { transactionStore } from "../../utils/transactionStore.js";
 
-function CategoryList({ onClick, open, type, onclick }) {
+function CategoryList({ onClick, open, onclick }) {
+	const currentType = transactionStore.getState().transactionType;
+	const [type, setType] = useState(currentType);
+	// console.log("ctlist", type);
 	const navigate = useNavigate();
 	const searchRef = useRef();
 	const [filteredCat, setFiltered] = useState(categories[`${type}`]);
+
+	useEffect(() => {
+		setType(currentType);
+	}, [currentType, type]);
 
 	const filterCategories = () => {
 		const searchQuery = searchRef.current.value.toLowerCase();

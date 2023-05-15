@@ -11,7 +11,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 	const userID = userStore((state) => state.userID);
 	const budget = userStore((state) => state.budget);
 	const setBudget = userStore((state) => state.setBudget);
-	const [currentBudget, setCurrentBudget] = useState(0);
+	const [currentBudget, setCurrentBudget] = useState(budget);
 	const [totalExpenses, setTotalExpenses] = useState(0);
 	const [isBudgetExceeded, setIsBudgetExceeded] = useState(false);
 	const [isBudgetChanged, setIsBudgetChanged] = useState(false);

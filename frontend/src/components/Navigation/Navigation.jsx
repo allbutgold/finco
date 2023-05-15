@@ -36,7 +36,7 @@ const Navigation = () => {
 
 	return (
 		<nav className={styles.Navigation}>
-			<Link to="/" >
+			<Link to="/">
 				{location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}
 			</Link>
 			<Link to="/transactions">
@@ -46,7 +46,7 @@ const Navigation = () => {
 					<img src={creditCard} alt="Transactions" />
 				)}
 			</Link>
-			<button onClick={handleTogglePopup}>
+			{/* <button onClick={handleTogglePopup}>
 				{location.pathname === "/add-income" ||
 				location.pathname === "/add-expense" ? (
 					"add"
@@ -59,7 +59,15 @@ const Navigation = () => {
 					handleAddExpense={handleAddExpense}
 					handleAddIncome={handleAddIncome}
           />
-			)}
+			)} */}
+
+			<Link to="/add-transaction">
+				{location.pathname === "/add-transaction" ? (
+					"Add"
+				) : (
+					<img src={plusCircle} alt="Add Transaction" />
+				)}
+			</Link>
 			<Link to="/report">
 				{location.pathname === "/report" ? (
 					"Report"
