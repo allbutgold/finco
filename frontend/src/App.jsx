@@ -20,7 +20,8 @@ import Report from "./pages/Report/Report.jsx";
 import Setup from "./pages/Setup/Setup.jsx";
 import Transactions from "./pages/Transactions/Transactions.jsx";
 import Auth from "./components/Authentication/Auth";
-import CategoryReport from "./pages/Report/CategoryReport.jsx";
+import CategoryReport from "./pages/Report/CategoryReportExpense.jsx";
+import CategoryReportIncome from "./pages/Report/CategoryReportIncome.jsx";
 import FAQ from "./pages/Menu/FAQ";
 // import AnimatedOnboarding from "./AnimatedOnboarding";
 
@@ -43,7 +44,8 @@ function App() {
 							element={<FilterTransactions />}
 						/>
 						<Route path="/report" element={<Report />} />
-
+            <Route path="/report/expense" element={<CategoryReport />} />
+            <Route path="/report/income" element={<CategoryReportIncome />} />
 						<Route path="/setup" element={<Setup />} />
 						<Route path="/transactions" element={<Transactions />} />
 					</Route>
@@ -51,7 +53,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/onboarding" element={<Onboarding />} />
 					<Route path="*" element={<h1>Not Found</h1>} />
-          <Route path="/category-report" element={<CategoryReport />} />
+          
 				</Routes>
 			</Router>
 		</>
