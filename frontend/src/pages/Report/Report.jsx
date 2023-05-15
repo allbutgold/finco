@@ -9,7 +9,7 @@ import { formatToDollar } from "../../utils/helper.js";
 
 const Report = () => {
 	const [transactions, setTransactions] = useState([]);
-  const [sortedTransactions, setSortedTransactions] = useState([]);
+	const [sortedTransactions, setSortedTransactions] = useState([]);
 	const [total, setTotal] = useState({ income: 0, expense: 0 });
 	const URL = import.meta.env.VITE_BACKEND_URL;
 	const userID = userStore((state) => state.userID);
@@ -24,12 +24,16 @@ const Report = () => {
 				},
 			});
 			const data = await response.json();
-			
+			console.log("data", data);
 
-      const sorted = Object.entries(data).sort(
+			const sorted = Object.entries(data).sort(
 				(a, b) => new Date(b[0]) - new Date(a[0])
 			);
-      setSortedTransactions(sorted);
+			const sortAsc = Object.entries(data).sort(
+				(a, b) => new Date(a[0]) - new Date(b[0])
+			);
+			setSortedTransactions(sorted);
+			setTransactions(sortAsc);
 
 			const total = { income: 0, expense: 0 };
 			Object.entries(data).forEach(([key, value]) => {
@@ -49,11 +53,12 @@ const Report = () => {
 			<Header profile />
 			<h1>Report</h1>
 			<TranscactionsStats
+				mini
 				incomeAmount={formatToDollar(total.income)}
 				expenseAmount={formatToDollar(total.expense)}
 			/>
 			<div className={styles.graph}>
-				<MultiAxis transactions={transactions} />
+				<MultiAxis filteredTransaction={transactions} />
 			</div>
 			<h3>Total Transactions</h3>
 			<AllTransactions transactions={sortedTransactions} />
