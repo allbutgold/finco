@@ -78,11 +78,11 @@
 @keyframes move-in {
 	0% {
 		transform: translateX(100%);
-		display: none;
+		// display: none;
 	}
 	100% {
 		transform: translateX(0);
-		display: block;
+		// display: block;
 	}
 }
 
@@ -94,10 +94,10 @@
 @keyframes move-out {
 	0% {
 		transform: translateX(0);
-		display: block;
+		// display: block;
 	}
 	100% {
 		transform: translateX(100%);
-		display: none;
+		// display: none;
 	}
 }

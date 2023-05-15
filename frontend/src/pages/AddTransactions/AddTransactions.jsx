@@ -64,7 +64,7 @@ function AddTransactions() {
 	const handleChange = (e) => {
 		setCurrentType(e.target.value);
 		setType(e.target.value);
-		window.location.reload(false);
+		// window.location.reload(false);
 	};
 
 	return (
@@ -73,7 +73,7 @@ function AddTransactions() {
 			<h1>Add Transaction</h1>
 			<Toggle onchange={handleChange} />
 			<CreditCardDetails />
-			<TransactionForm handleSubmit={addTransaction} />
+			<TransactionForm handleSubmit={addTransaction} type={type} />
 			<Toaster />
 		</section>
 	);

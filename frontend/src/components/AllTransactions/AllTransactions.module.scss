@@ -2,6 +2,8 @@
 	// margin: 10px 0 10px 0;
 	overflow-y: scroll;
 	height: 100%;
+	display: grid;
+	grid-template-rows: min-content auto;
 	h1 {
 		margin: 20px;
 	}
@@ -26,12 +28,17 @@
 	}
 }
 
+.List {
+	overflow-y: scroll;
+	height: 100%;
+}
+
 .SingleTransaction {
 	display: grid;
 	grid-template-columns: 1fr 4fr 1fr;
 	align-items: center;
 	justify-content: space-around;
-  margin-bottom: 5vw;
+	margin-bottom: 5vw;
 
 	.TransactionImage {
 		// background-color: var(--bg-100);
@@ -54,7 +61,6 @@
 
 	.TransactionDetails {
 		margin-left: 10px; /* Adjust as needed */
-
 
 		.DateTime {
 			display: flex;

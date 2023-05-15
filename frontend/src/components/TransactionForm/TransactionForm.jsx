@@ -5,19 +5,22 @@ import { categories } from "../../utils/helper.js";
 import { useEffect, useState } from "react";
 import { transactionStore } from "../../utils/transactionStore.js";
 
-function TransactionForm({ handleSubmit }) {
+function TransactionForm({ handleSubmit, type }) {
 	const currentType = transactionStore.getState().transactionType;
-	const [type, setType] = useState(currentType);
 	const [open, setOpen] = useState(null);
 	const [selectedCat, setCategory] = useState(categories[`${type}`][0].name);
 
 	const handleCategory = (event) => {
 		setCategory(event.target.value);
-		setOpen(false);
+		setOpen(null);
 	};
 
+	console.log("open", open);
+
 	useEffect(() => {
-		setType(currentType);
+		setOpen(null);
+		setCategory(categories[`${type}`][0].name);
+		// setType(currentType);
 	}, [currentType, type]);
 
 	return (
