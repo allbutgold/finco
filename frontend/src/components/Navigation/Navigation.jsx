@@ -37,11 +37,15 @@ const Navigation = () => {
 	return (
 		<nav className={styles.Navigation}>
 			<Link to="/">
-				{location.pathname === "/" ? "Home" : <img src={home} alt="Home" />}
+				{location.pathname === "/" ? (
+					<p>Home</p>
+				) : (
+					<img src={home} alt="Home" />
+				)}
 			</Link>
 			<Link to="/transactions">
 				{location.pathname === "/transactions" ? (
-					"Transactions"
+					<p>Transactions</p>
 				) : (
 					<img src={creditCard} alt="Transactions" />
 				)}
@@ -63,14 +67,14 @@ const Navigation = () => {
 
 			<Link to="/add-transaction">
 				{location.pathname === "/add-transaction" ? (
-					"Add"
+					<p>Add</p>
 				) : (
 					<img src={plusCircle} alt="Add Transaction" />
 				)}
 			</Link>
 			<Link to="/report">
 				{location.pathname === "/report" ? (
-					"Report"
+					<p>Report</p>
 				) : (
 					<img src={pieChart} alt="Report" />
 				)}
