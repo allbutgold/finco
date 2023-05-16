@@ -34,7 +34,7 @@ const AccountBalance = () => {
 
 	return (
 		<div className={styles.AccountBalance}>
-			<p>Monthly Balance</p>
+			<p>Disposable income</p>
 			{/* <h4>
 				{balance < 0 ? "-$" : "$"}
 				{Math.abs(balance)}

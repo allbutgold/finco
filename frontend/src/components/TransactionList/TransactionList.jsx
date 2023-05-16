@@ -14,7 +14,6 @@ const TransactionList = () => {
   const [endDate, setEndDate] = useState(null);
   const userID = userStore((state) => state.userID);
 
-  //category filter state
   const [categoryFilter, setCategoryFilter] = useState("");
 
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -68,7 +67,6 @@ const TransactionList = () => {
   return (
     <article className={styles.TransactionList}>
       <div className={styles.FilterContainer}>
-        {/* <label htmlFor="startDatePicker">Start Date:</label> */}
         <DatePicker
           id="startDatePicker"
           selected={startDate}
@@ -78,7 +76,6 @@ const TransactionList = () => {
           placeholderText="Select start date"
         />
 
-        {/*  <label htmlFor="endDatePicker">End Date:</label> */}
         <DatePicker
           id="endDatePicker"
           selected={endDate}
@@ -89,7 +86,6 @@ const TransactionList = () => {
         />
       </div>
 
-      {/* input for category filter */}
       <div className={styles.CategoryFilterContainer}>
         <input
           type="text"
@@ -98,7 +94,6 @@ const TransactionList = () => {
           onChange={(e) => setCategoryFilter(e.target.value)}
         />
       </div>
-
 
       {filterTransactions().length > 0 ? (
         filterTransactions().map(([date, array]) => (
@@ -113,17 +108,6 @@ const TransactionList = () => {
       ) : (
         <p className={styles.Sorry}>Sorry, category not found.</p>
       )}
-
-
-      {/* {filterTransactions().map(([date, array]) => (
-        <div className={styles.TransactionContainer} key={date}>
-          <h3>{formatToWeekday(date)}</h3>
-          <h2>{date}</h2>
-          {array.map((transaction, index) => (
-            <SingleTransaction transaction={transaction} key={index} />
-          ))}
-        </div>
-      ))} */}
     </article>
   );
 };

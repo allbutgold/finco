@@ -15,7 +15,7 @@ export const getCardInfo = async (req, res) => {
 		} else {
 			res.status(200).json(result.account.card).toString();
 		}
-		console.log(result);
+		// console.log(result);
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({ message: "Could not get data!" });

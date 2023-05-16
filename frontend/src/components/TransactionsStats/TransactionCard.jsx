@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./TransactionsStats.module.scss";
 
 function TransactionCard({ amount, img, style, content, mini }) {
