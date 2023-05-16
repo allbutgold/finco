@@ -1,19 +1,16 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import styles from "./Navigation.module.scss";
-import home from "../../assets/img/home.svg";
-import creditCard from "../../assets/img/credit-card.svg";
-import plusCircle from "../../assets/img/plus-circle.svg";
-import pieChart from "../../assets/img/pie-chart.svg";
-
-const Popup = ({ handleAddExpense, handleAddIncome }) => {
-	return (
-		<div className="popup">
-			<button onClick={handleAddIncome}>Income</button>
-			<button onClick={handleAddExpense}>Expense</button>
-		</div>
-	);
-};
+import {
+	addActive,
+	add,
+	home,
+	homeActive,
+	transactionsActive,
+	transactions,
+	reportActive,
+	report,
+} from "../../assets/img/navigation/navigation-icons.js";
 
 const Navigation = () => {
 	const [showPopup, setShowPopup] = useState(false);
@@ -38,45 +35,31 @@ const Navigation = () => {
 		<nav className={styles.Navigation}>
 			<Link to="/">
 				{location.pathname === "/" ? (
-					<p>Home</p>
+					<img src={homeActive} alt="Home" />
 				) : (
 					<img src={home} alt="Home" />
 				)}
 			</Link>
 			<Link to="/transactions">
 				{location.pathname === "/transactions" ? (
-					<p>Transactions</p>
+					<img src={transactionsActive} alt="Transactions" />
 				) : (
-					<img src={creditCard} alt="Transactions" />
+					<img src={transactions} alt="Transactions" />
 				)}
 			</Link>
-			{/* <button onClick={handleTogglePopup}>
-				{location.pathname === "/add-income" ||
-				location.pathname === "/add-expense" ? (
-					"add"
-				) : (
-					<img src={plusCircle} />
-				)}
-			</button>
-			{showPopup && (
-          <Popup className={styles.popup}
-					handleAddExpense={handleAddExpense}
-					handleAddIncome={handleAddIncome}
-          />
-			)} */}
 
 			<Link to="/add-transaction">
 				{location.pathname === "/add-transaction" ? (
-					<p>Add</p>
+					<img src={addActive} alt="Add Transaction" />
 				) : (
-					<img src={plusCircle} alt="Add Transaction" />
+					<img src={add} alt="Add Transaction" />
 				)}
 			</Link>
 			<Link to="/report">
 				{location.pathname === "/report" ? (
-					<p>Report</p>
+					<img src={reportActive} alt="Report" />
 				) : (
-					<img src={pieChart} alt="Report" />
+					<img src={report} alt="Report" />
 				)}
 			</Link>
 		</nav>
