@@ -5,8 +5,7 @@ import styles from "./Menu.module.scss";
 function FAQ() {
 	return (
 		<section className={styles.Faq}>
-			<Header back profileMenu />
-			<h1>FAQ</h1>
+			<Header back profileMenu title="FAQ" />
 			<details>
 				<summary>Q: I signed up, but I'm feeling lost. What do I do?</summary>
 				<p>
