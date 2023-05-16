@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DoughnutChart from "../../components/Charts/DoughnutChart";
 import Header from "../../components/Header/Header";
 import SingleTransaction from "../../components/TransactionList/SingleTransaction";
@@ -39,6 +39,7 @@ function CategoryReport() {
 					let expenses = {
 						labels: Object.keys(cat),
 						data: Object.values(cat),
+						type: "expense",
 					};
 					setExpenses(expenses);
 					setTransactions(data.transactions);
@@ -75,6 +76,7 @@ function CategoryReport() {
 		let expenses = {
 			labels: Object.keys(cat),
 			data: Object.values(cat),
+			type: "expense",
 		};
 		setExpenses(expenses);
 		setTotalExpenses(calculateTotalExpenses(filteredTransactions));
@@ -87,7 +89,7 @@ function CategoryReport() {
 		}, 0);
 	};
 
-	console.log();
+	console.log(transactions);
 	return (
 		<section className={styles.Expenses}>
 			<Header profile back title="Expenses" />
@@ -125,7 +127,7 @@ function CategoryReport() {
 			</div>
 
 			{/*   <h3>Categories</h3> */}
-			<div className={styles.container}>
+			<div className={styles.container} key={transactions._id}>
 				{transactions
 					.filter((transaction) => {
 						const transactionDate = new Date(transaction.date);

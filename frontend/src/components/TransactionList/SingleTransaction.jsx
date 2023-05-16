@@ -3,10 +3,11 @@ import { formatToDollar, mapType, mapColor } from "../../utils/helper.js";
 
 function SingleTransaction({ transaction }) {
 	return (
-		<div className={styles.SingleTransaction}>
+		<div className={styles.SingleTransaction} key={transaction.id}>
 			<div
 				className={styles.TransactionImage}
-				style={{ backgroundColor: "var(--bg-100)" }}>
+				style={{ backgroundColor: "var(--bg-100)" }}
+        key={transaction.id}>
 				{/* <img src={mapType(transaction,icon)} alt={transaction.category} /> */}
 				<h3>{mapType(transaction, "emoji")}</h3>
 			</div>

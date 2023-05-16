@@ -15,7 +15,7 @@ function TransactionForm({ handleSubmit, type }) {
 		setOpen(null);
 	};
 
-	console.log("open", open);
+	// console.log("open", open);
 
 	useEffect(() => {
 		setOpen(null);

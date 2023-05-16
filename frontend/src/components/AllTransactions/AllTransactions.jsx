@@ -22,12 +22,9 @@ const TransactionList = ({ transactions }) => {
 		}
 		return transactions;
 	};
-	console.log(transactions);
 	return (
 		<div className={styles.TransactionContainer}>
-
 			<div className={styles.FilterContainer}>
-				{/* <label htmlFor="startDatePicker">Start Date:</label> */}
 				<DatePicker
 					id="startDatePicker"
 					selected={startDate}
@@ -37,7 +34,6 @@ const TransactionList = ({ transactions }) => {
 					placeholderText="Select start date"
 				/>
 
-				{/*  <label htmlFor="endDatePicker">End Date:</label> */}
 				<DatePicker
 					id="endDatePicker"
 					selected={endDate}
