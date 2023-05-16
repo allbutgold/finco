@@ -125,27 +125,26 @@ function CategoryReport() {
 							placeholderText="Select end date"
 						/>
 					</div>
-
-					<div className={styles.container}>
-						{transactions
-							.filter((transaction) => {
-								const transactionDate = new Date(transaction.date);
-								return (
-									(!dateRange.startDate ||
-										transactionDate >= dateRange.startDate) &&
-									(!dateRange.endDate ||
-										transactionDate <=
-											new Date(dateRange.endDate.getTime() + 86400000))
-								);
-							})
-							.sort((a, b) => new Date(b.date) - new Date(a.date))
-							.map((transaction) => (
-								<SingleTransaction
-									transaction={transaction}
-									key={transaction.id}
-								/>
-							))}
-					</div>
+				</div>
+				<div className={styles.container}>
+					{transactions
+						.filter((transaction) => {
+							const transactionDate = new Date(transaction.date);
+							return (
+								(!dateRange.startDate ||
+									transactionDate >= dateRange.startDate) &&
+								(!dateRange.endDate ||
+									transactionDate <=
+										new Date(dateRange.endDate.getTime() + 86400000))
+							);
+						})
+						.sort((a, b) => new Date(b.date) - new Date(a.date))
+						.map((transaction) => (
+							<SingleTransaction
+								transaction={transaction}
+								key={transaction.id}
+							/>
+						))}
 				</div>
 			</div>
 		</section>
