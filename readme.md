@@ -1,4 +1,3 @@
-
 # Finco - Personal Finance Tracker
 
 ## Description
@@ -11,7 +10,7 @@ Finco is a personal finance tracker application developed as a final exam projec
 - **Transaction Management**: Add and manage your transactions efficiently.
 - **Filtering and Display**: Display and filter your transactions in various ways to better understand your spending habits.
 - **Spending Limit**: Set a spending limit to manage your finances better.
-  
+
 ## Live Demo
 
 You can check out the live demo of the Finco app [here](https://finco-frontend-production.up.railway.app). A test user is also available for you to explore the functionalities of the app.
