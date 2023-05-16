@@ -55,7 +55,7 @@
 		}
 	}
 	.container {
-		// overflow-y: scroll;
+		overflow-y: scroll;
 		height: 100%;
 	}
 	article {
@@ -73,6 +73,8 @@
 //* Container of expenses and income
 .FilterContainer {
 	display: flex;
+	position: sticky;
+	top: 0;
 	background-color: white;
 	padding: 1vh 0;
 	flex-wrap: nowrap;
