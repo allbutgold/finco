@@ -61,8 +61,6 @@ function MultiAxis({ filteredTransaction }) {
 		data.labels.push(date);
 	}
 
-	console.log(data);
-
 	const chartData = {
 		labels: data.labels,
 		datasets: [

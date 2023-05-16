@@ -90,6 +90,7 @@ function CategoryReport() {
 		}, 0);
 	};
 
+
 	return (
 		<section className={styles.Expenses}>
 			<Header profile back title="Expenses" />
@@ -125,7 +126,6 @@ function CategoryReport() {
 							placeholderText="Select end date"
 						/>
 					</div>
-				</div>
 
 				<div className={styles.container}>
 					{transactions

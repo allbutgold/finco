@@ -1,5 +1,6 @@
 import styles from "./TransactionList.module.scss";
 import { formatToDollar, mapType, mapColor } from "../../utils/helper.js";
+import "./TransactionList.css"
 
 function SingleTransaction({ transaction }) {
 	return (

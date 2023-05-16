@@ -11,10 +11,8 @@ import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Menu from "./pages/Menu/Menu.jsx";
-import AddExpense from "./pages/AddTransactions/AddExpense.jsx";
-import AddIncome from "./pages/AddTransactions/AddIncome.jsx";
 import AddTransactions from "./pages/AddTransactions/AddTransactions";
-import FilterTransactions from "./pages/FilterTransactions/FilterTransactions";
+import FilterExpenses from "./pages/FilterTransactions/FilterExpenses";
 import Onboarding from "./pages/Onboarding/Onboarding.jsx";
 import Report from "./pages/Report/Report.jsx";
 import Setup from "./pages/Setup/Setup.jsx";
@@ -23,6 +21,7 @@ import Auth from "./components/Authentication/Auth";
 import CategoryReport from "./pages/Report/CategoryReportExpense.jsx";
 import CategoryReportIncome from "./pages/Report/CategoryReportIncome.jsx";
 import FAQ from "./pages/Menu/FAQ";
+import FilterIncome from "./pages/FilterTransactions/FilterIncome";
 // import AnimatedOnboarding from "./AnimatedOnboarding";
 
 
@@ -39,13 +38,11 @@ function App() {
 						<Route path="/add-transaction" element={<AddTransactions />} />
 						{/* <Route path="/add-expense" element={<AddExpense />} /> */}
 						{/* <Route path="/add-income" element={<AddIncome />} /> */}
-						<Route
-							path="/filter-transactions"
-							element={<FilterTransactions />}
-						/>
+						<Route path="/transactions/income" element={<FilterIncome />} />
+						<Route path="/transactions/expenses" element={<FilterExpenses />} />
 						<Route path="/report" element={<Report />} />
-            <Route path="/report/expense" element={<CategoryReport />} />
-            <Route path="/report/income" element={<CategoryReportIncome />} />
+						<Route path="/report/expense" element={<CategoryReport />} />
+						<Route path="/report/income" element={<CategoryReportIncome />} />
 						<Route path="/setup" element={<Setup />} />
 						<Route path="/transactions" element={<Transactions />} />
 					</Route>
@@ -53,7 +50,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/onboarding" element={<Onboarding />} />
 					<Route path="*" element={<h1>Not Found</h1>} />
-          
+
 				</Routes>
 			</Router>
 		</>
