@@ -1,13 +1,13 @@
 import styles from "./TransactionList.module.scss";
 import { formatToDollar, mapType, mapColor } from "../../utils/helper.js";
+import "./TransactionList.css"
 
 function SingleTransaction({ transaction }) {
 	return (
-		<div className={styles.SingleTransaction} key={transaction.id}>
+		<div className={styles.SingleTransaction}>
 			<div
 				className={styles.TransactionImage}
-				style={{ backgroundColor: "var(--bg-100)" }}
-        key={transaction.id}>
+				style={{ backgroundColor: "var(--bg-100)" }}>
 				{/* <img src={mapType(transaction,icon)} alt={transaction.category} /> */}
 				<h3>{mapType(transaction, "emoji")}</h3>
 			</div>
