@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DoughnutChart from "../../components/Charts/DoughnutChart";
 import Header from "../../components/Header/Header";
 import SingleTransaction from "../../components/TransactionList/SingleTransaction";
 import TransactionCard from "../../components/TransactionsStats/TransactionCard";
 import img from "../../assets/img/trending-up.svg";
 import {
-	expenseStyles,
 	formatToDollar,
 	incomeStyles,
 } from "../../utils/helper";
@@ -16,8 +15,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function CategoryReport() {
 	const url = import.meta.env.VITE_BACKEND_URL;
 	const [transactions, setTransactions] = useState([]);
-	const [expenses, setExpenses] = useState(null);
-	const [totalExpenses, setTotalExpenses] = useState(null);
+	const [income, setIncome] = useState(null);
+	const [totalIncome, setTotalIncome] = useState(null);
 	const [categories, setCategories] = useState(null);
 	const [dateRange, setDateRange] = useState({
 		startDate: null,
@@ -40,13 +39,13 @@ function CategoryReport() {
 							cat[transaction.category] += +transaction.amount;
 						}
 					});
-					let expenses = {
+					let income = {
 						labels: Object.keys(cat),
 						data: Object.values(cat),
 					};
-					setExpenses(expenses);
+					setIncome(income);
 					setTransactions(data.transactions);
-					setTotalExpenses(data.total);
+					setTotalIncome(data.total);
 					setCategories(cat);
 				} else {
 					const message = await response.text();
@@ -76,12 +75,12 @@ function CategoryReport() {
 				cat[transaction.category] += +transaction.amount;
 			}
 		});
-		let expenses = {
+		let income = {
 			labels: Object.keys(cat),
 			data: Object.values(cat),
 		};
-		setExpenses(expenses);
-		setTotalExpenses(calculateTotalExpenses(filteredTransactions));
+		setIncome(income);
+		setTotalIncome(calculateTotalExpenses(filteredTransactions));
 		setCategories(cat);
 	}, [dateRange]);
 
@@ -101,11 +100,11 @@ function CategoryReport() {
 				content="Current"
 				img={img}
 				style={incomeStyles}
-				amount={formatToDollar(totalExpenses)}
+				amount={formatToDollar(totalIncome)}
 			/>
 
 			<div className={styles.graph}>
-				{expenses && <DoughnutChart type={expenses} />}
+				{income && <DoughnutChart type={income} />}
 			</div>
 
 			<div className={styles.FilterContainer}>
