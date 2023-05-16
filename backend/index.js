@@ -84,47 +84,7 @@ server.post("/register", encryptPassword, async (req, res) => {
 	res.json(result);
 });
 
-server.post("/setup", upload.single("profileImage"), async (req, res) => {
-	try {
-		const { cardNumber, expDate, _id, budget } = req.body;
-		// const { path } = req.file;
-		// const { expDate } = req.body;
-		// const { _id } = req.body;
-		console.log(_id);
-		const db = await getDb();
-		const updateFields = {};
-		if (cardNumber && cardNumber.length === 19) {
-			updateFields["account.card.cardNumber"] = cardNumber;
-		}
-		if (expDate && new Date(expDate) > new Date()) {
-			updateFields["account.card.expDate"] = expDate;
-		}
-		if (req.file) {
-			updateFields["account.profileImage"] = req.file.path;
-		}
-		if (budget && parseFloat(budget) > 0) {
-			updateFields["account.budget"] = parseFloat(budget);
-		}
-		const result = await db.collection("finco").findOneAndUpdate(
-			{ _id: new ObjectId(_id) },
-			{
-				$set: {
-					// "account.card.cardNumber": cardNumber,
-					// "account.card.expDate": expDate,
-					// "account.profileImage": path,
-					// "account.budget": path,
-					...updateFields,
-				},
-			},
-			{ returnDocument: "after" }
-		);
-
-		res.status(200).json(result.value);
-	} catch (err) {
-		console.log(err);
-		res.status(500).end();
-	}
-});
+server.post("/setup", upload.single("profileImage"), userController.setup);
 
 server.get("/getAllTransactions", getAllTransactions);
 

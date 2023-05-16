@@ -9,7 +9,6 @@ import AccountBalance from "../../components/AccountBalance/AccountBalance.jsx";
 import styles from "./Home.module.scss";
 import alert from "../../assets/img/alert.svg";
 import { expenseStyles } from "../../utils/helper.js";
-import { Toaster } from "react-hot-toast";
 
 const Home = () => {
 	const [totalExpenses, setTotalExpenses] = useState(0);
@@ -37,19 +36,20 @@ const Home = () => {
 		getStats();
 	}, []);
 
-	// if (!totalExpenses && !totalIncome) return;
 
 	return (
 		<section className={styles.Home}>
 			<Header name profile />
 			<CreditCardDetails />
-			<h3>Total wallet</h3>
+			<h3>Your monthly stats</h3>
 			<AccountBalance />
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
         expensePath="/report/expense"
 				incomePath="/report/income"
+        incomeContent="Monthly Income"
+        expenseContent="Monthly Expense"
 			/>
 			<TransactionsCardMini
 				img={alert}

@@ -1,18 +1,17 @@
 import { getDb } from "../utils/db.js";
 import { createToken } from "../utils/create-token.utils.js";
 import { ObjectId } from "mongodb";
-// import { isValidEmail, isValidPassword } from "../utils/helper.js";
+
 
 function isValidPassword(password) {
-  // Implement your own password validation logic
-  // For example, you can check for minimum length or specific character requirements
+
   if (password.length < 8) {
       return false;
   }
   return true;
 }
 function isValidEmail(email) {
-  // Use a regular expression for email validation
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
@@ -21,15 +20,12 @@ const register = async (req, res) => {
   try {
     const db = await getDb();
     const { email, password } = req.body;
-    console.log(req.body);
 
-    // Email validation
     if (!isValidEmail(email)) {
       res.status(400).send("Invalid email format");
       return;
     }
-
-    // Password validation
+    
     if (!isValidPassword(password)) {
       res.status(400).send("Invalid password");
       return;
@@ -47,6 +43,48 @@ const register = async (req, res) => {
   }
 };
 
+
+const setup = async (req, res) => {
+  try {
+		const { cardNumber, expDate, _id, budget } = req.body;
+		// const { path } = req.file;
+		// const { expDate } = req.body;
+		// const { _id } = req.body;
+
+		const db = await getDb();
+		const updateFields = {};
+		if (cardNumber && cardNumber.length === 19) {
+			updateFields["account.card.cardNumber"] = cardNumber;
+		}
+		if (expDate && new Date(expDate) > new Date()) {
+			updateFields["account.card.expDate"] = expDate;
+		}
+		if (req.file) {
+			updateFields["account.profileImage"] = req.file.path;
+		}
+		if (budget && parseFloat(budget) > 0) {
+			updateFields["account.budget"] = parseFloat(budget);
+		}
+		const result = await db.collection("finco").findOneAndUpdate(
+			{ _id: new ObjectId(_id) },
+			{
+				$set: {
+					// "account.card.cardNumber": cardNumber,
+					// "account.card.expDate": expDate,
+					// "account.profileImage": path,
+					// "account.budget": path,
+					...updateFields,
+				},
+			},
+			{ returnDocument: "after" }
+		);
+
+		res.status(200).json(result.value);
+	} catch (err) {
+		console.log(err);
+		res.status(500).end();
+	}
+}
 
 
 const login = async (req, res) => {
@@ -99,7 +137,6 @@ export const getAllAccountData = async (req, res) => {
 		} else {
 			res.status(200).json(result.account).toString();
 		}
-		console.log(result);
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({ message: "Could not get data!" });
@@ -110,5 +147,6 @@ export default {
 	register,
 	login,
 	auth,
-  getAllAccountData
+  getAllAccountData,
+  setup
 };
