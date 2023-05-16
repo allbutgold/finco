@@ -4,14 +4,10 @@ import Header from "../../components/Header/Header";
 import SingleTransaction from "../../components/TransactionList/SingleTransaction";
 import TransactionCard from "../../components/TransactionsStats/TransactionCard";
 import img from "../../assets/img/trending-up.svg";
-import {
-	formatToDollar,
-	incomeStyles,
-} from "../../utils/helper";
+import { formatToDollar, incomeStyles } from "../../utils/helper";
 import styles from "./Report.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 function CategoryReport() {
 	const url = import.meta.env.VITE_BACKEND_URL;
@@ -103,6 +99,7 @@ function CategoryReport() {
 				style={incomeStyles}
 				amount={formatToDollar(totalIncome)}
 			/>
+
 			<div className={styles.scrollable}>
 				<div className={styles.graph}>
 					{expenses && <DoughnutChart type={expenses} />}
@@ -129,27 +126,24 @@ function CategoryReport() {
 						/>
 					</div>
 				</div>
+			</div>
 
-				<div className={styles.container}>
-					{transactions
-						.filter((transaction) => {
-							const transactionDate = new Date(transaction.date);
-							return (
-								(!dateRange.startDate ||
-									transactionDate >= dateRange.startDate) &&
-								(!dateRange.endDate ||
-									transactionDate <=
-										new Date(dateRange.endDate.getTime() + 86400000))
-							);
-						})
-						.sort((a, b) => new Date(b.date) - new Date(a.date))
-						.map((transaction) => (
-							<SingleTransaction
-								transaction={transaction}
-								key={transaction.id}
-							/>
-						))}
-				</div>
+			<div className={styles.container}>
+				{transactions
+					.filter((transaction) => {
+						const transactionDate = new Date(transaction.date);
+						return (
+							(!dateRange.startDate ||
+								transactionDate >= dateRange.startDate) &&
+							(!dateRange.endDate ||
+								transactionDate <=
+									new Date(dateRange.endDate.getTime() + 86400000))
+						);
+					})
+					.sort((a, b) => new Date(b.date) - new Date(a.date))
+					.map((transaction) => (
+						<SingleTransaction transaction={transaction} key={transaction.id} />
+					))}
 			</div>
 		</section>
 	);
