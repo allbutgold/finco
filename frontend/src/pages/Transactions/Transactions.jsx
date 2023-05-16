@@ -1,9 +1,7 @@
 import styles from "./Transactions.module.scss";
 import { useState, useEffect } from "react";
 import { formatToDollar } from "../../utils/helper.js";
-
 import FilterTransactionList from "../../components/FilterTransactionList/FilterTransactionList";
-import TransactionList from "../../components/TransactionList/TransactionList";
 import TranscactionsStats from "../../components/TransactionsStats/TranscactionsStats";
 import Header from "../../components/Header/Header.jsx";
 
@@ -43,6 +41,8 @@ const Transactions = () => {
 				incomeFilterPath="/transactions/income"
 				expensePath="/transactions/expenses"
 				incomePath="/transactions/income"
+        expenseContent={"Total Expense"}
+        incomeContent={"Total Income"}
 				mini
 			/>
 			<FilterTransactionList />

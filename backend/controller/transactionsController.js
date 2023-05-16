@@ -36,7 +36,7 @@ export const getAllTransactions = async (req, res) => {
 		} else {
 			res.status(200).json(result.transactions).toString();
 		}
-		console.log(result);
+		// console.log(result);
 	} catch (error) {
 		console.error(error);
 		res.status(400).json({ message: "Could not get data!" });
@@ -46,7 +46,7 @@ export const getAllTransactions = async (req, res) => {
 export const getTypeTransactionsbyMonth = async (req, res) => {
 	const user = req.userClaims.sub;
 	const type = req.query.type;
-	console.log(user, type);
+	// console.log(user, type);
 	// const month = req.query.month;
 	try {
 		const db = await getDb();
@@ -105,7 +105,7 @@ export const getTotalTransactionsByMonth = async (req, res) => {
 		const result = await db
 			.collection(COL)
 			.findOne({ _id: new ObjectId(req.userClaims.sub) });
-		console.log("RESULT", result);
+		// console.log("RESULT", result);
 		const currentMonthStart = getCurrentMonthStart();
 		const currentMonthEnd = getCurrentMonthEnd();
 		if (result.hasOwnProperty("transactions")) {
@@ -141,7 +141,7 @@ export const getTotalTransactionsByMonth = async (req, res) => {
 export const setBudget = async (req, res) => {
 	const userID = req.query.id; // Assuming the user ID is passed as a query parameter
 	const { budget } = req.body; // Extract the budget value from the request body
-	console.log(budget);
+	// console.log(budget);
 	try {
 		const db = await getDb();
 		const response = await db.collection(COL).findOneAndUpdate(
