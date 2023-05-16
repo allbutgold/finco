@@ -40,6 +40,9 @@ const Transactions = () => {
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
+				incomeFilterPath="/transactions/income"
+				expensePath="/transactions/expenses"
+				incomePath="/transactions/income"
 				mini
 			/>
 			<FilterTransactionList />

@@ -1,7 +1,7 @@
 import Header from "../../components/Header/Header.jsx";
 import { useState, useEffect } from "react";
 import { userStore } from "../../utils/userStore.js"
-import styles from "../../components/FilterTransactionList/FilterTransactionList.module.scss"
+import styles from "./FilterTransactions.module.scss"
 import SingleTransaction from "../../components/TransactionList/SingleTransaction.jsx"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

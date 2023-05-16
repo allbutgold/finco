@@ -48,7 +48,7 @@ const Home = () => {
 			<TranscactionsStats
 				incomeAmount={totalIncome}
 				expenseAmount={totalExpenses}
-        expensePath="/report/expense"
+				expensePath="/report/expense"
 				incomePath="/report/income"
 			/>
 			<TransactionsCardMini

@@ -7,8 +7,8 @@ import TransactionCard from "./TransactionCard";
 import { incomeStyles, expenseStyles } from "../../utils/helper.js";
 
 function TranscactionsStats({ incomeAmount, expenseAmount, mini, incomePath, expensePath }) {
-	return (
-		<div className={styles.TranscactionsStats}>
+  return (
+    <div className={styles.TranscactionsStats}>
       <Link to={incomePath}>
         <TransactionCard
           amount={incomeAmount}
@@ -21,15 +21,15 @@ function TranscactionsStats({ incomeAmount, expenseAmount, mini, incomePath, exp
 
       <Link to={expensePath}>
         <TransactionCard
-            amount={expenseAmount}
-            img={trendingDown}
-            style={expenseStyles}
-            content="Expense"
-            mini={mini}
-          />
+          amount={expenseAmount}
+          img={trendingDown}
+          style={expenseStyles}
+          content="Expense"
+          mini={mini}
+        />
       </Link>
     </div>
-	);
+  );
 }
 
 export default TranscactionsStats;
