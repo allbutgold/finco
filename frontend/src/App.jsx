@@ -11,8 +11,6 @@ import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Menu from "./pages/Menu/Menu.jsx";
-import AddExpense from "./pages/AddTransactions/AddExpense.jsx";
-import AddIncome from "./pages/AddTransactions/AddIncome.jsx";
 import AddTransactions from "./pages/AddTransactions/AddTransactions";
 import FilterExpenses from "./pages/FilterTransactions/FilterExpenses";
 import Onboarding from "./pages/Onboarding/Onboarding.jsx";
