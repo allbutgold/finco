@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "../../components/Header/Header";
+import styles from "./Menu.module.scss";
 
 function FAQ() {
 	return (
-		<section>
-			<Header />
+		<section className={styles.Faq}>
+			<Header back profileMenu />
 			<h1>FAQ</h1>
 			<details>
 				<summary>Q: I signed up, but I'm feeling lost. What do I do?</summary>
