@@ -37,7 +37,7 @@ function CreditCardDetails() {
 						setValidCC(true);
 					} else {
 						setValidCC(false);
-						messageRef.current.showModal();
+						// messageRef.current.showModal();
 					}
 					setCardInfo({ cardNumber: cardNumber, expDate: date });
 				} else {

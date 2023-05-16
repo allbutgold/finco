@@ -1,19 +1,22 @@
-.FilterContainer {
-	display: flex;
-	flex-wrap: nowrap;
-	flex-direction: row;
-	justify-content: center;
-	margin-bottom: 5vw;
-	gap: 2vw;
-	div {
-		input {
-			padding: 2vw;
-			border: 1px solid var(--stroke-100);
-			border-radius: 30px;
-			font-size: 1rem;
-		}
-		button {
-			background: none;
-		}
-	}
-}
+// .FilterContainer {
+// 	display: flex;
+// 	flex-wrap: nowrap;
+// 	flex-direction: row;
+// 	justify-content: center;
+// 	margin-bottom: 5vw;
+// 	position: sticky;
+// 	background-color: blue;
+
+// 	gap: 2vw;
+// 	div {
+// 		input {
+// 			padding: 2vw;
+// 			border: 1px solid var(--stroke-100);
+// 			border-radius: 30px;
+// 			font-size: 1rem;
+// 		}
+// 		button {
+// 			background: none;
+// 		}
+// 	}
+// }

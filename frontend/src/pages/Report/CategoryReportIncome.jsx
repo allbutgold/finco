@@ -4,10 +4,7 @@ import Header from "../../components/Header/Header";
 import SingleTransaction from "../../components/TransactionList/SingleTransaction";
 import TransactionCard from "../../components/TransactionsStats/TransactionCard";
 import img from "../../assets/img/trending-up.svg";
-import {
-	formatToDollar,
-	incomeStyles,
-} from "../../utils/helper";
+import { formatToDollar, incomeStyles } from "../../utils/helper";
 import styles from "./Report.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -92,11 +89,9 @@ function CategoryReport() {
 		}, 0);
 	};
 
-	console.log();
 	return (
 		<section className={styles.Expenses}>
 			<Header profile back title="Income" />
-			{/* <h2>Income</h2> */}
 			<TransactionCard
 				mini
 				content="Current"
@@ -105,31 +100,34 @@ function CategoryReport() {
 				amount={formatToDollar(totalIncome)}
 			/>
 
-			<div className={styles.graph}>
-				{income && <DoughnutChart type={income} />}
+			<div className={styles.scrollable}>
+				<div className={styles.graph}>
+					{expenses && <DoughnutChart type={expenses} />}
+				</div>
+				<div className={styles.sticky}>
+					<div className={styles.FilterContainer}>
+						<DatePicker
+							id="startDatePicker"
+							selected={dateRange.startDate}
+							onChange={(date) =>
+								setDateRange({ ...dateRange, startDate: date })
+							}
+							dateFormat="yyyy-MM-dd"
+							isClearable
+							placeholderText="Select start date"
+						/>
+						<DatePicker
+							id="endDatePicker"
+							selected={dateRange.endDate}
+							onChange={(date) => setDateRange({ ...dateRange, endDate: date })}
+							dateFormat="yyyy-MM-dd"
+							isClearable
+							placeholderText="Select end date"
+						/>
+					</div>
+				</div>
 			</div>
 
-			<div className={styles.FilterContainer}>
-				<DatePicker
-					id="startDatePicker"
-					selected={dateRange.startDate}
-					onChange={(date) => setDateRange({ ...dateRange, startDate: date })}
-					dateFormat="yyyy-MM-dd"
-					isClearable
-					placeholderText="Select start date"
-				/>
-
-				<DatePicker
-					id="endDatePicker"
-					selected={dateRange.endDate}
-					onChange={(date) => setDateRange({ ...dateRange, endDate: date })}
-					dateFormat="yyyy-MM-dd"
-					isClearable
-					placeholderText="Select end date"
-				/>
-			</div>
-
-			{/*   <h3>Categories</h3> */}
 			<div className={styles.container}>
 				{transactions
 					.filter((transaction) => {

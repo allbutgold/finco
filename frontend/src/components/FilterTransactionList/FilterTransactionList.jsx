@@ -70,7 +70,7 @@ const FilterTransactionList = () => {
 	return (
 		<section className={styles.Transactions}>
 			<div className={styles.DateFilterContainer}>
-				<label htmlFor="date"></label>
+				{/* <label htmlFor="date"></label> */}
 				<DatePicker
 					selected={startDate}
 					onChange={handleStartDateChange}
@@ -80,7 +80,7 @@ const FilterTransactionList = () => {
 					shouldCloseOnSelect={true}
 				/>
 
-				<label htmlFor="date"></label>
+				{/* <label htmlFor="date"></label> */}
 				<DatePicker
 					selected={endDate}
 					onChange={handleEndDateChange}
