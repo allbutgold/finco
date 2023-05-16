@@ -11,6 +11,8 @@ import {
 
 	// Legend,
 } from "chart.js";
+import gradient from "chartjs-plugin-gradient";
+import annotationPlugin from "chartjs-plugin-annotation";
 
 import { Line } from "react-chartjs-2";
 
@@ -21,7 +23,9 @@ ChartJS.register(
 	LineElement,
 	Filler,
 	Title,
-	Tooltip
+	Tooltip,
+	gradient,
+	annotationPlugin
 	// Legend
 );
 
@@ -65,18 +69,48 @@ function MultiAxis({ filteredTransaction }) {
 				fill: true,
 				data: data.incomeData,
 				yAxisID: "income",
-				backgroundColor: "#298bff50",
-				borderColor: "#298bff",
+				// backgroundColor: "#298bff50",
 				tension: 0.5,
+				borderColor: "#298bff",
+				gradient: {
+					backgroundColor: {
+						axis: "y",
+						colors: {
+							0: "#44bbfe50",
+							100: "#1e78fe50",
+						},
+					},
+					borderColor: "#298bff",
+				},
+				datalabels: {
+					labels: {
+						title: null,
+					},
+				},
 			},
 			{
 				label: "Expenses",
 				fill: true,
 				data: data.expensesData,
 				yAxisID: "expenses",
-				backgroundColor: " #ffaa1a50",
+				// backgroundColor: " #ffaa1a50",
 				borderColor: " #ffaa1a",
 				tension: 0.5,
+				gradient: {
+					backgroundColor: {
+						axis: "y",
+						colors: {
+							0: "##ffcf5350 ",
+							100: "#ff990050",
+						},
+					},
+					borderColor: " #ffaa1a",
+				},
+				datalabels: {
+					labels: {
+						title: null,
+					},
+				},
 			},
 			{
 				label: "Balance",
@@ -86,10 +120,18 @@ function MultiAxis({ filteredTransaction }) {
 				backgroundColor: " #1aff4850",
 				borderColor: " #1aff35b5",
 				tension: 0.5,
+				datalabels: {
+					labels: {
+						title: null,
+					},
+				},
 			},
 		],
 	};
 	const maxValue = Math.max(
+		...chartData.datasets.flatMap((dataset) => dataset.data)
+	);
+	const minValue = Math.min(
 		...chartData.datasets.flatMap((dataset) => dataset.data)
 	);
 
@@ -180,6 +222,18 @@ function MultiAxis({ filteredTransaction }) {
 		responsive: true,
 		stacked: true,
 		plugins: {
+			annotation: {
+				annotations: {
+					line1: {
+						type: "line",
+						yScaleID: "balance",
+						yMin: 0,
+						yMax: 0,
+						borderColor: "rgb(255, 99, 132)",
+						borderWidth: 2,
+					},
+				},
+			},
 			title: {
 				display: false,
 				text: "Transactions",
@@ -209,6 +263,8 @@ function MultiAxis({ filteredTransaction }) {
 			},
 			y: {
 				suggestedMax: maxValue,
+				suggestedMin: minValue,
+
 				grid: {
 					display: true,
 					drawBorder: true,
@@ -218,11 +274,15 @@ function MultiAxis({ filteredTransaction }) {
 				display: true,
 				beginAtZero: true,
 				ticks: {
-					display: false,
+					display: true,
+					callback: function (value, index, values) {
+						return value < 0 ? -value : value;
+					},
 				},
 			},
 			expenses: {
 				suggestedMax: maxValue,
+				suggestedMin: minValue,
 				grid: {
 					display: true,
 				},
@@ -230,10 +290,15 @@ function MultiAxis({ filteredTransaction }) {
 				beginAtZero: true,
 				ticks: {
 					display: false,
+					callback: function (value, index, values) {
+						return value < 0 ? -value : value;
+					},
 				},
 			},
 			income: {
 				suggestedMax: maxValue,
+				suggestedMin: minValue,
+
 				display: false,
 				beginAtZero: true,
 				ticks: {
@@ -242,11 +307,15 @@ function MultiAxis({ filteredTransaction }) {
 			},
 			balance: {
 				suggestedMax: maxValue,
+				suggestedMin: minValue,
 				display: false,
 				beginAtZero: false, // Set to false to include negative values
 				ticks: {
 					display: false,
 					reverse: false,
+					callback: function (value, index, values) {
+						return value < 0 ? -value : value;
+					},
 				},
 			},
 		},

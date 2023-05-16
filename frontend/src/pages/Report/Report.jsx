@@ -61,11 +61,15 @@ const Report = () => {
         expenseContent={"Total Expense"}
         incomeContent={"Total Income"}
 			/>
-			<div className={styles.graph}>
-				<MultiAxis filteredTransaction={transactions} />
+			<div className={styles.scrollable}>
+				<div className={styles.graph}>
+					<MultiAxis filteredTransaction={transactions} />
+				</div>
+				<div className={styles.sticky}>
+					<h3>Total Transactions</h3>
+				</div>
+				<AllTransactions transactions={sortedTransactions} />
 			</div>
-			<h3>Total Transactions</h3>
-			<AllTransactions transactions={sortedTransactions} />
 		</section>
 	);
 };

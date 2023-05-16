@@ -1,34 +1,80 @@
 .Report {
-	// padding: 7vw 7vw 0 7vw;
 	display: grid;
 	height: 100%;
 	gap: 3vw;
-	grid-template-rows: min-content min-content min-content min-content auto;
-}
-
-.graph {
-	border: 1px solid var(--stroke-100);
-	border-radius: 20px;
-	display: grid;
-	place-content: center;
-	padding: 3vw;
+	// overflow-y: scroll;
+	// grid-template-rows: min-content min-content min-content min-content auto;
+	grid-template-rows: min-content auto;
+	.scrollable {
+		overflow-y: scroll;
+		position: relative;
+		// display: grid;
+		// grid-template-rows: 25vh min-content min-content auto;
+		gap: 1vh;
+		.graph {
+			border: 1px solid var(--stroke-100);
+			border-radius: 20px;
+			display: grid;
+			place-content: center;
+			padding: 1vh 1vw;
+			// min-height: 35vh;
+		}
+		.sticky {
+			position: sticky;
+			top: 0;
+			background: white;
+			z-index: 100;
+			padding: 1vh;
+		}
+	}
 }
 
 .Expenses {
 	display: grid;
 	height: 100%;
 	gap: 3vw;
-	grid-template-rows: min-content min-content 30vh min-content auto;
-	.container {
+	overflow-y: scroll;
+	// grid-template-rows: min-content min-content 30vh min-content auto;
+	grid-template-rows: min-content min-content auto;
+	.scrollable {
+		width: 100%;
 		overflow-y: scroll;
+		position: relative;
+		height: 100%;
+		.graph {
+			border: 1px solid var(--stroke-100);
+			border-radius: 20px;
+			display: grid;
+			place-content: center;
+			padding: 1vh 1vw;
+			height: 30vh;
+		}
+		.sticky {
+			position: sticky;
+			top: 0;
+		}
+	}
+	.container {
+		// overflow-y: scroll;
+		height: 100%;
 	}
 	article {
-		width: 50%;
+		h4 {
+			grid-row: 1/3;
+			align-self: center;
+			justify-self: end;
+			font-size: 1.4rem;
+		}
+		p {
+			display: none;
+		}
 	}
 }
-
+//* Container of expenses and income
 .FilterContainer {
 	display: flex;
+	background-color: white;
+	padding: 1vh 0;
 	flex-wrap: nowrap;
 	flex-direction: row;
 	justify-content: center;

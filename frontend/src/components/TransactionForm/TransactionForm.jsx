@@ -12,15 +12,12 @@ function TransactionForm({ handleSubmit, type }) {
 
 	const handleCategory = (event) => {
 		setCategory(event.target.value);
-		setOpen(null);
+		setOpen(false);
 	};
-
-	// console.log("open", open);
 
 	useEffect(() => {
 		setOpen(null);
 		setCategory(categories[`${type}`][0].name);
-		// setType(currentType);
 	}, [currentType, type]);
 
 	return (
@@ -48,11 +45,13 @@ function TransactionForm({ handleSubmit, type }) {
 					{selectedCat} <img src={forward} alt="arrow" />
 				</button>
 				<CategoryList
-					key={String(type)}
 					onClick={handleCategory}
 					open={open}
 					required
-					onclick={() => setOpen(false)}
+					onclick={() => {
+						setOpen(false);
+						console.log("Clicked");
+					}}
 				/>
 
 				<div>
