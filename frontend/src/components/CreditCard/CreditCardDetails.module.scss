@@ -33,14 +33,50 @@
 		}
 		h6 {
 			justify-self: end;
+			font-size: 0.9rem;
+			font-variation-settings: "wght" 400;
 		}
+	}
+	dialog:modal {
+		background: var(--bg-100);
+		width: 100%;
+		display: grid;
+		place-content: center;
+		div {
+			background: var(--danger-col);
+			padding: 0.5rem;
+			border-radius: 5px;
+			width: fit-content;
+			margin: 1rem auto;
+		}
+		h3 {
+			text-align: center;
+			font-variation-settings: "wght" 400;
+			color: var(--font-100);
+			font-size: 1rem;
+			line-height: 1.4rem;
+		}
+		button {
+			all: unset;
+			border-radius: 5px;
+			border: 1px solid red;
+			display: block;
+			margin: 1rem auto;
+			padding: 0.5rem;
+			&:hover {
+				transform: translateY(3px);
+			}
+		}
+	}
+	dialog::backdrop {
+		backdrop-filter: blur(2px);
 	}
 }
 
 //TODO: CERA PRO for Card Details
 
 .verification {
-	background: var(--secondary-col);
+	// background: var(--secondary-col);
 	display: inline;
 	border-radius: 50%;
 	width: 30px;
