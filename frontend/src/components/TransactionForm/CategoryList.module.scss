@@ -71,6 +71,9 @@
 		grid-template-columns: 1fr 3fr 1fr 1fr;
 		align-items: center;
 		cursor: pointer;
+		h3 {
+			font-size: 1.5rem;
+		}
 		input[type="radio"] {
 			all: unset;
 		}
