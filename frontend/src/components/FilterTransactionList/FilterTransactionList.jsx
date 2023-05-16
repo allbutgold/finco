@@ -46,7 +46,9 @@ const FilterTransactionList = () => {
 		.filter(([key, array]) =>
 			array.some(
 				(transaction) =>
-					transaction.category.toLowerCase().includes(filterTerm.toLowerCase()) &&
+					transaction.category
+						.toLowerCase()
+						.includes(filterTerm.toLowerCase()) &&
 					(!startDate || new Date(transaction.date) >= startDate) &&
 					(!endDate || new Date(transaction.date) <= endDate)
 			)
@@ -55,7 +57,9 @@ const FilterTransactionList = () => {
 			key,
 			array.filter(
 				(transaction) =>
-					transaction.category.toLowerCase().includes(filterTerm.toLowerCase()) &&
+					transaction.category
+						.toLowerCase()
+						.includes(filterTerm.toLowerCase()) &&
 					(!startDate || new Date(transaction.date) >= startDate) &&
 					(!endDate || new Date(transaction.date) <= endDate)
 			),
@@ -66,26 +70,25 @@ const FilterTransactionList = () => {
 	return (
 		<section className={styles.Transactions}>
 			<div className={styles.DateFilterContainer}>
-				<label>
-					<DatePicker
-						selected={startDate}
-						onChange={handleStartDateChange}
-						dateFormat="yyyy-MM-dd"
-						isClearable
-						placeholderText="Select start date"
-						shouldCloseOnSelect={true}
-					/>
-				</label>
-				<label>
-					<DatePicker
-						selected={endDate}
-						onChange={handleEndDateChange}
-						dateFormat="yyyy-MM-dd"
-						isClearable
-						placeholderText="Select end date"
-						shouldCloseOnSelect={true}
-					/>
-				</label>
+				<label htmlFor="date"></label>
+				<DatePicker
+					selected={startDate}
+					onChange={handleStartDateChange}
+					dateFormat="yyyy-MM-dd"
+					isClearable
+					placeholderText="Select start date"
+					shouldCloseOnSelect={true}
+				/>
+
+				<label htmlFor="date"></label>
+				<DatePicker
+					selected={endDate}
+					onChange={handleEndDateChange}
+					dateFormat="yyyy-MM-dd"
+					isClearable
+					placeholderText="Select end date"
+					shouldCloseOnSelect={true}
+				/>
 			</div>
 			<div className={styles.CategoryFilterContainer}>
 				<label>
@@ -113,7 +116,7 @@ const FilterTransactionList = () => {
 					))
 				)}
 			</article>
-		</section >
+		</section>
 	);
 };
 
