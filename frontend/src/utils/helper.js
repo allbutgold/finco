@@ -31,6 +31,14 @@ export const mapType = (category, type) => {
 	});
 	return found[type];
 };
+
+export const mapCategory = (category, type) => {
+	let found = categories[type].find((element) => {
+		return element.name == category;
+	});
+	return found["emoji"];
+};
+
 //* map color to transaction
 export const mapColor = (category) => {
 	let found = categories[category.type].find((element) => {

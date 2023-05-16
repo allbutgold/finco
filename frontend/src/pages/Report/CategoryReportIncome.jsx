@@ -43,6 +43,7 @@ function CategoryReport() {
 					let expenses = {
 						labels: Object.keys(cat),
 						data: Object.values(cat),
+						type: "income",
 					};
 					setExpenses(expenses);
 					setTransactions(data.transactions);
@@ -79,6 +80,7 @@ function CategoryReport() {
 		let expenses = {
 			labels: Object.keys(cat),
 			data: Object.values(cat),
+			type: "income",
 		};
 		setExpenses(expenses);
 		setTotalExpenses(calculateTotalExpenses(filteredTransactions));
