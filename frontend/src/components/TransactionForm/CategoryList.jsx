@@ -9,16 +9,18 @@ import search from "../../assets/img/search.svg";
 import back from "../../assets/img/back.svg";
 import { transactionStore } from "../../utils/transactionStore.js";
 
-function CategoryList({ onClick, open, onclick }) {
-	const currentType = transactionStore.getState().transactionType;
+function CategoryList({ onClick, open, onclick, currentType }) {
+	// const currentType = transactionStore.getState().transactionType;
 	const [type, setType] = useState(currentType);
 	// console.log("ctlist", type);
 	const navigate = useNavigate();
+	const inputRef = useRef();
 	const searchRef = useRef();
 	const [filteredCat, setFiltered] = useState(categories[`${type}`]);
 
 	useEffect(() => {
 		setType(currentType);
+		filterCategories();
 	}, [currentType, type]);
 
 	const filterCategories = () => {
@@ -68,7 +70,9 @@ function CategoryList({ onClick, open, onclick }) {
 								name="category"
 								id={category.name}
 								value={category.name}
-								required
+								ref={inputRef}
+								// required
+								onChange={(e) => console.log(e.target.value)}
 							/>
 							<img src={forward} alt="icon" />
 						</label>

@@ -12,6 +12,8 @@ import { useState } from "react";
 import Toggle from "../../components/TransactionForm/Toggle";
 
 function AddTransactions() {
+	const [valid, setValid] = useState(false);
+
 	const URL = import.meta.env.VITE_BACKEND_URL;
 	const navigate = useNavigate();
 	const currentType = transactionStore.getState().transactionType;
@@ -33,9 +35,10 @@ function AddTransactions() {
 		})
 			.then((response) => {
 				if (!response.ok) {
-					throw new Error("Could not add transaction");
+					throw new Error("Invalid input!");
+				} else {
+					return response.text();
 				}
-				return response.text();
 			})
 			.then((message) => {
 				console.log(message);
@@ -43,7 +46,7 @@ function AddTransactions() {
 			})
 			.catch((err) => {
 				console.error(err);
-				throw new Error("Could not add transaction. Please try again later.");
+				throw new Error("Could not add transaction.");
 			});
 
 		await toast.promise(transactionFetch, {
@@ -53,11 +56,10 @@ function AddTransactions() {
 				return `Added ${type}!`;
 			},
 			error: (err) => {
-				console.error(err);
-				return `Could not add ${type}. Please try again later.`;
+				console.error(err.message);
+				return `Could not add ${type}.`;
 			},
 		});
-
 		navigateWithDelay(navigate, "/", 1000);
 	};
 

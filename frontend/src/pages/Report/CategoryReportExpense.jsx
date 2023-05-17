@@ -89,7 +89,7 @@ function CategoryReport() {
 			return total + parseFloat(transaction.amount);
 		}, 0);
 	};
-
+	if (!transactions) return;
 	return (
 		<section className={styles.Expenses}>
 			<Header profile back title="Expenses" />

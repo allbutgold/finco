@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -8,13 +7,12 @@ import {
 	Title,
 	Filler,
 	Tooltip,
-
-	// Legend,
 } from "chart.js";
 import gradient from "chartjs-plugin-gradient";
 import annotationPlugin from "chartjs-plugin-annotation";
 
 import { Line } from "react-chartjs-2";
+import { formatToDollar } from "../../utils/helper.js";
 
 ChartJS.register(
 	CategoryScale,
@@ -26,7 +24,6 @@ ChartJS.register(
 	Tooltip,
 	gradient,
 	annotationPlugin
-	// Legend
 );
 
 function MultiAxis({ filteredTransaction }) {
@@ -100,7 +97,7 @@ function MultiAxis({ filteredTransaction }) {
 					backgroundColor: {
 						axis: "y",
 						colors: {
-							0: "##ffcf5350 ",
+							0: "##ffcf5310 ",
 							100: "#ff990050",
 						},
 					},
@@ -114,7 +111,7 @@ function MultiAxis({ filteredTransaction }) {
 			},
 			{
 				label: "Balance",
-				fill: false,
+				fill: true,
 				data: data.balanceData,
 				yAxisID: "balance",
 				backgroundColor: " #1aff4850",
@@ -134,89 +131,6 @@ function MultiAxis({ filteredTransaction }) {
 	const minValue = Math.min(
 		...chartData.datasets.flatMap((dataset) => dataset.data)
 	);
-
-	// Creating the chart options object
-	/* 	const options = {
-		responsive: true,
-		stacked: true,
-		plugins: {
-			title: {
-				display: false,
-				text: "Transactions",
-			},
-			legend: { display: false },
-		},
-		scales: {
-			x: {
-				ticks: {
-					align: "inner",
-					callback: (value, index, values) => {
-						if (index === 0 || index === values.length - 1) {
-							return chartData.labels[index];
-						}
-						// return value;
-					},
-					// color: "transparent",
-					// display: false,
-				},
-				plugins: {
-					tooltip: {
-						enabled: true,
-					},
-				},
-
-				grid: {
-					drawBorder: true,
-					drawTicks: true,
-				},
-			},
-			y: {
-				suggestedMax: maxValue,
-				grid: {
-					display: true,
-					drawBorder: true,
-					drawTicks: false,
-					drawOnChartArea: true,
-				},
-				display: true,
-				beginAtZero: true,
-				ticks: {
-					display: false,
-				},
-			},
-			expenses: {
-				suggestedMax: maxValue,
-
-				grid: {
-					display: true,
-				},
-				display: false,
-				beginAtZero: true,
-				ticks: {
-					display: false,
-				},
-			},
-			income: {
-				suggestedMax: maxValue,
-
-				display: false,
-				beginAtZero: true,
-				ticks: {
-					display: false,
-				},
-			},
-			balance: {
-				suggestedMax: maxValue,
-				display: false,
-				beginAtZero: false,
-				ticks: {
-					display: false,
-					reverse: true,
-				},
-			},
-		},
-	};
- */
 
 	const options = {
 		responsive: true,
@@ -248,7 +162,6 @@ function MultiAxis({ filteredTransaction }) {
 						if (index === 0 || index === values.length - 1) {
 							return chartData.labels[index];
 						}
-						// return value;
 					},
 				},
 				plugins: {
@@ -262,6 +175,7 @@ function MultiAxis({ filteredTransaction }) {
 				},
 			},
 			y: {
+				// display y axis values
 				suggestedMax: maxValue,
 				suggestedMin: minValue,
 
@@ -272,11 +186,11 @@ function MultiAxis({ filteredTransaction }) {
 					drawOnChartArea: true,
 				},
 				display: true,
-				beginAtZero: true,
+				beginAtZero: false, // Set to false to include negative values
 				ticks: {
 					display: true,
 					callback: function (value, index, values) {
-						return value < 0 ? -value : value;
+						return formatToDollar(value);
 					},
 				},
 			},
