@@ -57,24 +57,26 @@ function CategoryList({ onClick, open, onclick }) {
 				</label>
 			</div>
 
-			{filteredCat.length > 0 ? (
-				filteredCat.map((category) => (
-					<label onClick={onClick} key={category.id} htmlFor={category.name}>
-						<img src={category.icon} alt={category.icon} width="25px" />
-						<p>{category.name}</p>
-						<input
-							type="radio"
-							name="category"
-							id={category.name}
-							value={category.name}
-							required
-						/>
-						<img src={forward} alt="icon" />
-					</label>
-				))
-			) : (
-				<p className={styles.notFound}> Sorry no matching category found !</p>
-			)}
+			<div className={styles.categoryList}>
+				{filteredCat.length > 0 ? (
+					filteredCat.map((category) => (
+						<label onClick={onClick} key={category.id} htmlFor={category.name}>
+							<h3>{category.emoji}</h3>
+							<p>{category.name}</p>
+							<input
+								type="radio"
+								name="category"
+								id={category.name}
+								value={category.name}
+								required
+							/>
+							<img src={forward} alt="icon" />
+						</label>
+					))
+				) : (
+					<p className={styles.notFound}> Sorry no matching category found !</p>
+				)}
+			</div>
 		</div>
 	);
 }

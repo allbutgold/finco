@@ -109,7 +109,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 					/>
 					<div>
 						<button type="submit">CHANGE</button>
-						<button onClick={() => dialogRef.current.close()}>Close</button>
+						<button onClick={() => dialogRef.current.close()}>KEEP</button>
 					</div>
 				</form>
 			</dialog>

@@ -126,7 +126,6 @@ function CategoryReport() {
 						/>
 					</div>
 				</div>
-
 				<div className={styles.container}>
 					{transactions
 						.filter((transaction) => {

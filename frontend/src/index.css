@@ -10,9 +10,10 @@
 	--font-200: #0d1636;
 	--font-300: #298bff;
 	--font-400: #ffaa1a;
+	--positive-col: linear-gradient(180deg, #93d494 0%, #00ba4a 100%);
 	--primary-col: linear-gradient(180deg, #44bbfe 0%, #1e78fe 100%);
 	--secondary-col: linear-gradient(180deg, #ffcf53 0%, #ff9900 100%);
-	--danger-col: linear-gradient(180deg, #ff539b 0%, #ff0000 100%);
+	--danger-col: linear-gradient(180deg, #ffcf53 0%, #ff9900 100%);
 	--boxShadow-100: 0px 15px 35px rgba(32, 124, 254, 0.2);
 	--boxShadow-200: 0px 10px 30px rgba(255, 153, 0, 0.2);
 	--stroke-100: #ebebeb;
@@ -42,7 +43,7 @@ button {
 	color: var(--white);
 	border-radius: 30px;
 	border: none;
-	padding: 1rem 2.5rem;
+	padding: 1.8vh 2vw;
 	display: flex;
 	align-items: center;
 	gap: 1rem;

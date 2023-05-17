@@ -70,7 +70,6 @@ function AddTransactions() {
 	return (
 		<section className={styles.AddExpense}>
 			<Header back profile title="Add Transactions" />
-			{/* <h1>Add Transaction</h1> */}
 			<Toggle onchange={handleChange} />
 			<CreditCardDetails />
 			<TransactionForm handleSubmit={addTransaction} type={type} />

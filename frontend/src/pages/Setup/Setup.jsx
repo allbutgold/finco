@@ -5,8 +5,7 @@ import Header from "../../components/Header/Header";
 const Setup = () => {
 	return (
 		<section className={styles.Setup}>
-			<Header />
-			<h1>Setup your account</h1>
+			<Header title="Setup your account" />
 			<SetupForm />
 		</section>
 	);
