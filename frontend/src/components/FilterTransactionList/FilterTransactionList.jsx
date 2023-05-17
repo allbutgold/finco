@@ -67,6 +67,8 @@ const FilterTransactionList = () => {
 
 	filteredTransactions.sort((a, b) => new Date(b[0]) - new Date(a[0]));
 
+	if (!transactions) return;
+
 	return (
 		<section className={styles.Transactions}>
 			<div className={styles.DateFilterContainer}>

@@ -22,6 +22,7 @@ const TransactionList = ({ transactions }) => {
 		}
 		return transactions;
 	};
+	if (!transactions) return;
 	return (
 		<div className={styles.TransactionContainer}>
 			<div className={styles.FilterContainer}>

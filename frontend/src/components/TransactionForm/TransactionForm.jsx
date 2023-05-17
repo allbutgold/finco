@@ -5,7 +5,7 @@ import { categories } from "../../utils/helper.js";
 import { useEffect, useState } from "react";
 import { transactionStore } from "../../utils/transactionStore.js";
 
-function TransactionForm({ handleSubmit, type }) {
+function TransactionForm({ handleSubmit, type, handleAmount }) {
 	const currentType = transactionStore.getState().transactionType;
 	const [open, setOpen] = useState(null);
 	const [selectedCat, setCategory] = useState(categories[`${type}`][0].name);
@@ -29,29 +29,27 @@ function TransactionForm({ handleSubmit, type }) {
 						type="number"
 						name="amount"
 						id="amount"
-						placeholder="0"
+						step=".01"
+						placeholder="0.00"
 						required
+						onChange={handleAmount}
 					/>
 				</label>
 
 				<label htmlFor="category">Category</label>
 				<button
-					onClick={() => {
-						setOpen(true);
-					}}
+					onClick={() => setOpen(true)}
 					className={styles.btn}
 					type="button"
 					value={selectedCat}>
 					{selectedCat} <img src={forward} alt="arrow" />
 				</button>
+
 				<CategoryList
 					onClick={handleCategory}
 					open={open}
-					required
-					onclick={() => {
-						setOpen(false);
-						console.log("Clicked");
-					}}
+					onclick={() => setOpen(false)}
+					currentType={type}
 				/>
 
 				<div>

@@ -41,7 +41,7 @@ const Navigation = () => {
 				)}
 			</Link>
 			<Link to="/transactions">
-				{location.pathname === "/transactions" ? (
+				{location.pathname.includes("/transactions") ? (
 					<img src={transactionsActive} alt="Transactions" />
 				) : (
 					<img src={transactions} alt="Transactions" />
@@ -56,7 +56,7 @@ const Navigation = () => {
 				)}
 			</Link>
 			<Link to="/report">
-				{location.pathname === "/report" ? (
+				{location.pathname.includes("/report") ? (
 					<img src={reportActive} alt="Report" />
 				) : (
 					<img src={report} alt="Report" />
