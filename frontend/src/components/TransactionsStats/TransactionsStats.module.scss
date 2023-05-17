@@ -97,7 +97,10 @@ dialog:modal {
 		button {
 			padding: 0.3rem 0.6rem;
 			border-radius: 5px;
-			background: var(--bg-100);
+			// background: var(--bg-100);
+			width: 100%;
+			color: white;
+			text-align: center;
 		}
 		img {
 			padding: 0;
@@ -110,10 +113,12 @@ dialog:modal {
 			padding: 0.5rem;
 			border: none;
 			text-align: center;
+			font-size: 1.1rem;
 		}
 		div {
 			display: flex;
 			justify-content: space-between;
+			gap: 0.5rem;
 		}
 	}
 }
