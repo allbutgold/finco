@@ -7,7 +7,7 @@ import { transactionStore } from "../../utils/transactionStore.js";
 // import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
-import { navigateWithDelay } from "../../utils/helper.js";
+import { categories, navigateWithDelay } from "../../utils/helper.js";
 import { useState } from "react";
 import Toggle from "../../components/TransactionForm/Toggle";
 
@@ -20,6 +20,7 @@ function AddTransactions() {
 	const setCurrentType = (value) =>
 		transactionStore.getState().setTransactionType(value);
 	const [type, setType] = useState(currentType);
+	const [selectedCat, setCategory] = useState(categories[`${type}`][0].name);
 
 	// const userID = userStore.getState().userID;
 
@@ -28,6 +29,10 @@ function AddTransactions() {
 		const form = new FormData(event.target);
 		form.append("type", type);
 		form.delete("search");
+		if (form.get("category") == null) {
+			form.append("category", selectedCat);
+		}
+		console.log(form.get("category"));
 		const transactionFetch = fetch(URL + "addTransaction", {
 			method: "POST",
 			credentials: "include",
