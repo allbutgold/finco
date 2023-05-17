@@ -43,7 +43,7 @@ button {
 	color: var(--white);
 	border-radius: 30px;
 	border: none;
-	padding: 2vh 2vw;
+	padding: 2vh 5vw;
 	display: flex;
 	align-items: center;
 	gap: 1rem;

@@ -26,9 +26,9 @@ const Onboarding = () => {
 
 			<WelcomeScreen
 				img={giftcard}
-				title="Analyze your
+				title="Organize your
 		  spending"
-				subtitle="Track and analyze your expenses to improve your financial health."
+				subtitle="Say goodbye to chaotic finances and start your journey to financial freedom with Finco."
 				button="Get Started"
 				onclick={() => {
 					navigate("/register");
@@ -37,7 +37,7 @@ const Onboarding = () => {
 			<WelcomeScreen
 				img={bankcard}
 				title="Track your spend and income"
-				subtitle="Manage your finances more effectively with our intuitive app."
+				subtitle="With Finco, you always know exactly how much money you're spending and what it's being spent on."
 				button="Next"
 				skip
 				next={next}
