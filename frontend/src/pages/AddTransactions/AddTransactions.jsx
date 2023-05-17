@@ -64,7 +64,7 @@ function AddTransactions() {
 				return `Could not add ${type}.`;
 			},
 		});
-		navigateWithDelay(navigate, "/", 1000);
+		navigateWithDelay(navigate, `/transactions/${type}`, 1500);
 	};
 
 	const handleChange = (e) => {

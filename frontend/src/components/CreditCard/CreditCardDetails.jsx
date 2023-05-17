@@ -36,7 +36,9 @@ function CreditCardDetails() {
 						setValidCC(true);
 					} else {
 						setValidCC(false);
-						// messageRef.current.showModal();
+						if (!messageRef.current.open) {
+							messageRef.current.showModal();
+						}
 					}
 					setCardInfo({ cardNumber: cardNumber, expDate: date });
 				} else {
@@ -70,13 +72,12 @@ function CreditCardDetails() {
 				<img src={chip} alt="chip" width="50px" />
 				<h6>{cardInfo.expDate}</h6>
 			</div>
-			{/* <dialog ref={messageRef}>
+			<dialog ref={messageRef}>
 				<div>
 					<img src={alert} alt="alert" />
 				</div>
 				<h3>
-					Sorry to break it down to you, but your credit card has expired!{" "}
-					<br></br>
+					Your credit card has expired! <br></br>
 					Contact your provider ASAP!
 					<button
 						onClick={() => {
@@ -85,7 +86,7 @@ function CreditCardDetails() {
 						GOT IT!
 					</button>
 				</h3>
-			</dialog> */}
+			</dialog>
 		</div>
 	);
 }
