@@ -2,31 +2,30 @@
 	form {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5vh;
+		gap: 1vh;
 		overflow: hidden;
+		padding-top: 1vh;
 
 		input:not(input[type="search"], input[type="radio"]) {
 			border-radius: 30px;
 			border: none;
 			background-color: var(--bg-100);
-			padding: 2vh 2.5rem;
+			padding: 1.5vh 2rem;
 			font-family: Urbanist;
 			width: 100%;
 		}
 		input[name="date"] {
 			padding: 2vh 1rem;
-			// min-width: 96%;
 			-webkit-appearance: none;
 		}
 		input[name="time"] {
-			// min-width: 96%;
 			min-height: 3vh;
 			-webkit-appearance: none;
 		}
 
 		input[type="number"] {
-			font-size: 1.2rem;
-			font-variation-settings: "wght" 600;
+			font-size: 1.1rem;
+			font-variation-settings: "wght" 500;
 			width: 100%;
 		}
 		label[for="amount"] {
@@ -37,13 +36,13 @@
 				position: absolute;
 				left: 0;
 				margin: 1.5vh;
-				font-size: 1.2rem;
+				font-size: 1.1rem;
 			}
 		}
 		div:not(.categoryHeader) {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 1rem;
+			gap: 1vh 2vw;
 		}
 		label {
 			font-size: 1rem;
@@ -51,6 +50,7 @@
 		}
 
 		button:last-of-type {
+			margin-top: 1.5vh;
 			justify-content: center;
 		}
 	}
@@ -60,7 +60,8 @@
 	color: var(--font-200);
 	justify-content: space-between;
 	box-shadow: none;
-	padding: 2vh 5vw;
+	font-size: 1rem;
+	padding: 1.5vh 4vw;
 }
 
 .notFound {
@@ -73,7 +74,7 @@
 	border-radius: 10px;
 	justify-content: space-between;
 	background: var(--bg-100);
-	padding: 0.5rem;
+	padding: 1vh 2vw;
 	gap: 0.5rem;
 
 	input {

@@ -89,6 +89,8 @@ function CategoryReport() {
 		}, 0);
 	};
 
+	if (!transactions) return;
+
 	return (
 		<section className={styles.Expenses}>
 			<Header profile back title="Income" />
@@ -126,7 +128,6 @@ function CategoryReport() {
 						/>
 					</div>
 				</div>
-
 				<div className={styles.container}>
 					{transactions
 						.filter((transaction) => {

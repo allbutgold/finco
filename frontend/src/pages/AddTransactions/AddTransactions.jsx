@@ -7,17 +7,20 @@ import { transactionStore } from "../../utils/transactionStore.js";
 // import { userStore } from "../../utils/userStore.js";
 import Header from "../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
-import { navigateWithDelay } from "../../utils/helper.js";
+import { categories, navigateWithDelay } from "../../utils/helper.js";
 import { useState } from "react";
 import Toggle from "../../components/TransactionForm/Toggle";
 
 function AddTransactions() {
+	const [valid, setValid] = useState(false);
+
 	const URL = import.meta.env.VITE_BACKEND_URL;
 	const navigate = useNavigate();
 	const currentType = transactionStore.getState().transactionType;
 	const setCurrentType = (value) =>
 		transactionStore.getState().setTransactionType(value);
 	const [type, setType] = useState(currentType);
+	const [selectedCat, setCategory] = useState(categories[`${type}`][0].name);
 
 	// const userID = userStore.getState().userID;
 
@@ -26,6 +29,9 @@ function AddTransactions() {
 		const form = new FormData(event.target);
 		form.append("type", type);
 		form.delete("search");
+		if (form.get("category") == null) {
+			form.append("category", selectedCat);
+		}
 		const transactionFetch = fetch(URL + "addTransaction", {
 			method: "POST",
 			credentials: "include",
@@ -33,9 +39,10 @@ function AddTransactions() {
 		})
 			.then((response) => {
 				if (!response.ok) {
-					throw new Error("Could not add transaction");
+					throw new Error("Invalid input!");
+				} else {
+					return response.text();
 				}
-				return response.text();
 			})
 			.then((message) => {
 				console.log(message);
@@ -43,7 +50,7 @@ function AddTransactions() {
 			})
 			.catch((err) => {
 				console.error(err);
-				throw new Error("Could not add transaction. Please try again later.");
+				throw new Error("Could not add transaction.");
 			});
 
 		await toast.promise(transactionFetch, {
@@ -53,11 +60,10 @@ function AddTransactions() {
 				return `Added ${type}!`;
 			},
 			error: (err) => {
-				console.error(err);
-				return `Could not add ${type}. Please try again later.`;
+				console.error(err.message);
+				return `Could not add ${type}.`;
 			},
 		});
-
 		navigateWithDelay(navigate, "/", 1000);
 	};
 
@@ -70,7 +76,6 @@ function AddTransactions() {
 	return (
 		<section className={styles.AddExpense}>
 			<Header back profile title="Add Transactions" />
-			{/* <h1>Add Transaction</h1> */}
 			<Toggle onchange={handleChange} />
 			<CreditCardDetails />
 			<TransactionForm handleSubmit={addTransaction} type={type} />

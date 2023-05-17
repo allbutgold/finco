@@ -2,50 +2,46 @@ import { getDb } from "../utils/db.js";
 import { createToken } from "../utils/create-token.utils.js";
 import { ObjectId } from "mongodb";
 
-
 function isValidPassword(password) {
-
-  if (password.length < 8) {
-      return false;
-  }
-  return true;
+	if (password.length < 8) {
+		return false;
+	}
+	return true;
 }
 function isValidEmail(email) {
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return emailRegex.test(email);
 }
 
 const register = async (req, res) => {
-  try {
-    const db = await getDb();
-    const { email, password } = req.body;
+	try {
+		const db = await getDb();
+		const { email, password } = req.body;
 
-    if (!isValidEmail(email)) {
-      res.status(400).send("Invalid email format");
-      return;
-    }
-    
-    if (!isValidPassword(password)) {
-      res.status(400).send("Invalid password");
-      return;
-    }
+		if (!isValidEmail(email)) {
+			res.status(400).send("Invalid email format");
+			return;
+		}
 
-    if (await check(email)) {
-      await db.collection("finco").insertOne(req.body);
-      res.status(200).send("Successfully registered");
-    } else {
-      res.status(401).send("Invalid email or password");
-    }
-  } catch (error) {
-    console.error("Error occurred during registration:", error);
-    res.status(500).send("Internal server error");
-  }
+		if (!isValidPassword(password)) {
+			res.status(400).send("Invalid password");
+			return;
+		}
+
+		if (await check(email)) {
+			await db.collection("finco").insertOne(req.body);
+			res.status(200).send("Successfully registered");
+		} else {
+			res.status(401).send("Invalid email or password");
+		}
+	} catch (error) {
+		console.error("Error occurred during registration:", error);
+		res.status(500).send("Internal server error");
+	}
 };
 
-
 const setup = async (req, res) => {
-  try {
+	try {
 		const { cardNumber, expDate, _id, budget } = req.body;
 		// const { path } = req.file;
 		// const { expDate } = req.body;
@@ -84,8 +80,7 @@ const setup = async (req, res) => {
 		console.log(err);
 		res.status(500).end();
 	}
-}
-
+};
 
 const login = async (req, res) => {
 	try {
@@ -115,7 +110,7 @@ const login = async (req, res) => {
 
 const auth = async (req, res) => {
 	try {
-		console.log("userClaims", req.userClaims);
+		// console.log("userClaims", req.userClaims);
 		// const db = await getDB()
 		// const sub = await db.collection("finco").findOne({ _id: req.userClaims.sub })
 		res.status(200).json(req.userClaims.sub);
@@ -124,13 +119,12 @@ const auth = async (req, res) => {
 	}
 };
 
-
 export const getAllAccountData = async (req, res) => {
 	const userID = req.query.id;
 	try {
 		const db = await getDb();
 		const result = await db
-			.collection('finco')
+			.collection("finco")
 			.findOne({ _id: new ObjectId(userID) });
 		if (result === null) {
 			throw new Error("Could not find user");
@@ -147,6 +141,6 @@ export default {
 	register,
 	login,
 	auth,
-  getAllAccountData,
-  setup
+	getAllAccountData,
+	setup,
 };

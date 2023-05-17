@@ -19,6 +19,7 @@ function Header({ name, back, profile, profileMenu, title }) {
 					<h3>{username}</h3>
 				</div>
 			) : back ? (
+				/* go back to last page  */
 				<img
 					width="25px"
 					onClick={() => navigate(-1)}
@@ -26,7 +27,13 @@ function Header({ name, back, profile, profileMenu, title }) {
 					alt="back"
 				/>
 			) : (
-				<img src={logoIcon} alt="logo" width="45px" />
+				/* show finco icon*/
+				<img
+					src={logoIcon}
+					alt="logo"
+					width="45px"
+					onClick={() => navigate("/")}
+				/>
 			)}
 
 			<h1>{title}</h1>

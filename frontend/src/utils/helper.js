@@ -3,6 +3,8 @@ export const formatToDollar = (value) => {
 	return new Intl.NumberFormat("en-US", {
 		style: "currency",
 		currency: "USD",
+		maximumFractionDigits: 2,
+		minimumFractionDigits: 0,
 	}).format(value);
 };
 
@@ -25,11 +27,15 @@ export const navigateWithDelay = (navigate, path, ms) => {
 };
 
 //* map category to transaction
-export const mapType = (category, type) => {
-	let found = categories[category.type].find((element) => {
-		return element.name == category.category;
+export const mapEmoji = (transaction) => {
+	let found = categories[transaction.type].find((element) => {
+		return element.name == transaction.category;
 	});
-	return found[type];
+	if (found) {
+		return found.emoji;
+	} else {
+		return " ";
+	}
 };
 
 export const mapCategory = (category, type) => {

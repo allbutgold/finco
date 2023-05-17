@@ -9,16 +9,18 @@ import search from "../../assets/img/search.svg";
 import back from "../../assets/img/back.svg";
 import { transactionStore } from "../../utils/transactionStore.js";
 
-function CategoryList({ onClick, open, onclick }) {
-	const currentType = transactionStore.getState().transactionType;
+function CategoryList({ onClick, open, onclick, currentType }) {
+	// const currentType = transactionStore.getState().transactionType;
 	const [type, setType] = useState(currentType);
 	// console.log("ctlist", type);
 	const navigate = useNavigate();
+	const inputRef = useRef();
 	const searchRef = useRef();
 	const [filteredCat, setFiltered] = useState(categories[`${type}`]);
 
 	useEffect(() => {
 		setType(currentType);
+		filterCategories();
 	}, [currentType, type]);
 
 	const filterCategories = () => {
@@ -57,24 +59,28 @@ function CategoryList({ onClick, open, onclick }) {
 				</label>
 			</div>
 
-			{filteredCat.length > 0 ? (
-				filteredCat.map((category) => (
-					<label onClick={onClick} key={category.id} htmlFor={category.name}>
-						<img src={category.icon} alt={category.icon} width="25px" />
-						<p>{category.name}</p>
-						<input
-							type="radio"
-							name="category"
-							id={category.name}
-							value={category.name}
-							required
-						/>
-						<img src={forward} alt="icon" />
-					</label>
-				))
-			) : (
-				<p className={styles.notFound}> Sorry no matching category found !</p>
-			)}
+			<div className={styles.categoryList}>
+				{filteredCat.length > 0 ? (
+					filteredCat.map((category) => (
+						<label onClick={onClick} key={category.id} htmlFor={category.name}>
+							<h3>{category.emoji}</h3>
+							<p>{category.name}</p>
+							<input
+								type="radio"
+								name="category"
+								id={category.name}
+								value={category.name}
+								ref={inputRef}
+								// required
+								onChange={(e) => console.log(e.target.value)}
+							/>
+							<img src={forward} alt="icon" />
+						</label>
+					))
+				) : (
+					<p className={styles.notFound}> Sorry no matching category found !</p>
+				)}
+			</div>
 		</div>
 	);
 }
