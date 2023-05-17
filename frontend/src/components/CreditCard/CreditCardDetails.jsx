@@ -3,6 +3,7 @@ import styles from "./CreditCardDetails.module.scss";
 import chip from "../../assets/img/chip.svg";
 import check from "../../assets/img/check.svg";
 import cross from "../../assets/img/cross.svg";
+import danger from "../../assets/img/danger.svg";
 import alert from "../../assets/img/alert.svg";
 import { useEffect, useRef, useState } from "react";
 import { userStore } from "../../utils/userStore.js";
@@ -59,7 +60,7 @@ function CreditCardDetails() {
 					background: validCC ? "var(--positive-col)" : "var(--danger-col)",
 				}}>
 				<p>{validCC ? "valid" : "invalid"} </p>
-				{/* <img src={validCC ? check : cross} alt="verification icon" /> */}
+				<img src={validCC ? check : danger} alt="verification icon" />
 			</div>
 			<div className={styles.container}>
 				<p>Credit Card</p>

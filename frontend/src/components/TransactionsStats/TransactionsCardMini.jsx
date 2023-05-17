@@ -5,7 +5,11 @@ import styles from "./TransactionsStats.module.scss";
 import more from "../../assets/img/more-horizontal.svg";
 import exceededBudgetImg from "../../assets/img/exceededBudget.svg";
 import withinBudgetImg from "../../assets/img/withinBudget.svg";
-import { formatToDollar } from "../../utils/helper.js";
+import {
+	expenseStyles,
+	formatToDollar,
+	incomeStyles,
+} from "../../utils/helper.js";
 
 function TransactionsCardMini({ img, style, content, options, amount }) {
 	const userID = userStore((state) => state.userID);
@@ -99,7 +103,7 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 			)}
 			<dialog ref={dialogRef}>
 				<form onSubmit={changeBudget}>
-					<label htmlFor="budget">Change your budget</label>
+					<label htmlFor="budget">Change your budget :</label>
 					<input
 						type="number"
 						name="budget"
@@ -108,8 +112,14 @@ function TransactionsCardMini({ img, style, content, options, amount }) {
 						placeholder={budget}
 					/>
 					<div>
-						<button type="submit">CHANGE</button>
-						<button onClick={() => dialogRef.current.close()}>KEEP</button>
+						<button style={incomeStyles} type="submit">
+							CHANGE
+						</button>
+						<button
+							style={{ background: "var(--bg-100)", color: "var(--font-200" }}
+							onClick={() => dialogRef.current.close()}>
+							KEEP
+						</button>
 					</div>
 				</form>
 			</dialog>

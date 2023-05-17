@@ -32,7 +32,6 @@ function AddTransactions() {
 		if (form.get("category") == null) {
 			form.append("category", selectedCat);
 		}
-		console.log(form.get("category"));
 		const transactionFetch = fetch(URL + "addTransaction", {
 			method: "POST",
 			credentials: "include",
