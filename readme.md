@@ -45,6 +45,6 @@ If you have any questions, feedback, or suggestions, please feel free to reach o
 
 This project was developed as a part of the final exam project for the software development boot camp. It's a collaborative work of three developers. Thanks to all the peers and instructors who provided their invaluable feedback during the development process.
 
-## Changelog
+# Changelog
 
 The changelog for each version will be updated here as the project evolves.
